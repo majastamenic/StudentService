@@ -92,4 +92,14 @@ public class Predmet {
 		
 	}
 	
+	public static boolean brisanjePredmeta(String sifra) {
+		for(int i=0; i<=MyApp.predmeti.size(); i++) {
+			if(MyApp.predmeti.get(i).getSifra().equals(sifra)) {
+				MyApp.predmeti.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
