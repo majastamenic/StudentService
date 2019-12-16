@@ -126,4 +126,21 @@ public class Profesor {
 	
 	
 	
+	@Override
+	public boolean equals(Object obj) {
+		return ((Profesor)obj).getBrojLicneKarte().equals(this.brojLicneKarte);
+	}
+
+	public static boolean brisanjeProfesora(Long brojLicneKarte) {
+		for(int i = 0; i <= MyApp.profesori.size(); i++) {
+			if(MyApp.profesori.get(i).getBrojLicneKarte().equals(brojLicneKarte)) {
+				MyApp.profesori.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	
 }
