@@ -8,8 +8,12 @@ public class MainFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public MainFrame() {}
+	private MenuBar menu;
+	public MainFrame() {
+		
+		menu=new MenuBar();
+		setJMenuBar(menu);
+	}
 	
 
 }
