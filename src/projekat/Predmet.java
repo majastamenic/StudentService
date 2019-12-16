@@ -121,4 +121,14 @@ public class Predmet {
 		}
 		return false;
 	}
+	
+	public static boolean uklanjanjeProfesora(Profesor profesor, String sifraPredmeta) {
+		for(int i = 0; i <= MyApp.predmeti.size(); i++) {
+			if(MyApp.predmeti.get(i).getSifra().equals(sifraPredmeta)) {
+				MyApp.predmeti.get(i).setPredmetniProfesor(null);;
+				return true;
+			}
+		}
+		return false;
+	}
 }
