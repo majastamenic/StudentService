@@ -112,5 +112,13 @@ public class Predmet {
 		}
 		return false;
 	}
-	
+	public static boolean dodavanjeProfesora(Profesor profesor, String sifraPredmeta) {
+		for(int i = 0; i <= MyApp.predmeti.size(); i++) {
+			if(MyApp.predmeti.get(i).getSifra().equals(sifraPredmeta)) {
+				MyApp.predmeti.get(i).setPredmetniProfesor(profesor);
+				return true;
+			}
+		}
+		return false;
+	}
 }
