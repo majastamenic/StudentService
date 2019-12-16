@@ -2,6 +2,10 @@ package projekat;
 
 import java.util.ArrayList;
 
+/**
+ * @author Admin
+ *
+ */
 public class Predmet {
 	private String sifra;
 	private String naziv;
@@ -73,7 +77,19 @@ public class Predmet {
 	public void setSpisakStudenata(ArrayList<String> spisakStudenataKojiPohadjaju) {
 		this.spisakStudenataKojiPohadjaju = spisakStudenataKojiPohadjaju;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		return ((Predmet)obj).getSifra().equals(this.sifra);
+	}
+
+	public static boolean dodavanjePredmeta(Predmet predmet) {
+		if(MyApp.predmeti.contains(predmet)) {
+			return false;
+		}
+		MyApp.predmeti.add(predmet);
+		return true;
+		
+	}
 	
 }
