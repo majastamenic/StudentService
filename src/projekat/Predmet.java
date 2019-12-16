@@ -94,8 +94,19 @@ public class Predmet {
 	
 	public static boolean brisanjePredmeta(String sifra) {
 		for(int i=0; i<=MyApp.predmeti.size(); i++) {
-			if(MyApp.predmeti.get(i).getSifra().equals(sifra)) {
+			if(MyApp.predmeti.get(i).getSifra().equals(sifra)) {	
 				MyApp.predmeti.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean izmenaPredmeta(Predmet p) {
+		for(int i = 0; i <= MyApp.predmeti.size(); i++) {
+			if(MyApp.predmeti.get(i).getSifra().equals(p.getSifra())) {	//Pretraga po sifri.
+				MyApp.predmeti.remove(i);								//Brisemo prethodnu verziju prosledjenog objekta p.
+				MyApp.predmeti.add(p);									//Postavljamo novu verziju objekta.
 				return true;
 			}
 		}
