@@ -1,8 +1,15 @@
 package projekat;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.ObjectInputStream.GetField;
 import java.sql.Date;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.WindowConstants;
 
 public class MyApp {
 
@@ -11,6 +18,30 @@ public class MyApp {
 	
 	public static void main(String[] args) {
 		
+		MainFrame mainframe = new MainFrame();
+		
+		mainframe.setLocationRelativeTo(null);
+		mainframe.setTitle("Studentska sluzba");
+		
+		ImageIcon img = new ImageIcon("Images/Icon5.png");
+		Image image = img.getImage();
+		Image newimg = image.getScaledInstance(330, 410,  java.awt.Image.SCALE_SMOOTH); //Podesavanje velicine ikonice.
+		img = new ImageIcon(newimg);
+		mainframe.setIconImage(img.getImage());
+		
+		mainframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);     			//Gasi aplikaciju prilikom zatvaranje mainFrame-a.
+		
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Dimension dimenzijaEkrana = toolkit.getScreenSize();
+		mainframe.setSize(new Dimension(dimenzijaEkrana.width*3/4, dimenzijaEkrana.height*3/4));   //Podesavanje dimenzije ekrana.
+		
+		mainframe.setVisible(true);
+		
+		test();
+	}
+	
+	//Metoda za proveru funkcionalnosti klasa Predmet i Profesor.
+	public static void test() {
 		Profesor profa = new Profesor("Kata", "Jovanovic", new Date(1971, 9, 19), "Kneza Vlastimira 10.", "0655179970", "katajovanovic@gmail.com", "asywtdguyuew", 1234L, "maja", "ymaja", new ArrayList<Predmet>());
 		Profesor profesor = new Profesor("Nina", "Stamenic", new Date(1996, 12, 3), "Kneza Vlastimira 10.", "061453", "nist998@gmail.com", "MAJAguyuew", 5678L, "maja", "ymaja", new ArrayList<Predmet>());
 		Profesor profesor1 = new Profesor("Nina", "Stamenic", new Date(1996, 12, 3), "Kneza Vlastimira 10.", "061453", "nist998@gmail.com", "MAJAguyuew", 9123L, "maja", "ymaja", new ArrayList<Predmet>());
@@ -67,11 +98,6 @@ public class MyApp {
 				System.out.println(p.getPredmetniProfesor().getIme());
 			}
 		}
-		
-		MainFrame mainframe = new MainFrame();
-		mainframe.setVisible(true);
-		mainframe.setSize(new Dimension(500, 300));
-		mainframe.setLocationRelativeTo(null);
 	}
 	
 	
