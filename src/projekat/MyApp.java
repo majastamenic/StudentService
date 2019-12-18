@@ -1,6 +1,6 @@
 package projekat;
 
-import java.awt.Color;
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -19,22 +19,6 @@ public class MyApp {
 	public static void main(String[] args) {
 		
 		MainFrame mainframe = new MainFrame();
-		
-		mainframe.setLocationRelativeTo(null);
-		mainframe.setTitle("Studentska sluzba");
-		
-		ImageIcon img = new ImageIcon("Images/Icon5.png");
-		Image image = img.getImage();
-		Image newimg = image.getScaledInstance(330, 410,  java.awt.Image.SCALE_SMOOTH); //Podesavanje velicine ikonice.
-		img = new ImageIcon(newimg);
-		mainframe.setIconImage(img.getImage());
-		
-		mainframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);     			//Gasi aplikaciju prilikom zatvaranje mainFrame-a.
-		
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension dimenzijaEkrana = toolkit.getScreenSize();
-		mainframe.setSize(new Dimension(dimenzijaEkrana.width*3/4, dimenzijaEkrana.height*3/4));   //Podesavanje dimenzije ekrana.
-		
 		mainframe.setVisible(true);
 		
 		test();
