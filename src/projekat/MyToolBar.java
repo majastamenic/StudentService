@@ -14,6 +14,10 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import dialozi.DialogBrisanjePredmeta;
+import dialozi.DialogDodavanjePredmeta;
+import dialozi.DialogIzmenaPredmeta;
+
 public class MyToolBar extends JToolBar{
 	/**
 	 * 
@@ -25,7 +29,6 @@ public class MyToolBar extends JToolBar{
 		super(SwingConstants.HORIZONTAL);
 		
 		JButton btnDodavanje = new JButton("Dodavanje");
-		// btnDodavanje.addActionListener(new DodavanjePredmetaActionListener());
 		ImageIcon img = new ImageIcon("Images/dodavanje.png");
 		btnDodavanje.setIcon(new ImageIcon(img.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));	// smanjivanje ikonice
 		btnDodavanje.setSize(1000, getHeight());
@@ -33,28 +36,45 @@ public class MyToolBar extends JToolBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				if (oznacenStudent) {
-//					
-//				} else if (oznacenProfesor) {
-//					dodavanjeProfesoraActionListener();
-//				}
 
-				DialogDodavanjePredmeta dialogDodavanjePredmeta = new DialogDodavanjePredmeta();
+				String selektovano = MainFrame.getSelectedTab();
+				if (selektovano.equals("predmet")) {
+					DialogDodavanjePredmeta dialogDodavanjePredmeta = new DialogDodavanjePredmeta();
+
+				}
+				
 				
 			}
 		});
 		add(btnDodavanje);
 		
 		JButton btnIzmena = new JButton("Izmena");
-		btnIzmena.setIcon(new ImageIcon("Images/izmena.png"));
-		ImageIcon img1 = new ImageIcon("Images/izmena.png");
+		btnIzmena.setIcon(new ImageIcon("Images/switch.png"));
+		ImageIcon img1 = new ImageIcon("Images/switch.png");
 		btnIzmena.setIcon(new ImageIcon(img1.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+		btnIzmena.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta();
+				
+			}
+		});
+		
 		add(btnIzmena);
 		
 		JButton btnBrisanje = new JButton("Brisanje");
 		btnBrisanje.setIcon(new ImageIcon("Images/delete.png"));
 		ImageIcon img2 = new ImageIcon("Images/delete.png");
 		btnBrisanje.setIcon(new ImageIcon(img2.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+		btnBrisanje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DialogBrisanjePredmeta dialogBrisanjePredmeta = new DialogBrisanjePredmeta();
+				
+			}
+		});
 		add(btnBrisanje);
 		
 		addSeparator(getMaximumSize());
@@ -63,12 +83,14 @@ public class MyToolBar extends JToolBar{
 		add(tekst);
 		
 		JButton btnPretraga= new JButton("Pretraga");
-		btnPretraga.setIcon(new ImageIcon("Images/pretrazivanje.png"));
-		ImageIcon img3 = new ImageIcon("Images/pretrazivanje.png");
+		btnPretraga.setIcon(new ImageIcon("Images/pretrazivanje2.png"));
+		ImageIcon img3 = new ImageIcon("Images/pretrazivanje2.png");
 		btnPretraga.setIcon(new ImageIcon(img3.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
 		add(btnPretraga);
 		
 		
 		setVisible(true);
 	}
+	
+	
 }

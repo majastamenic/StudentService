@@ -1,12 +1,18 @@
 package projekat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author Admin
  *
  */
-public class Predmet {
+public class Predmet implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String sifra;
 	private String naziv;
 	private int semestar;
@@ -19,7 +25,7 @@ public class Predmet {
 	public Predmet() {
 		spisakStudenataKojiPohadjaju = new ArrayList<String>();
 	}
-	
+	 
 	public Predmet(String sifra, String naziv, int semestar, int godinaStudija, Profesor predmetniProfesor, ArrayList<String> spisakStudenataKojiPohadjaju) {
 		this.sifra = sifra;
 		this.naziv = naziv;

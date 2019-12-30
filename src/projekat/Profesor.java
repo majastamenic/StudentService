@@ -1,9 +1,15 @@
 package projekat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Profesor {
+public class Profesor implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ime;
 	private String prezime;
 	private Date datumRodjenja; 
