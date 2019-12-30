@@ -22,11 +22,11 @@ public class MenuBar extends JMenuBar {
 
 
 		file.add(novi);
-		novi.setIcon(new ImageIcon("icons8-plus-24.png"));
+		novi.setIcon(new ImageIcon("ikonice/icons8-plus-24.png"));
 		novi.setMnemonic(KeyEvent.VK_N);
 		file.addSeparator();
 		file.add(zatvori);
-		zatvori.setIcon(new ImageIcon("icons8-delete-20.png"));
+		zatvori.setIcon(new ImageIcon("ikonice/icons8-delete-20.png"));
 		zatvori.setMnemonic(KeyEvent.VK_C);
 
 
@@ -35,11 +35,11 @@ public class MenuBar extends JMenuBar {
 		JMenuItem delete = new JMenuItem("Delete");
 		
 		edit.add(edit1);
-		edit1.setIcon(new ImageIcon("icons8-edit-20.png"));
+		edit1.setIcon(new ImageIcon("ikonice/icons8-edit-20.png"));
 		edit1.setMnemonic(KeyEvent.VK_E);
 		edit.addSeparator();
 		edit.add(delete);
-		delete.setIcon(new ImageIcon("icons8-delete-bin-20.png"));
+		delete.setIcon(new ImageIcon("ikonice/icons8-delete-bin-20.png"));
 		delete.setMnemonic(KeyEvent.VK_D);
 		
 		JMenu help = new JMenu("Help");
@@ -50,9 +50,9 @@ public class MenuBar extends JMenuBar {
 		JMenuItem about = new JMenuItem("About");
 		help.add(about);
 
-		help1.setIcon(new ImageIcon("icons8-help-20.png"));
+		help1.setIcon(new ImageIcon("ikonice/icons8-help-20.png"));
 		help1.setMnemonic(KeyEvent.VK_H);
-		about.setIcon(new ImageIcon("icons8-about-20.png"));
+		about.setIcon(new ImageIcon("ikonice/icons8-about-20.png"));
 		about.setMnemonic(KeyEvent.VK_A);
 
 		
