@@ -17,6 +17,8 @@ public class MyApp {
 
 	static ArrayList<Predmet>predmeti = new ArrayList<Predmet>();
 	static ArrayList<Profesor> profesori = new ArrayList<Profesor>();
+	static ArrayList<Student> studenti = new ArrayList<Student>();
+
 	
 	public static void main(String[] args) {
 		
@@ -67,6 +69,13 @@ public class MyApp {
 		Predmet.dodavanjePredmeta(predmet4);
 		Predmet.dodavanjePredmeta(predmet5);
 		
+		Student student1=new Student("Maja", "Stamenic",new Date(1998, 02, 11), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(2017, 02, 11), 3, Status.B, 9.09 , new ArrayList<Student>());
+		studenti.add(student1);
+		
+		System.out.println("Dodati studenti");
+		for (Student s : studenti) {
+			System.out.println(s.getBrojIndeksa());
+		}
 		
 		
 		/*System.out.println("Dodati predmeti");
