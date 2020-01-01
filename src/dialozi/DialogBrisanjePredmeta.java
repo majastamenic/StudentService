@@ -5,8 +5,13 @@ import java.awt.Dimension;
 import javax.swing.JDialog;
 
 public class DialogBrisanjePredmeta extends JDialog{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public DialogBrisanjePredmeta() {
-		// TODO Auto-generated constructor stub
 		setTitle("Brisanje predmeta");
 		setSize(new Dimension(300, 200));
 		setLocationRelativeTo(null);

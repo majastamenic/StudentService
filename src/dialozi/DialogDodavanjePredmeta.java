@@ -1,9 +1,6 @@
 package dialozi;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.TextField;
-
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
