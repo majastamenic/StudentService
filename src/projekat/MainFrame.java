@@ -20,7 +20,12 @@ import tabela.ProfesoriTabela;
 public class MainFrame extends JFrame {
 
 	/**
-	 * 
+	private MenuBar menu;
+	public MainFrame() {
+		
+		menu=new MenuBar();
+		setJMenuBar(menu);
+	}
 	 */
 	
 	private static MainFrame instance = null;
@@ -35,7 +40,7 @@ public class MainFrame extends JFrame {
 		}
 		return instance;
 	}
-
+	private MenuBar menu;
 	private MainFrame() {
 		
 		setTitle("Studentska sluzba");
@@ -48,6 +53,8 @@ public class MainFrame extends JFrame {
 		
 //		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);     			//Gasi aplikaciju prilikom zatvaranje mainFrame-a.
 		
+		menu=new MenuBar();
+		setJMenuBar(menu);
 		addWindowListener(new java.awt.event.WindowAdapter(){
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
