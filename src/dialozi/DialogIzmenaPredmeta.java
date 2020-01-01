@@ -6,6 +6,11 @@ import javax.swing.JDialog;
 
 public class DialogIzmenaPredmeta extends JDialog {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public DialogIzmenaPredmeta() {
 		// TODO Auto-generated constructor stub
 		setTitle("Izmena predmeta");
