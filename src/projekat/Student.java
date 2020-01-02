@@ -20,15 +20,15 @@ public class Student implements Serializable{
 	private Integer godinaStudija;
 	private Status status;
 	private Double prosecnaOcena;
-	private ArrayList<Student> spisakPredmetaKojeSlusa;
+	private ArrayList<Predmet> spisakPredmetaKojeSlusa;
 	
 	public Student() {
-		spisakPredmetaKojeSlusa=new ArrayList<Student>();
+		spisakPredmetaKojeSlusa=new ArrayList<Predmet>();
 	}
 
 	public Student(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon,
 			String email, String brojIndeksa, Date datumUpisa, Integer godinaStudija, Status status,
-			Double prosecnaOcena, ArrayList<Student> spisakPredmetaKojeSlusa) {
+			Double prosecnaOcena, ArrayList<Predmet> spisakPredmetaKojeSlusa) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -132,11 +132,11 @@ public class Student implements Serializable{
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
-	public ArrayList<Student> getSpisakPredmetaKojeSlusa() {
+	public ArrayList<Predmet> getSpisakPredmetaKojeSlusa() {
 		return spisakPredmetaKojeSlusa;
 	}
 
-	public void setSpisakPredmetaKojeSlusa(ArrayList<Student> spisakPredmetaKojeSlusa) {
+	public void setSpisakPredmetaKojeSlusa(ArrayList<Predmet> spisakPredmetaKojeSlusa) {
 		this.spisakPredmetaKojeSlusa = spisakPredmetaKojeSlusa;
 	}
 	

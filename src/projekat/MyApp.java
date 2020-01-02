@@ -69,8 +69,11 @@ public class MyApp {
 		Predmet.dodavanjePredmeta(predmet4);
 		Predmet.dodavanjePredmeta(predmet5);
 		
-		Student student1=new Student("Maja", "Stamenic",new Date(1998, 02, 11), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(2017, 02, 11), 3, Status.B, 9.09 , new ArrayList<Student>());
+		Student student1=new Student("Maja", "Stamenic",new Date(1998, 05, 11), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(2017, 02, 11), 3, Status.B, 9.09 , new ArrayList<Predmet>());
 		studenti.add(student1);
+		
+		Student student2=new Student("Marija", "Milanovic",new Date(1998, 28, 12), "Papa Pavla 28", "021456245", "marija.milanovic@gmail.com", "RA197-2017", new Date(2017, 02, 11), 3, Status.B, 9.06 , new ArrayList<Predmet>());
+		studenti.add(student2);
 		
 		System.out.println("Dodati studenti");
 		for (Student s : studenti) {
