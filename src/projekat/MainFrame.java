@@ -18,20 +18,15 @@ import tabela.PredmetiTabela;
 import tabela.ProfesoriTabela;
 
 public class MainFrame extends JFrame {
-
-	/**
-	private MenuBar menu;
-	public MainFrame() {
-		
-		menu=new MenuBar();
-		setJMenuBar(menu);
-	}
-	 */
 	
 	private static MainFrame instance = null;
 	private static final long serialVersionUID = 1L;
 	
 	private static JTabbedPane tabovi;
+	private static MenuBar menu;
+	
+	private static StatusBar statusBar;
+	
 	
 	public static MainFrame getInstance() {
 	
@@ -40,7 +35,7 @@ public class MainFrame extends JFrame {
 		}
 		return instance;
 	}
-	private MenuBar menu;
+	
 	private MainFrame() {
 		
 		setTitle("Studentska sluzba");
@@ -55,6 +50,11 @@ public class MainFrame extends JFrame {
 		
 		menu=new MenuBar();
 		setJMenuBar(menu);
+		setVisible(true);
+		
+		statusBar=new StatusBar();
+		add(statusBar, BorderLayout.SOUTH);
+		
 		addWindowListener(new java.awt.event.WindowAdapter(){
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
