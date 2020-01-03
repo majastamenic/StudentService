@@ -15,8 +15,14 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import dialozi.DialogBrisanjePredmeta;
+import dialozi.DialogBrisanjeProfesora;
+import dialozi.DialogBrisanjeStudenta;
 import dialozi.DialogDodavanjePredmeta;
+import dialozi.DialogDodavanjeProfesora;
+import dialozi.DialogDodavanjeStudenta;
 import dialozi.DialogIzmenaPredmeta;
+import dialozi.DialogIzmenaProfesora;
+import dialozi.DialogIzmenaStudenta;
 
 public class MyToolBar extends JToolBar{
 	/**
