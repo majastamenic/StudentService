@@ -140,7 +140,7 @@ public class Student implements Serializable{
 		this.spisakPredmetaKojeSlusa = spisakPredmetaKojeSlusa;
 	}
 	
-	/*public static boolean dodavanjeStudenta(Student student) {
+	public static boolean dodavanjeStudenta(Student student) {
 		if(MyApp.studenti.contains(student)) {
 			return false;
 		}
@@ -148,5 +148,26 @@ public class Student implements Serializable{
 		return true;
 
 	
-	}*/
+	}
+	
+	public static boolean brisanjeStudenta(String brojIndeksa) {
+		for(int i=0; i<=MyApp.studenti.size(); i++) {
+			if(MyApp.studenti.get(i).getBrojIndeksa().equals(brojIndeksa)) {	
+				MyApp.studenti.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean izmenaStudenta(Student s) {
+		for(int i = 0; i <= MyApp.studenti.size(); i++) {
+			if(MyApp.studenti.get(i).getBrojIndeksa().equals(s.getBrojIndeksa())) {	
+				MyApp.studenti.remove(i);								
+				MyApp.studenti.add(s);									
+				return true;
+			}
+		}
+		return false;
+	}
 }
