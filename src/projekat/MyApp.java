@@ -25,8 +25,8 @@ public class MyApp {
 		predmeti = Util.ucitajPredmet();
 		profesori = Util.ucitajProfesore();
 		studenti= Util.ucitajStudente();
-		test();
-		
+		//test();
+	
 		MainFrame mainframe = MainFrame.getInstance();
 		mainframe.setVisible(true);
 		
