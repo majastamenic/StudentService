@@ -16,6 +16,7 @@ import javax.swing.WindowConstants;
 import dialozi.Util;
 import tabela.PredmetiTabela;
 import tabela.ProfesoriTabela;
+import tabela.StudentiTabela;
 
 public class MainFrame extends JFrame {
 	
@@ -62,6 +63,7 @@ public class MainFrame extends JFrame {
 		            JOptionPane.YES_NO_OPTION,
 		            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
 		        	Util.upisiPredmete(MyApp.predmeti);
+		        	Util.upisiStudente(MyApp.studenti);
 		        	Util.upisiProfesore(MyApp.profesori);
 		            System.exit(0);
 		        }
@@ -79,7 +81,7 @@ public class MainFrame extends JFrame {
 		add(toolbar, BorderLayout.NORTH);
 		
 		tabovi = new JTabbedPane();
-		tabovi.addTab("Studenti", new JTable());
+		tabovi.addTab("Studenti", new JScrollPane(new StudentiTabela(MyApp.studenti)));
 		tabovi.addTab("Profesori", new JScrollPane(new ProfesoriTabela(MyApp.profesori)));
 		tabovi.addTab("Predmeti", new JScrollPane(new PredmetiTabela(MyApp.predmeti)));
 		add(tabovi);
