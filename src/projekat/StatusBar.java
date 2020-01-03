@@ -21,20 +21,21 @@ public class StatusBar extends JMenuBar{
 		
 		JPanel leviPanel=new JPanel();
 		leviPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		
+		leviPanel.setBackground(Color.GRAY);
 		JLabel levaLabela=new JLabel("Studentska sluzba");
 		
-		levaLabela.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));
+		levaLabela.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.RED));
 		leviPanel.add(levaLabela, BorderLayout.NORTH);
 		
 		add(leviPanel);
 		
 		JPanel desniPanel=new JPanel();
 		desniPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		desniPanel.setBackground(Color.GRAY);
 		
 		DateFormat datumFormat=new SimpleDateFormat("HH:mm     dd.MM.yyyy. ");
 		JLabel desnaLabela=new JLabel(datumFormat.format(new Date()));
-		desnaLabela.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.RED));
+		desnaLabela.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.RED));
 		desniPanel.add(desnaLabela);
 		
 		add(desniPanel);
