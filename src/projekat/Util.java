@@ -14,6 +14,7 @@ public class Util {
 
 	private static final File fileProfesori = new File("Text files/profesori.txt");
 	private static final File filePredmeti = new File("Text files/predmeti.txt");
+	private static final File fileStudenti = new File("Text files/studenti.txt");
 
 	public static ArrayList<Profesor> ucitajProfesore() {
 		ArrayList<Profesor> listaProfesora = new ArrayList<Profesor>();
@@ -53,6 +54,24 @@ public class Util {
 		return listaPredmeta;
 	}
 	
+	public static ArrayList<Student> ucitajStudente() {
+		ArrayList<Student> listaStudenata = new ArrayList<Student>();
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(fileStudenti)));
+			listaStudenata = (ArrayList<Student>) ois.readObject();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				ois.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return listaStudenata;
+	}
+	
 	public static void upisiProfesore(ArrayList<Profesor> listaProfesora) {
 		ObjectOutputStream oos = null;
 		try {
@@ -87,4 +106,20 @@ public class Util {
 		}
 	}
 
+	public static void upisiStudente(ArrayList<Student> listaStudenata) {
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(fileStudenti)));
+			oos.writeObject(listaStudenata);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }
