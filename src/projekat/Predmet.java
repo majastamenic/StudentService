@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Admin
  *
  */
-public class Predmet implements Serializable{
+public class Predmet implements Serializable {
 	
 	/**
 	 * 

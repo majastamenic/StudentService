@@ -20,6 +20,7 @@ public class PredmetiTabela extends JTable {
 		//this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(predmetiTabelaModel);
+		setAutoCreateRowSorter(true);
 	}
 
 }

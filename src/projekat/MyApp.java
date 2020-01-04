@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import java.io.ObjectInputStream.GetField;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
@@ -14,7 +16,7 @@ import javax.swing.WindowConstants;
 
 public class MyApp {
 
-	static ArrayList<Predmet>predmeti = new ArrayList<Predmet>();
+	static ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	static ArrayList<Profesor> profesori = new ArrayList<Profesor>();
 	static ArrayList<Student> studenti = new ArrayList<Student>();
 

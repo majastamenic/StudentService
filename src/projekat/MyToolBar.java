@@ -1,6 +1,8 @@
 package projekat;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +15,9 @@ import javax.swing.SwingConstants;
 import dialozi.DialogBrisanjePredmeta;
 import dialozi.DialogBrisanjeProfesora;
 import dialozi.DialogDodavanjePredmeta;
+import dialozi.DialogDodavanjeProfesoraNaPredmet;
 import dialozi.DialogIzmenaPredmeta;
+import dialozi.DialogUklanjanjeProfesoraSaPredmet;
 
 public class MyToolBar extends JToolBar{
 	/**
@@ -25,10 +29,10 @@ public class MyToolBar extends JToolBar{
 		
 		super(SwingConstants.HORIZONTAL);
 		
-		JButton btnDodavanje = new JButton("Dodavanje");
+		JButton btnDodavanje = new JButton();
 		ImageIcon img = new ImageIcon("Images/dodavanje.png");
 		btnDodavanje.setIcon(new ImageIcon(img.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));	// smanjivanje ikonice
-		btnDodavanje.setSize(1000, getHeight());
+		btnDodavanje.setToolTipText("Dodavanje");
 		btnDodavanje.addActionListener(new ActionListener() {
 			
 			@Override
@@ -45,25 +49,31 @@ public class MyToolBar extends JToolBar{
 		});
 		add(btnDodavanje);
 		
-		JButton btnIzmena = new JButton("Izmena");
+		JButton btnIzmena = new JButton();
 		btnIzmena.setIcon(new ImageIcon("Images/switch.png"));
 		ImageIcon img1 = new ImageIcon("Images/switch.png");
 		btnIzmena.setIcon(new ImageIcon(img1.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+		btnIzmena.setToolTipText("Izmena");
 		btnIzmena.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta();
 				
+				String selektovano = MainFrame.getSelectedTab();
+				if(selektovano.equals("predmet")) {
+					int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
+					DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
+				}
 			}
 		});
 		
 		add(btnIzmena);
 		
-		JButton btnBrisanje = new JButton("Brisanje");
+		JButton btnBrisanje = new JButton();
 		btnBrisanje.setIcon(new ImageIcon("Images/delete.png"));
 		ImageIcon img2 = new ImageIcon("Images/delete.png");
 		btnBrisanje.setIcon(new ImageIcon(img2.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+		btnBrisanje.setToolTipText("Brisanje");
 		btnBrisanje.addActionListener(new ActionListener() {
 			
 			@Override
@@ -86,15 +96,48 @@ public class MyToolBar extends JToolBar{
 		});
 		add(btnBrisanje);
 		
-		addSeparator(getMaximumSize());
+		String selektovano = MainFrame.getSelectedTab();
+		if(selektovano.equals("predmet")) {
+			JButton btnDodavanjeProfesoraNaPredmet = new JButton();
+			btnDodavanjeProfesoraNaPredmet.setToolTipText("Dodavanje profesora na predmet");
+			ImageIcon img3 = new ImageIcon("Images/addMan.png");
+			btnDodavanjeProfesoraNaPredmet.setIcon(new ImageIcon(img3.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+			btnDodavanjeProfesoraNaPredmet.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DialogDodavanjeProfesoraNaPredmet dodavanjeProfesora = new DialogDodavanjeProfesoraNaPredmet();
+				}
+			});
+			add(btnDodavanjeProfesoraNaPredmet);
+			
+			JButton btnBrisanjeProfesoraSaPredmeta = new JButton();
+			btnBrisanjeProfesoraSaPredmeta.setToolTipText("Brisanje profesora sa predmeta");
+			ImageIcon img4 = new ImageIcon("Images/deleteMan.png");
+			btnBrisanjeProfesoraSaPredmeta.setIcon(new ImageIcon(img4.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+			btnBrisanjeProfesoraSaPredmeta.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DialogUklanjanjeProfesoraSaPredmet uklanjanjeProfesora = new DialogUklanjanjeProfesoraSaPredmet();
+					
+				}
+			});
+			add(btnBrisanjeProfesoraSaPredmeta);
+		}
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Dimension dimenzijaEkrana = toolkit.getScreenSize();
+		addSeparator(new Dimension((int) (dimenzijaEkrana.getWidth()/3), 20));			// 1/3 separator 
 		JTextField tekst = new JTextField();
-		tekst.setSize(new Dimension(20, 20));
-		add(tekst);
 		
-		JButton btnPretraga= new JButton("Pretraga");
+		tekst.setMaximumSize(new Dimension((int) (dimenzijaEkrana.getWidth()/3), 40));
+		add(tekst, BorderLayout.LINE_END);
+		
+		JButton btnPretraga= new JButton();
 		btnPretraga.setIcon(new ImageIcon("Images/pretrazivanje2.png"));
 		ImageIcon img3 = new ImageIcon("Images/pretrazivanje2.png");
 		btnPretraga.setIcon(new ImageIcon(img3.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
+		btnPretraga.setToolTipText("Pretraga");
 		add(btnPretraga);
 		
 		
