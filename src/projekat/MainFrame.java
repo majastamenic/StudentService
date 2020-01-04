@@ -11,13 +11,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.WindowConstants;
 
+import dialozi.Util;
 import tabela.PredmetiTabela;
 import tabela.ProfesoriTabela;
 import tabela.StudentiTabela;
 
 public class MainFrame extends JFrame {
-
+	
 	private static MainFrame instance = null;
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +41,7 @@ public class MainFrame extends JFrame {
 	}
 
 	private MainFrame() {
-
+		
 		setTitle("Studentska sluzba");
 
 		ImageIcon img = new ImageIcon("Images/Icon5.png");
@@ -64,6 +66,7 @@ public class MainFrame extends JFrame {
 						"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 					Util.upisiPredmete(MyApp.predmeti);
+					Util.upisiStudente(MyApp.studenti);
 					Util.upisiProfesore(MyApp.profesori);
 					System.exit(0);
 				} else {
@@ -83,7 +86,7 @@ public class MainFrame extends JFrame {
 		add(toolbar, BorderLayout.NORTH);
 
 		tabovi = new JTabbedPane();
-		tabovi.addTab("Studenti", new JTable());
+		tabovi.addTab("Studenti", new JScrollPane(new StudentiTabela(MyApp.studenti)));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);

@@ -20,15 +20,15 @@ public class Student implements Serializable{
 	private Integer godinaStudija;
 	private Status status;
 	private Double prosecnaOcena;
-	private ArrayList<Student> spisakPredmetaKojeSlusa;
+	private ArrayList<Predmet> spisakPredmetaKojeSlusa;
 	
 	public Student() {
-		spisakPredmetaKojeSlusa=new ArrayList<Student>();
+		spisakPredmetaKojeSlusa=new ArrayList<Predmet>();
 	}
 
 	public Student(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon,
 			String email, String brojIndeksa, Date datumUpisa, Integer godinaStudija, Status status,
-			Double prosecnaOcena, ArrayList<Student> spisakPredmetaKojeSlusa) {
+			Double prosecnaOcena, ArrayList<Predmet> spisakPredmetaKojeSlusa) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -132,15 +132,15 @@ public class Student implements Serializable{
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
-	public ArrayList<Student> getSpisakPredmetaKojeSlusa() {
+	public ArrayList<Predmet> getSpisakPredmetaKojeSlusa() {
 		return spisakPredmetaKojeSlusa;
 	}
 
-	public void setSpisakPredmetaKojeSlusa(ArrayList<Student> spisakPredmetaKojeSlusa) {
+	public void setSpisakPredmetaKojeSlusa(ArrayList<Predmet> spisakPredmetaKojeSlusa) {
 		this.spisakPredmetaKojeSlusa = spisakPredmetaKojeSlusa;
 	}
 	
-	/*public static boolean dodavanjeStudenta(Student student) {
+	public static boolean dodavanjeStudenta(Student student) {
 		if(MyApp.studenti.contains(student)) {
 			return false;
 		}
@@ -148,5 +148,26 @@ public class Student implements Serializable{
 		return true;
 
 	
-	}*/
+	}
+	
+	public static boolean brisanjeStudenta(String brojIndeksa) {
+		for(int i=0; i<=MyApp.studenti.size(); i++) {
+			if(MyApp.studenti.get(i).getBrojIndeksa().equals(brojIndeksa)) {	
+				MyApp.studenti.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean izmenaStudenta(Student s) {
+		for(int i = 0; i <= MyApp.studenti.size(); i++) {
+			if(MyApp.studenti.get(i).getBrojIndeksa().equals(s.getBrojIndeksa())) {	
+				MyApp.studenti.remove(i);								
+				MyApp.studenti.add(s);									
+				return true;
+			}
+		}
+		return false;
+	}
 }

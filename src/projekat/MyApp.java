@@ -16,22 +16,23 @@ public class MyApp {
 
 	static ArrayList<Predmet>predmeti = new ArrayList<Predmet>();
 	static ArrayList<Profesor> profesori = new ArrayList<Profesor>();
-	private static ArrayList<Student> studenti = new ArrayList<Student>();
+	static ArrayList<Student> studenti = new ArrayList<Student>();
 
 	
 	public static void main(String[] args) {
 		
 		predmeti = Util.ucitajPredmet();
 		profesori = Util.ucitajProfesore();
+		studenti= Util.ucitajStudente();
 		//test();
-
+	
 		MainFrame mainframe = MainFrame.getInstance();
 		mainframe.setVisible(true);
 		
 		
 	}
 	
-	//Metoda za proveru funkcionalnosti klasa Predmet i Profesor.
+	//Metoda za proveru funkcionalnosti klasa Predmet, Profesor i Student.
 	public static void test() {
 		Profesor profesor1 = new Profesor("Rade", "Doroslovacki", new Date(1953, 02, 11), "bul. Mihajla Pupina 1.", "021/485-2055", "rade.doroslovacki@uns.ac.rs", "Trg Dositeja Obradovica 6.", 123456789L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
 		Profesor profesor2 = new Profesor("Nebojsa", "Ralevic", new Date(1965, 15, 01), "bul Oslobodjenja 2.", "021/654-987", "nebojsa.ralevic@uns.ac.rs", "Cirpanova 34.", 234567891L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
@@ -44,10 +45,10 @@ public class MyApp {
 		profesori.add(profesor4);
 		profesori.add(profesor5);
 		
-		System.out.println("Dodati profesori");
+		/*System.out.println("Dodati profesori");
 		for (Profesor pr : profesori) {
 			System.out.println(pr.getBrojLicneKarte());
-		}
+		}*/
 		
 //		System.out.println("               ");
 //		Profesor.brisanjeProfesora(567891234L);
@@ -68,13 +69,16 @@ public class MyApp {
 		Predmet.dodavanjePredmeta(predmet4);
 		Predmet.dodavanjePredmeta(predmet5);
 		
-		Student student1=new Student("Maja", "Stamenic",new Date(1998, 02, 11), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(2017, 02, 11), 3, Status.B, 9.09 , new ArrayList<Student>());
+		Student student1=new Student("Maja", "Stamenic",new Date(1998, 05, 11), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(2017, 02, 11), 3, Status.B, 9.09 , new ArrayList<Predmet>());
 		studenti.add(student1);
 		
-		System.out.println("Dodati studenti");
+		Student student2=new Student("Marija", "Milanovic",new Date(1998, 28, 12), "Papa Pavla 28", "021456245", "marija.milanovic@gmail.com", "RA197-2017", new Date(2017, 02, 11), 3, Status.B, 9.06 , new ArrayList<Predmet>());
+		studenti.add(student2);
+		
+		/*System.out.println("Dodati studenti");
 		for (Student s : studenti) {
 			System.out.println(s.getBrojIndeksa());
-		}
+		}*/
 		
 		
 		/*System.out.println("Dodati predmeti");
