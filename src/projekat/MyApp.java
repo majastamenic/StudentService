@@ -36,11 +36,11 @@ public class MyApp {
 	
 	//Metoda za proveru funkcionalnosti klasa Predmet, Profesor i Student.
 	public static void test() {
-		Profesor profesor1 = new Profesor("Rade", "Doroslovacki", new Date(1953, 02, 11), "bul. Mihajla Pupina 1.", "021/485-2055", "rade.doroslovacki@uns.ac.rs", "Trg Dositeja Obradovica 6.", 123456789L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
-		Profesor profesor2 = new Profesor("Nebojsa", "Ralevic", new Date(1965, 15, 01), "bul Oslobodjenja 2.", "021/654-987", "nebojsa.ralevic@uns.ac.rs", "Cirpanova 34.", 234567891L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
-		Profesor profesor3 = new Profesor("Mila", "Stojakovic", new Date(1963, 12, 13), "Stanoja Glavasa 13.", "021/453-345", "mila@uns.ac.rs", "Maksima Gorkog 2.", 345678912L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
-		Profesor profesor4 = new Profesor("Srdjan", "Milicevic", new Date(1988, 11, 12), "Kraljevica Marka 56.", "021/476-521", "srdjan.milicevic88@gmail.com", "Kralja Petra Prvog 4.", 456789123L, "doktor nauka", "asistent", new ArrayList<Predmet>());
-		Profesor profesor5 = new Profesor("Slobodan", "Supic", new Date(1980, 10, 04), "Gorana Kovacica 45.", "021/948-234", "ssupic@uns.ac.rs", "Dunavska 3.", 567891234L, "doktor nauka", "asistent", new ArrayList<Predmet>());
+		Profesor profesor1 = new Profesor("Rade", "Doroslovacki", new Date(12,4,1998), "bul. Mihajla Pupina 1.", "021/485-2055", "rade.doroslovacki@uns.ac.rs", "Trg Dositeja Obradovica 6.", 123456789L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
+		Profesor profesor2 = new Profesor("Nebojsa", "Ralevic",new Date(12,4,1998), "bul Oslobodjenja 2.", "021/654-987", "nebojsa.ralevic@uns.ac.rs", "Cirpanova 34.", 234567891L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
+		Profesor profesor3 = new Profesor("Mila", "Stojakovic", new Date(12,4,1998), "Stanoja Glavasa 13.", "021/453-345", "mila@uns.ac.rs", "Maksima Gorkog 2.", 345678912L, "doktor nauka", "redovni profesor", new ArrayList<Predmet>());
+		Profesor profesor4 = new Profesor("Srdjan", "Milicevic", new Date(12,4,1998), "Kraljevica Marka 56.", "021/476-521", "srdjan.milicevic88@gmail.com", "Kralja Petra Prvog 4.", 456789123L, "doktor nauka", "asistent", new ArrayList<Predmet>());
+		Profesor profesor5 = new Profesor("Slobodan", "Supic", new Date(12,4,1998), "Gorana Kovacica 45.", "021/948-234", "ssupic@uns.ac.rs", "Dunavska 3.", 567891234L, "doktor nauka", "asistent", new ArrayList<Predmet>());
 		profesori.add(profesor1);
 		profesori.add(profesor2);
 		profesori.add(profesor3);
@@ -71,10 +71,10 @@ public class MyApp {
 		Predmet.dodavanjePredmeta(predmet4);
 		Predmet.dodavanjePredmeta(predmet5);
 		
-		Student student1=new Student("Maja", "Stamenic",new Date(1998, 05, 11), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(2017, 02, 11), 3, Status.B, 9.09 , new ArrayList<Predmet>());
+		Student student1=new Student("Maja", "Stamenic",new Date(12,4,1998), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(12,4,1998), 3, Status.B, 9.09 , new ArrayList<Predmet>());
 		studenti.add(student1);
 		
-		Student student2=new Student("Marija", "Milanovic",new Date(1998, 28, 12), "Papa Pavla 28", "021456245", "marija.milanovic@gmail.com", "RA197-2017", new Date(2017, 02, 11), 3, Status.B, 9.06 , new ArrayList<Predmet>());
+		Student student2=new Student("Marija", "Milanovic",new Date(12,4,1998), "Papa Pavla 28", "021456245", "marija.milanovic@gmail.com", "RA197-2017", new Date(12,4,1998), 3, Status.B, 9.06 , new ArrayList<Predmet>());
 		studenti.add(student2);
 		
 		/*System.out.println("Dodati studenti");

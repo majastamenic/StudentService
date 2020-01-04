@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 public class Profesor implements Serializable {
 	
 	/**
@@ -145,6 +146,16 @@ public class Profesor implements Serializable {
 			}
 		}
 		return false;
+	}
+	
+	public static boolean dodavanjeProfesora(Profesor profesor) {
+		if(MyApp.profesori.contains(profesor)) {
+			return false;
+		}
+		MyApp.profesori.add(profesor);
+		return true;
+
+	
 	}
 
 	@Override
