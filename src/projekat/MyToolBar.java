@@ -11,6 +11,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import dialozi.DialogBrisanjePredmeta;
+import dialozi.DialogBrisanjeProfesora;
 import dialozi.DialogDodavanjePredmeta;
 import dialozi.DialogIzmenaPredmeta;
 
@@ -74,6 +75,11 @@ public class MyToolBar extends JToolBar{
 					
 					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
 					
+				} else if(selektovano.equals("profesor")) {
+					
+					int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+					
+					DialogBrisanjeProfesora brisanje = new DialogBrisanjeProfesora(indexUModelu);
 				}
 					
 			}
