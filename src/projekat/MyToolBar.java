@@ -45,6 +45,7 @@ public class MyToolBar extends JToolBar{
 				}
 				else if(selektovano.equals("student")) {
 					DialogDodavanjeStudenta dialogDodavanjeStudenta = new DialogDodavanjeStudenta();
+					
 				}else {
 					DialogDodavanjeProfesora dialogDodavanjeProfesora = new DialogDodavanjeProfesora();
 				}
@@ -93,7 +94,10 @@ public class MyToolBar extends JToolBar{
 					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
 					
 				}else if(selektovano.equals("student")) {
-					DialogBrisanjeStudenta dialogBrisanjeStudenta = new DialogBrisanjeStudenta();
+					
+					int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					
+					DialogBrisanjeStudenta brisanjeStudenta = new DialogBrisanjeStudenta(idx);
 				}
 					
 			}

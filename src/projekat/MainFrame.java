@@ -113,7 +113,8 @@ public class MainFrame extends JFrame {
 
 		tabovi.removeAll();
 
-		tabovi.addTab("Studenti", new JTable());
+		tabelaStudenti = new StudentiTabela(MyApp.studenti);
+		tabovi.addTab("Studenti", new JScrollPane(tabelaStudenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
@@ -136,5 +137,12 @@ public class MainFrame extends JFrame {
 
 	public static void setTabelaPredmeti(PredmetiTabela tabelaPredmeti) {
 		MainFrame.tabelaPredmeti = tabelaPredmeti;
+	}
+	
+	public static StudentiTabela getTabelaStudenti() {
+		return tabelaStudenti;
+	}
+	public static void setTabelaStudenti(StudentiTabela tabelaStudenti) {
+		MainFrame.tabelaStudenti = tabelaStudenti;
 	}
 }

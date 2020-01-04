@@ -17,10 +17,12 @@ import javax.swing.JTextField;
 
 import projekat.MainFrame;
 import projekat.Profesor;
+import projekat.Student;
 
 public class DialogDodavanjeProfesora extends JDialog{
 
 	private static final long serialVersionUID = 1L;
+
 
 	public DialogDodavanjeProfesora() {
 		setTitle("Dodavanje profesora");
@@ -155,11 +157,10 @@ public class DialogDodavanjeProfesora extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				Profesor profesor=new Profesor();
 				String ime=poljeIme.getText();
 				String prezime=poljePrezime.getText();
-				
 				Date datRodj;
-				Profesor profesor=new Profesor();
 				try {
 					datRodj = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatRodj.getText());
 					profesor.setDatumRodjenja(datRodj);

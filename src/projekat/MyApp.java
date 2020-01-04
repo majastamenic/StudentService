@@ -70,8 +70,7 @@ public class MyApp {
 		Predmet.dodavanjePredmeta(predmet5);
 		
 		Student student1=new Student("Maja", "Stamenic",new Date(12,4,1998), "Jug Bogdana 34", "021584481", "maja.stamenic@gmail.com", "RA60-2017", new Date(12,4,1998), 3, Status.B, 9.09 , new ArrayList<Predmet>());
-		studenti.add(student1);
-		
+		studenti.add(student1);		
 		Student student2=new Student("Marija", "Milanovic",new Date(12,4,1998), "Papa Pavla 28", "021456245", "marija.milanovic@gmail.com", "RA197-2017", new Date(12,4,1998), 3, Status.B, 9.06 , new ArrayList<Predmet>());
 		studenti.add(student2);
 		
@@ -107,7 +106,7 @@ public class MyApp {
 	public static ArrayList<Predmet> getPredmeti() {
 		return predmeti;
 	}
-
+	
 	public static void setPredmeti(ArrayList<Predmet> predmeti) {
 		MyApp.predmeti = predmeti;
 	}
@@ -118,6 +117,14 @@ public class MyApp {
 
 	public static void setProfesori(ArrayList<Profesor> profesori) {
 		MyApp.profesori = profesori;
+	}
+	
+	public static ArrayList<Student> getStudenti() {
+		return studenti;
+	}
+	
+	public static void setStudenti(ArrayList<Student> studenti) {
+		MyApp.studenti = studenti;
 	}
 	
 	
