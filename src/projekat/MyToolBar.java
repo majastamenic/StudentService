@@ -11,8 +11,13 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import dialozi.DialogBrisanjePredmeta;
+import dialozi.DialogBrisanjeStudenta;
 import dialozi.DialogDodavanjePredmeta;
+import dialozi.DialogDodavanjeProfesora;
+import dialozi.DialogDodavanjeStudenta;
 import dialozi.DialogIzmenaPredmeta;
+import dialozi.DialogIzmenaProfesora;
+import dialozi.DialogIzmenaStudenta;
 
 public class MyToolBar extends JToolBar{
 	/**
@@ -38,6 +43,11 @@ public class MyToolBar extends JToolBar{
 					DialogDodavanjePredmeta dialogDodavanjePredmeta = new DialogDodavanjePredmeta();
 
 				}
+				else if(selektovano.equals("student")) {
+					DialogDodavanjeStudenta dialogDodavanjeStudenta = new DialogDodavanjeStudenta();
+				}else {
+					DialogDodavanjeProfesora dialogDodavanjeProfesora = new DialogDodavanjeProfesora();
+				}
 				
 				
 			}
@@ -52,7 +62,15 @@ public class MyToolBar extends JToolBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta();
+				String selektovano = MainFrame.getSelectedTab();
+				if (selektovano.equals("predmet")) {
+					DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta();
+				}
+				else if(selektovano.equals("student")) {
+					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta();
+				}else {
+					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora();
+				}
 				
 			}
 		});
@@ -74,6 +92,8 @@ public class MyToolBar extends JToolBar{
 					
 					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
 					
+				}else if(selektovano.equals("student")) {
+					DialogBrisanjeStudenta dialogBrisanjeStudenta = new DialogBrisanjeStudenta();
 				}
 					
 			}
