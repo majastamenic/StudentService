@@ -1,15 +1,12 @@
 package projekat;
 
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JTextField;
-import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
@@ -70,8 +67,15 @@ public class MyToolBar extends JToolBar{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DialogBrisanjePredmeta dialogBrisanjePredmeta = new DialogBrisanjePredmeta();
-				
+				String selektovano = MainFrame.getSelectedTab();
+				if (selektovano.equals("predmet")) {
+					
+					int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
+					
+					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
+					
+				}
+					
 			}
 		});
 		add(btnBrisanje);

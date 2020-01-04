@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 
-import dialozi.Util;
 
 public class MyApp {
 
 	static ArrayList<Predmet>predmeti = new ArrayList<Predmet>();
 	static ArrayList<Profesor> profesori = new ArrayList<Profesor>();
-	static ArrayList<Student> studenti = new ArrayList<Student>();
+	private static ArrayList<Student> studenti = new ArrayList<Student>();
 
 	
 	public static void main(String[] args) {
@@ -58,11 +57,11 @@ public class MyApp {
 //			System.out.println(pr.getBrojLicneKarte());
 //		}
 		
-		Predmet predmet1 = new Predmet("M23","Algebra", 1, 2, profesor1, new ArrayList<String>());
-		Predmet predmet2 = new Predmet("M24","Matematicka analiza 1", 2, 3, profesor2, new ArrayList<String>());
-		Predmet predmet3 = new Predmet("M25","Matematicka analiza 2", 3, 4, profesor3, new ArrayList<String>());
-		Predmet predmet4 = new Predmet("M26","Diskretna matematika", 4, 5, profesor4, new ArrayList<String>());
-		Predmet predmet5 = new Predmet("M26","Geodezija", 4, 7, profesor5, new ArrayList<String>());
+		Predmet predmet1 = new Predmet("M23","Algebra", 1, 2, profesor1, new ArrayList<Student>());
+		Predmet predmet2 = new Predmet("M24","Matematicka analiza 1", 2, 3, profesor2, new ArrayList<Student>());
+		Predmet predmet3 = new Predmet("M25","Matematicka analiza 2", 3, 4, profesor3, new ArrayList<Student>());
+		Predmet predmet4 = new Predmet("M26","Diskretna matematika", 4, 5, profesor4, new ArrayList<Student>());
+		Predmet predmet5 = new Predmet("M26","Geodezija", 4, 7, profesor5, new ArrayList<Student>());
 		Predmet.dodavanjePredmeta(predmet1);
 		Predmet.dodavanjePredmeta(predmet2);
 		Predmet.dodavanjePredmeta(predmet3);
@@ -100,6 +99,26 @@ public class MyApp {
 			}
 		}*/
 	}
+
+	public static ArrayList<Predmet> getPredmeti() {
+		return predmeti;
+	}
+
+	public static void setPredmeti(ArrayList<Predmet> predmeti) {
+		MyApp.predmeti = predmeti;
+	}
+
+	public static ArrayList<Profesor> getProfesori() {
+		return profesori;
+	}
+
+	public static void setProfesori(ArrayList<Profesor> profesori) {
+		MyApp.profesori = profesori;
+	}
+	
+	
+	
+	
 	
 	
 

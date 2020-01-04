@@ -19,14 +19,13 @@ public class Predmet implements Serializable{
 	private int godinaStudija;
 	private Profesor predmetniProfesor;
 	
-	// TODO Zameniti string sa studentom.
-	private ArrayList<String> spisakStudenataKojiPohadjaju;
+	private ArrayList<Student> spisakStudenataKojiPohadjaju;
 	
 	public Predmet() {
-		spisakStudenataKojiPohadjaju = new ArrayList<String>();
+		spisakStudenataKojiPohadjaju = new ArrayList<Student>();
 	}
 	 
-	public Predmet(String sifra, String naziv, int semestar, int godinaStudija, Profesor predmetniProfesor, ArrayList<String> spisakStudenataKojiPohadjaju) {
+	public Predmet(String sifra, String naziv, int semestar, int godinaStudija, Profesor predmetniProfesor, ArrayList<Student> spisakStudenataKojiPohadjaju) {
 		this.sifra = sifra;
 		this.naziv = naziv;
 		this.semestar = semestar;
@@ -76,11 +75,11 @@ public class Predmet implements Serializable{
 		this.predmetniProfesor = predmetniProfesor;
 	}
 
-	public ArrayList<String> getSpisakStudenata(){
+	public ArrayList<Student> getSpisakStudenata(){
 		return spisakStudenataKojiPohadjaju;
 	}
 	
-	public void setSpisakStudenata(ArrayList<String> spisakStudenataKojiPohadjaju) {
+	public void setSpisakStudenata(ArrayList<Student> spisakStudenataKojiPohadjaju) {
 		this.spisakStudenataKojiPohadjaju = spisakStudenataKojiPohadjaju;
 	}
 

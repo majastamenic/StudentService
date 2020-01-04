@@ -146,6 +146,11 @@ public class Profesor implements Serializable {
 		}
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return ime + " " + prezime + ", br.LK=" + brojLicneKarte;
+	}
 	
 	
 	
