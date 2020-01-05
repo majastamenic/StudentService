@@ -87,7 +87,8 @@ public class MainFrame extends JFrame {
 
 
 		tabovi = new JTabbedPane();
-		tabovi.addTab("Studenti", new JScrollPane(new StudentiTabela(MyApp.studenti)));
+		tabelaStudenti=new StudentiTabela(MyApp.studenti);
+		tabovi.addTab("Studenti", new JScrollPane(tabelaStudenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
@@ -125,6 +126,7 @@ public class MainFrame extends JFrame {
 		int selektovaniIndex = tabovi.getSelectedIndex();
 
 		tabovi.removeAll();
+		tabelaStudenti = new StudentiTabela(MyApp.studenti);
 		tabovi.addTab("Studenti", new JScrollPane(tabelaStudenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));

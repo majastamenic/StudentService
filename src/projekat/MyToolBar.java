@@ -75,9 +75,9 @@ public class MyToolBar extends JToolBar{
 
                 }
 				else if(selektovano.equals("student")) {
-					//int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
 					
-					//DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta(idx);
+					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta(idx);
 				}else {
 					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora();
 				}
@@ -104,8 +104,8 @@ public class MyToolBar extends JToolBar{
 					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
 					
 				}else if(selektovano.equals("student")) {
-					int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
-					DialogBrisanjeStudenta dialogBrisanjeStudenta = new DialogBrisanjeStudenta(idx);
+					int indexUModelu = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					DialogBrisanjeStudenta brisanje = new DialogBrisanjeStudenta(indexUModelu);
 				} else if(selektovano.equals("profesor")) {
 
 					int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());

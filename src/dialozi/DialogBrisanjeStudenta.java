@@ -19,16 +19,19 @@ public class DialogBrisanjeStudenta extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 
-	public DialogBrisanjeStudenta(int idx) {
+	public DialogBrisanjeStudenta(int indexUModelu) {
 		setTitle("Brisanje studenta");
 		setSize(new Dimension(400, 150));
-		
+		setLocationRelativeTo(null);
 		GridBagConstraints g=new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		
+		String brojIndeksa=MyApp.getStudenti().get(indexUModelu).getBrojIndeksa();
+		
+		
 		g.gridx=0;
 		g.gridy=0;
-		JLabel labelaSigurnosti=new JLabel("Da li ste sigurni da zelite da obrisete studenta?");
+		JLabel labelaSigurnosti=new JLabel("Da li ste sigurni da zelite da obrisete studenta?"+brojIndeksa);
 		add(labelaSigurnosti,g);
 		
 		JButton da=new JButton("Da");
@@ -44,12 +47,14 @@ public class DialogBrisanjeStudenta extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Student.brisanjeStudenta(MyApp.getStudenti().get(idx).getBrojIndeksa());
+				Student.brisanjeStudenta(MyApp.getStudenti().get(indexUModelu).getBrojIndeksa());
 				MainFrame.refreshTabova();
 				dispose();
 				
 			}
 		});
+		
+		
 		g.gridx=1;
 		g.gridy=2;
 		add(da,g);
@@ -64,5 +69,6 @@ public class DialogBrisanjeStudenta extends JDialog{
 		});
 		g.gridx=2;
 		add(ne,g);
+		setVisible(true);
 	}
 }
