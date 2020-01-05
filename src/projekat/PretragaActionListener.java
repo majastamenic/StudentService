@@ -6,9 +6,12 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.plaf.OptionPaneUI;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 
 import tabela.PredmetiTabela;
+import tabela.ProfesoriTabela;
+import tabela.StudentiTabela;
 
 public class PretragaActionListener implements ActionListener{
 
@@ -20,7 +23,6 @@ public class PretragaActionListener implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		String selektovano = MainFrame.getSelectedTab();
 		if (tekst.equals("")) {
 			MainFrame.refreshTabova();
@@ -89,74 +91,93 @@ public class PretragaActionListener implements ActionListener{
 				
 			} else if (selektovano.equals("profesor")) {
 				ArrayList<Profesor> listaRezultatProfesori = MyApp.profesori;
-				for(int i=0; i<=string1.length; i++) {
-					try {
+				for(int i=0; i<string1.length; i++) {
+					try{ 
 						string2 = string1[i].split(":");
 						String kljuc = string2[0].toLowerCase();
 						String vrednost = string2[1].toLowerCase();
 					
 					
 					if(kljuc.equals("ime")) {
-						
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getIme().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getIme().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 						
 					} else if(kljuc.equals("prezime")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getPrezime().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getPrezime().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 						
 					} else if(kljuc.equals("datumrodjenja") || kljuc.equals("datum_rodjenja") || kljuc.equals("datum")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getDatumRodjenja().toString().equals(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getDatumRodjenja().toString().equals(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} else if(kljuc.equals("adresastanovanja") || kljuc.equals("adresa_stanovanja") || kljuc.equals("adresas")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getAdresaStanovanja().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getAdresaStanovanja().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} else if(kljuc.equals("telefon")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getTelefon().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getTelefon().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} else if(kljuc.equals("email") || kljuc.equals("e-mail")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getEmail().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getEmail().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} else if(kljuc.equals("adresakancelarije") || kljuc.equals("adresa_kancelarije") || kljuc.equals("adesak")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getAdresaKancelarije().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getAdresaKancelarije().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} else if(kljuc.equals("brojlicnekarte") || kljuc.equals("broj_licne_karte") || kljuc.equals("br.lk")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getBrojLicneKarte() == Long.parseLong(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getBrojLicneKarte() == Long.parseLong(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} else if(kljuc.equals("titula")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getTitula().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getTitula().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} else if(kljuc.equals("zvanje")) {
-						for(int j = 0; j<MyApp.profesori.size(); j++) {
-							if(MyApp.profesori.get(j).getZvanje().toLowerCase().contains(vrednost)) {
-								listaRezultatProfesori.add(MyApp.profesori.get(j));
+						ArrayList<Profesor> privremena = listaRezultatProfesori;
+						listaRezultatProfesori = new ArrayList<Profesor>();
+						for(int j = 0; j<privremena.size(); j++) {
+							if(privremena.get(j).getZvanje().toLowerCase().contains(vrednost)) {
+								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
 					} 
@@ -164,9 +185,18 @@ public class PretragaActionListener implements ActionListener{
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!", "Pogresan format", JOptionPane.OK_OPTION);
 				}
 				
-			}
+			 }
+				int selektovaniIndex = MainFrame.getTabovi().getSelectedIndex();
+				
+				MainFrame.getTabovi().removeAll();
+				MainFrame.getTabovi().addTab("Studenti", new JScrollPane(new StudentiTabela(MyApp.studenti)));
+				MainFrame.getTabovi().addTab("Profesori", new JScrollPane(new ProfesoriTabela(listaRezultatProfesori)));
+				MainFrame.getTabovi().addTab("Predmeti", new JScrollPane(new PredmetiTabela(MyApp.predmeti)));
+				MainFrame.getTabovi().setSelectedIndex(selektovaniIndex);
+			
+			
 		}
-		}	
+	  }	
 	}
 	
 }

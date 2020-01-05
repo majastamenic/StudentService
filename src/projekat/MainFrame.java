@@ -21,7 +21,7 @@ import tabela.ProfesoriTabela;
 import tabela.StudentiTabela;
 
 public class MainFrame extends JFrame {
-	
+
 	private static MainFrame instance = null;
 	private static final long serialVersionUID = 1L;
 
@@ -30,12 +30,11 @@ public class MainFrame extends JFrame {
 
 	private static StatusBar statusBar;
 	private static MyToolBar toolbar;
-	
+
 	private static StudentiTabela tabelaStudenti;
 	private static ProfesoriTabela tabelaProfesori;
 	private static PredmetiTabela tabelaPredmeti;
-	
-	
+
 	public static MainFrame getInstance() {
 
 		if (instance == null) { // ako je klasa tek kreirana
@@ -45,7 +44,7 @@ public class MainFrame extends JFrame {
 	}
 
 	private MainFrame() {
-		
+
 		setTitle("Studentska sluzba");
 
 		ImageIcon img = new ImageIcon("Images/Icon5.png");
@@ -73,8 +72,8 @@ public class MainFrame extends JFrame {
 					Util.upisiStudente(MyApp.studenti);
 					Util.upisiProfesore(MyApp.profesori);
 					System.exit(0);
-				} else {
-					dispose();
+				}else {
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 				}
 			}
 
@@ -91,12 +90,12 @@ public class MainFrame extends JFrame {
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
 		tabovi.addTab("Predmeti", new JScrollPane(tabelaPredmeti));
-		tabovi.addChangeListener(new ChangeListener() {									//Ako se desila promena(selektovan drugi tab)
-			
+		tabovi.addChangeListener(new ChangeListener() { // Ako se desila promena(selektovan drugi tab)
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				remove(toolbar);																									
-				toolbar = new MyToolBar();												//Ponovo kreiranje toolbara
+				remove(toolbar);
+				toolbar = new MyToolBar(); // Ponovo kreiranje toolbara
 				add(toolbar, BorderLayout.NORTH);
 			}
 		});
@@ -130,11 +129,8 @@ public class MainFrame extends JFrame {
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
 		tabovi.addTab("Predmeti", new JScrollPane(tabelaPredmeti));
 		tabovi.setSelectedIndex(selektovaniIndex);
-		
 
 	}
-	
-	
 
 	public static JTabbedPane getTabovi() {
 		return tabovi;

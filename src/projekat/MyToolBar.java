@@ -2,6 +2,7 @@ package projekat;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +10,10 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 import dialozi.DialogBrisanjePredmeta;
@@ -71,9 +74,12 @@ public class MyToolBar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				String selektovano = MainFrame.getSelectedTab();
 				if (selektovano.equals("predmet")) {
-                    int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
-                    DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
-
+					try {
+						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
+						DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
+					}catch(Exception ex){
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da  izmenite.", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+					}
                 }
 				else if(selektovano.equals("student")) {
 					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta();
@@ -96,11 +102,12 @@ public class MyToolBar extends JToolBar{
 			public void actionPerformed(ActionEvent e) {
 				String selektovano = MainFrame.getSelectedTab();
 				if (selektovano.equals("predmet")) {
-					
-					int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
-					
-					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
-					
+					try {
+						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
+						DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
+					}catch(Exception ex){
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da izbrisete", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+					}
 				}else if(selektovano.equals("student")) {
 					DialogBrisanjeStudenta dialogBrisanjeStudenta = new DialogBrisanjeStudenta();
 				} else if(selektovano.equals("profesor")) {
@@ -124,7 +131,12 @@ public class MyToolBar extends JToolBar{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DialogDodavanjeProfesoraNaPredmet dodavanjeProfesora = new DialogDodavanjeProfesoraNaPredmet();
+					try {
+						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
+						DialogDodavanjeProfesoraNaPredmet dodavanjeProfesora = new DialogDodavanjeProfesoraNaPredmet(indexUModelu);
+					}catch(Exception ex){
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da dodate profesora", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+					}
 				}
 			});
 			add(btnDodavanjeProfesoraNaPredmet);
@@ -137,8 +149,22 @@ public class MyToolBar extends JToolBar{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DialogUklanjanjeProfesoraSaPredmet uklanjanjeProfesora = new DialogUklanjanjeProfesoraSaPredmet();
-
+					try {
+						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
+						//DialogUklanjanjeProfesoraSaPredmet uklanjaneProfesora = new DialogUklanjanjeProfesoraSaPredmet(indexUModelu);
+						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da zelite da uklonite profesora sa predmeta?",
+								"Potvrda o brisanju profesora sa predmeta", JOptionPane.YES_NO_OPTION,
+								JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+							String sifra = MyApp.getPredmeti().get(indexUModelu).getSifra();
+							Predmet.uklanjanjeProfesora(MyApp.getPredmeti().get(indexUModelu).getPredmetniProfesor(), sifra);
+							MainFrame.refreshTabova();
+						}
+						
+						
+					}catch(Exception ex) {
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na kome zelite da uklonite profesora", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+					}
+					
 				}
 			});
 			add(btnBrisanjeProfesoraSaPredmeta);
