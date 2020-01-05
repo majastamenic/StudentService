@@ -15,18 +15,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import projekat.MainFrame;
+import projekat.MyApp;
 import projekat.Profesor;
 
 public class DialogIzmenaProfesora extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	
-	public DialogIzmenaProfesora() {
+	public DialogIzmenaProfesora(int idx) {
 		
 		setTitle("Izmena profesora");
 		setSize(new Dimension(600, 500));
 		
-
+		Profesor profesor=MyApp.getProfesori().get(idx);
 		GridBagConstraints g=new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		
@@ -34,7 +35,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=0;
 		JLabel labelaIme=new JLabel("Ime:");
 		add(labelaIme,g);
-		JTextField poljeIme=new JTextField();
+		JTextField poljeIme=new JTextField(profesor.getIme());
 		g.gridx=1;
 		poljeIme.setMaximumSize(new Dimension(250,25));
 		poljeIme.setMinimumSize(new Dimension(250,25));
@@ -46,7 +47,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=1;
 		JLabel labelaPrezime=new JLabel("Prezime:");
 		add(labelaPrezime,g);
-		JTextField poljePrezime=new JTextField();
+		JTextField poljePrezime=new JTextField(profesor.getPrezime());
 		g.gridx=1;
 		poljePrezime.setMaximumSize(new Dimension(250,25));
 		poljePrezime.setMinimumSize(new Dimension(250,25));
@@ -70,7 +71,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=3;
 		JLabel labelaAdresa=new JLabel("Adresa stanovanja:  ");
 		add(labelaAdresa,g);
-		JTextField poljeAdresaSt=new JTextField();
+		JTextField poljeAdresaSt=new JTextField(profesor.getAdresaStanovanja());
 		g.gridx=1;
 		poljeAdresaSt.setMaximumSize(new Dimension(250,25));
 		poljeAdresaSt.setMinimumSize(new Dimension(250,25));
@@ -82,7 +83,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=4;
 		JLabel labelaTelefon=new JLabel("Telefon:");
 		add(labelaTelefon,g);
-		JTextField poljeTelefon=new JTextField();
+		JTextField poljeTelefon=new JTextField(profesor.getTelefon());
 		g.gridx=1;
 		poljeTelefon.setMaximumSize(new Dimension(250,25));
 		poljeTelefon.setMinimumSize(new Dimension(250,25));
@@ -94,7 +95,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=5;
 		JLabel labelaEmail=new JLabel("Email:");
 		add(labelaEmail,g);
-		JTextField poljeEmail=new JTextField();
+		JTextField poljeEmail=new JTextField(profesor.getEmail());
 		g.gridx=1;
 		poljeEmail.setMaximumSize(new Dimension(250,25));
 		poljeEmail.setMinimumSize(new Dimension(250,25));
@@ -106,7 +107,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=6;
 		JLabel labelaAdresaKancelarije=new JLabel("Adresa kancelarije:  ");
 		add(labelaAdresaKancelarije,g);
-		JTextField poljeAdresaKn=new JTextField();
+		JTextField poljeAdresaKn=new JTextField(profesor.getAdresaKancelarije());
 		g.gridx=1;
 		poljeAdresaKn.setMaximumSize(new Dimension(250,25));
 		poljeAdresaKn.setMinimumSize(new Dimension(250,25));
@@ -118,7 +119,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=7;
 		JLabel labelaBrojLicneKarte=new JLabel("Broj licne karte:  ");
 		add(labelaBrojLicneKarte,g);
-		JTextField poljeBrojLicneKarte=new JTextField();
+		JTextField poljeBrojLicneKarte=new JTextField(Long.toString(profesor.getBrojLicneKarte()));
 		g.gridx=1;
 		poljeBrojLicneKarte.setMaximumSize(new Dimension(250,25));
 		poljeBrojLicneKarte.setMinimumSize(new Dimension(250,25));
@@ -130,7 +131,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=8;
 		JLabel labelaTitula=new JLabel("Titula:  ");
 		add(labelaTitula,g);
-		JTextField poljeTitula=new JTextField();
+		JTextField poljeTitula=new JTextField(profesor.getTitula());
 		g.gridx=1;
 		poljeTitula.setMaximumSize(new Dimension(250,25));
 		poljeTitula.setMinimumSize(new Dimension(250,25));
@@ -142,7 +143,7 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=9;
 		JLabel labelaZvanje=new JLabel("Zvanje:  ");
 		add(labelaZvanje,g);
-		JTextField poljeZvanje=new JTextField();
+		JTextField poljeZvanje=new JTextField(profesor.getZvanje());
 		g.gridx=1;
 		poljeZvanje.setMaximumSize(new Dimension(250,25));
 		poljeZvanje.setMinimumSize(new Dimension(250,25));

@@ -79,7 +79,8 @@ public class MyToolBar extends JToolBar{
 					
 					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta(idx);
 				}else {
-					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora();
+					int idx = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora(idx);
 				}
 				
 			}
