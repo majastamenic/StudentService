@@ -1,13 +1,20 @@
 package dialozi;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
+import projekat.MainFrame;
+import projekat.MyApp;
+import projekat.Predmet;
 import projekat.Profesor;
 
 
@@ -17,7 +24,8 @@ public class DialogDodavanjeProfesoraNaPredmet extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public DialogDodavanjeProfesoraNaPredmet() {
+	public DialogDodavanjeProfesoraNaPredmet(int indexUModelu) {
+		
 		setTitle("Dodavanje profesora na predmet");
 		setSize(new Dimension(400, 200));
 		setLocationRelativeTo(null);
@@ -32,7 +40,31 @@ public class DialogDodavanjeProfesoraNaPredmet extends JDialog{
 			profesoriComboBox.addItem(profesor);
 		}
 		
+		profesoriComboBox.setMinimumSize(new Dimension(200,20));
+		profesoriComboBox.setMaximumSize(new Dimension(200,20));
+		profesoriComboBox.setPreferredSize(new Dimension(200, 20));
+		add(profesoriComboBox, BorderLayout.CENTER);
+		
+		JButton dugmeSacuvaj = new JButton("Sacuvaj");
+		ActionListener sacuvajAkcija = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
+				String sifraPredmeta = MyApp.getPredmeti().get(indexUModelu).getSifra();
+				Predmet.dodavanjeProfesora(profesor, sifraPredmeta);
+				
+				MainFrame.refreshTabova();
+				dispose();
+				
+			}
+		};
+		
+		dugmeSacuvaj.addActionListener(sacuvajAkcija);
+		add(dugmeSacuvaj, BorderLayout.PAGE_END);
 		setVisible(true);
+		
+		
 		
 		
 	}
