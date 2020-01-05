@@ -140,6 +140,10 @@ public class Student implements Serializable{
 		this.spisakPredmetaKojeSlusa = spisakPredmetaKojeSlusa;
 	}
 	
+	public boolean equals(Object obj) {
+		return ((Student)obj).getBrojIndeksa().equals(this.brojIndeksa);
+	}
+	
 	public static boolean dodavanjeStudenta(Student student) {
 		if(MyApp.studenti.contains(student)) {
 			return false;

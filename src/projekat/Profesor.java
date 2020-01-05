@@ -157,6 +157,17 @@ public class Profesor implements Serializable {
 
 	
 	}
+	
+	public static boolean izmenaProfesora(Profesor p) {
+		for(int i = 0; i <= MyApp.profesori.size(); i++) {
+			if(MyApp.profesori.get(i).getBrojLicneKarte().equals(p.getBrojLicneKarte())) {
+				MyApp.profesori.remove(i);								
+				MyApp.profesori.add(p);									
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public String toString() {

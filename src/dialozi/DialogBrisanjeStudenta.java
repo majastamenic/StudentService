@@ -21,7 +21,7 @@ public class DialogBrisanjeStudenta extends JDialog{
 
 	public DialogBrisanjeStudenta(int indexUModelu) {
 		setTitle("Brisanje studenta");
-		setSize(new Dimension(400, 150));
+		setSize(new Dimension(600, 150));
 		setLocationRelativeTo(null);
 		GridBagConstraints g=new GridBagConstraints();
 		setLayout(new GridBagLayout());
@@ -31,7 +31,7 @@ public class DialogBrisanjeStudenta extends JDialog{
 		
 		g.gridx=0;
 		g.gridy=0;
-		JLabel labelaSigurnosti=new JLabel("Da li ste sigurni da zelite da obrisete studenta?"+brojIndeksa);
+		JLabel labelaSigurnosti=new JLabel("Da li ste sigurni da zelite da obrisete studenta sa ovim brojem indeksa:"+brojIndeksa+"?");
 		add(labelaSigurnosti,g);
 		
 		JButton da=new JButton("Da");

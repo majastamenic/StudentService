@@ -87,7 +87,7 @@ public class MainFrame extends JFrame {
 
 
 		tabovi = new JTabbedPane();
-		tabelaStudenti=new StudentiTabela(MyApp.studenti);
+		tabelaStudenti = new StudentiTabela(MyApp.studenti);
 		tabovi.addTab("Studenti", new JScrollPane(tabelaStudenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
