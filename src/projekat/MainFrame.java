@@ -133,6 +133,16 @@ public class MainFrame extends JFrame {
 		
 
 	}
+	
+	
+
+	public static JTabbedPane getTabovi() {
+		return tabovi;
+	}
+
+	public static void setTabovi(JTabbedPane tabovi) {
+		MainFrame.tabovi = tabovi;
+	}
 
 	public static ProfesoriTabela getTabelaProfesori() {
 		return tabelaProfesori;

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -155,6 +156,16 @@ public class MyToolBar extends JToolBar{
 		ImageIcon img3 = new ImageIcon("Images/pretrazivanje2.png");
 		btnPretraga.setIcon(new ImageIcon(img3.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
 		btnPretraga.setToolTipText("Pretraga");
+		
+		btnPretraga.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PretragaActionListener pretragaAction = new PretragaActionListener(tekst.getText());	//poziv konstruktora za action listener jer mu je potrebna vrenost polja tekst za pretragu
+				pretragaAction.actionPerformed(e);
+				
+			}
+		});
 		add(btnPretraga);
 		
 		
