@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import dialozi.Util;
 import tabela.PredmetiTabela;
@@ -27,11 +29,13 @@ public class MainFrame extends JFrame {
 	private static MenuBar menu;
 
 	private static StatusBar statusBar;
+	private static MyToolBar toolbar;
 	
 	private static StudentiTabela tabelaStudenti;
 	private static ProfesoriTabela tabelaProfesori;
 	private static PredmetiTabela tabelaPredmeti;
-
+	
+	
 	public static MainFrame getInstance() {
 
 		if (instance == null) { // ako je klasa tek kreirana
@@ -81,9 +85,6 @@ public class MainFrame extends JFrame {
 		setSize(new Dimension(dimenzijaEkrana.width * 3 / 4, dimenzijaEkrana.height * 3 / 4)); // Podesavanje dimenzije
 																								// ekrana.
 
-		MyToolBar toolbar = new MyToolBar();
-		toolbar.setSize(this.getSize().width, 100);
-		add(toolbar, BorderLayout.NORTH);
 
 		tabovi = new JTabbedPane();
 		tabovi.addTab("Studenti", new JScrollPane(new StudentiTabela(MyApp.studenti)));
@@ -91,6 +92,18 @@ public class MainFrame extends JFrame {
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
 		tabovi.addTab("Predmeti", new JScrollPane(tabelaPredmeti));
+		tabovi.addChangeListener(new ChangeListener() {									//Ako se desila promena(selektovan drugi tab)
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				remove(toolbar);																									
+				toolbar = new MyToolBar();												//Ponovo kreiranje toolbara
+				add(toolbar, BorderLayout.NORTH);
+			}
+		});
+		
+		toolbar = new MyToolBar();
+		add(toolbar, BorderLayout.NORTH);
 		add(tabovi);
 		setLocationRelativeTo(null);
 
@@ -112,14 +125,13 @@ public class MainFrame extends JFrame {
 		int selektovaniIndex = tabovi.getSelectedIndex();
 
 		tabovi.removeAll();
-
-		tabelaStudenti = new StudentiTabela(MyApp.studenti);
 		tabovi.addTab("Studenti", new JScrollPane(tabelaStudenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
 		tabovi.addTab("Predmeti", new JScrollPane(tabelaPredmeti));
 		tabovi.setSelectedIndex(selektovaniIndex);
+		
 
 	}
 

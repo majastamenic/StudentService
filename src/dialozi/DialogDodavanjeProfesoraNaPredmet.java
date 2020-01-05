@@ -15,7 +15,7 @@ public class DialogDodavanjeProfesoraNaPredmet extends JDialog{
 
 	public DialogDodavanjeProfesoraNaPredmet() {
 		setTitle("Dodavanje profesora na predmet");
-		setSize(new Dimension(300, 200));
+		setSize(new Dimension(400, 200));
 		setLocationRelativeTo(null);
 		
 		setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));

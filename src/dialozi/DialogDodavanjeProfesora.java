@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 
 import projekat.MainFrame;
 import projekat.Profesor;
-import projekat.Student;
 
 public class DialogDodavanjeProfesora extends JDialog{
 
