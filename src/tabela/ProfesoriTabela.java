@@ -19,6 +19,8 @@ public class ProfesoriTabela extends JTable {
 		//this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(profesoriTabelaModel);
+		
 		setAutoCreateRowSorter(true);
+		
 	}
 }

@@ -17,6 +17,7 @@ public class StudentiTabela extends JTable{
 		//this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(studentiTabelaModel);
+		
 		setAutoCreateRowSorter(true);
 	}
 }
