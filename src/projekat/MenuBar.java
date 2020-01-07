@@ -1,6 +1,7 @@
 package projekat;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 
@@ -9,6 +10,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+
+import dialozi.DialogDodavanjePredmeta;
+import dialozi.DialogDodavanjeProfesora;
+import dialozi.DialogDodavanjeStudenta;
 
 
 
@@ -22,6 +27,24 @@ public class MenuBar extends JMenuBar {
 		
 		file.setMnemonic(KeyEvent.VK_F);
 		JMenuItem novi = new JMenuItem("New");
+		novi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				String selektovano = MainFrame.getSelectedTab();
+				if (selektovano.equals("predmet")) {
+					DialogDodavanjePredmeta dialogDodavanjePredmeta = new DialogDodavanjePredmeta();
+
+				}
+				else if(selektovano.equals("student")) {
+					DialogDodavanjeStudenta dialogDodavanjeStudenta = new DialogDodavanjeStudenta();
+					
+				}else {
+					DialogDodavanjeProfesora dialogDodavanjeProfesora = new DialogDodavanjeProfesora();
+				}	
+			}
+		});
 		novi.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		JMenuItem zatvori = new JMenuItem("Close");
