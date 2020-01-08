@@ -6,7 +6,6 @@ import java.util.Date;
 enum Status {B,S};
 public class Student implements Serializable{
 
-
 	private static final long serialVersionUID = 1L;
 	
 	private String ime;
@@ -169,5 +168,10 @@ public class Student implements Serializable{
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return brojIndeksa+" "+ime+" "+prezime;
 	}
 }
