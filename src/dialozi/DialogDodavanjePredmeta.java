@@ -3,10 +3,12 @@ package dialozi;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -14,8 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import projekat.MainFrame;
+import projekat.MyApp;
 import projekat.Predmet;
 import projekat.Profesor;
+import projekat.Student;
 import projekat.Util;
 
 public class DialogDodavanjePredmeta extends JDialog{
@@ -28,8 +32,12 @@ public class DialogDodavanjePredmeta extends JDialog{
 	public DialogDodavanjePredmeta() {
 		// poljla forme dijaloga (naziv predmeta,...)
 		
+		ImageIcon img = new ImageIcon("Images/Icon5.png");
+		img = new ImageIcon(img.getImage());
+		
 		setTitle("Dodavanje predmeta");
-		setSize(new Dimension(400, 300));
+		setIconImage(img.getImage());
+		setSize(new Dimension(600, 400));
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		setLayout(new GridBagLayout());
@@ -94,8 +102,55 @@ public class DialogDodavanjePredmeta extends JDialog{
 		profesoriComboBox.setMinimumSize(new Dimension(200, 20));
 		profesoriComboBox.setMaximumSize(new Dimension(200, 20));
 		profesoriComboBox.setPreferredSize(new Dimension(200, 20));
-		//profesoriComboBox.addItem(new Profesor("Pera", "Peric", null, "Adresa 10", "7655778", "email", "adresaKancelarije", 76566L, null, null, null));
+		
 		add(profesoriComboBox, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		add(new JLabel("Studenti: "), gbc);
+		gbc.gridx = 1;
+		
+		JComboBox<Student> sviStudenti = new JComboBox<Student>();
+		ArrayList<Student> studentiLista = Util.ucitajStudente();
+		
+		for (Student student : studentiLista) {
+			sviStudenti.addItem(student);
+		}
+		sviStudenti.setMinimumSize(new Dimension(200, 20));
+		sviStudenti.setMaximumSize(new Dimension(200, 20));
+		sviStudenti.setPreferredSize(new Dimension(200, 20));
+		
+		add(sviStudenti, gbc);
+		
+		JComboBox<Student> studentiKojiSlusaju = new JComboBox<Student>();
+		ArrayList<Student> listaIzabraniStudenti = new ArrayList<Student>();
+		studentiKojiSlusaju.setMinimumSize(new Dimension(200, 20));
+		studentiKojiSlusaju.setMaximumSize(new Dimension(200, 20));
+		studentiKojiSlusaju.setPreferredSize(new Dimension(200, 20));
+		
+		JButton dodajStudenta = new JButton("Dodaj studenta");
+		ActionListener dodajStudentaAkcija = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				studentiKojiSlusaju.addItem((Student) sviStudenti.getSelectedItem());	
+				listaIzabraniStudenti.add((Student) sviStudenti.getSelectedItem());
+			}
+		};
+		dodajStudenta.addActionListener(dodajStudentaAkcija);
+		gbc.gridx = 2;
+		gbc.gridy = 5;
+		
+		add(dodajStudenta, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 7;
+		add(new JLabel("Studenti koji slusaju predmet: "), gbc);
+		gbc.gridx = 1;
+		add(studentiKojiSlusaju, gbc);
+		
+		
+		
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
@@ -118,6 +173,7 @@ public class DialogDodavanjePredmeta extends JDialog{
 				predmet.setSemestar(semestar);
 				predmet.setGodinaStudija(godinaStudija);
 				predmet.setPredmetniProfesor(profesor);
+				predmet.setSpisakStudenata(listaIzabraniStudenti);
 				
 				Predmet.dodavanjePredmeta(predmet);
 				
@@ -127,8 +183,8 @@ public class DialogDodavanjePredmeta extends JDialog{
 			}
 		};
 		dugmeSacuvaj.addActionListener(sacuvajAkcija);
-		gbc.gridx = 2;
-		gbc.gridy = 5;
+		gbc.gridx = 1;
+		gbc.gridy = 15;
 		add(dugmeSacuvaj, gbc);
 		
 		
