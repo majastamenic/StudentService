@@ -9,12 +9,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.net.ssl.SSLEngineResult.Status;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import projekat.MainFrame;
+import projekat.StatusStudenta;
 import projekat.Student;
 
 public class DialogDodavanjeStudenta extends JDialog{
@@ -128,28 +133,34 @@ public class DialogDodavanjeStudenta extends JDialog{
 		g.gridy=8;
 		JLabel labelaTrenutnaGodina=new JLabel("Trenutna godina:  ");
 		add(labelaTrenutnaGodina,g);
-		JTextField poljeTrenutnaGodina=new JTextField();
+		String godina[]= {"I (prva)","II (druga)","III (treca)","IV (cetvrta)"};
 		g.gridx=1;
-		poljeTrenutnaGodina.setMaximumSize(new Dimension(250,25));
-		poljeTrenutnaGodina.setMinimumSize(new Dimension(250,25));
-		poljeTrenutnaGodina.setPreferredSize(new Dimension(250,25));
-
-		add(poljeTrenutnaGodina,g);
+		JComboBox trGod=new JComboBox(godina);
+		trGod.setPreferredSize(new Dimension(250, 25));
+		
+		add(trGod,g);
+		
 		
 		g.gridx=0;
 		g.gridy=9;
 		JLabel labelaStatusStudenta=new JLabel("Status studenta:  ");
 		add(labelaStatusStudenta,g);
-		JTextField poljeStatusStudenta=new JTextField();
+		
 		g.gridx=1;
-		poljeStatusStudenta.setMaximumSize(new Dimension(250,25));
-		poljeStatusStudenta.setMinimumSize(new Dimension(250,25));
-		poljeStatusStudenta.setPreferredSize(new Dimension(250,25));
-
+		JRadioButton poljeStatusStudenta=new JRadioButton("Budzetski");
 		add(poljeStatusStudenta,g);
+		g.gridy=10;
+		JRadioButton poljeStatusStudenta1=new JRadioButton("Samofinansirajuci");
+		
+		add(poljeStatusStudenta1,g);
+		ButtonGroup grupa=new ButtonGroup();
+		
+		grupa.add(poljeStatusStudenta);
+		grupa.add(poljeStatusStudenta1);
+		
 		
 		g.gridx=0;
-		g.gridy=10;
+		g.gridy=11;
 		JLabel labelaProsecnaOcena=new JLabel("Prosecna ocena:  ");
 		add(labelaProsecnaOcena,g);
 		JTextField poljeProsecnaOcena=new JTextField();
@@ -161,6 +172,7 @@ public class DialogDodavanjeStudenta extends JDialog{
 		add(poljeProsecnaOcena,g);
 		
 		JButton sacuvaj=new JButton("Sacuvaj");
+		JButton otkazi=new JButton("Otkazi");
 		ActionListener sacuvajKliknuto=new ActionListener() {
 			
 			@Override
@@ -186,8 +198,17 @@ public class DialogDodavanjeStudenta extends JDialog{
 				String telefon=poljeTelefon.getText();
 				String email=poljeEmail.getText();
 				String brojIndeksa=poljeBrojIndeksa.getText();
-				Integer godStud=Integer.parseInt(poljeTrenutnaGodina.getText());
+				String trenutnaGodina = (String)trGod.getSelectedItem();
 				Double prosOc=Double.parseDouble(poljeProsecnaOcena.getText());
+				
+				boolean samofinansiranje=true;
+				
+				if(poljeStatusStudenta.isSelected()) {
+					samofinansiranje=false;
+				}
+				else {
+					samofinansiranje=true;
+				}
 				
 				student.setIme(ime);
 				student.setPrezime(prezime);
@@ -195,8 +216,9 @@ public class DialogDodavanjeStudenta extends JDialog{
 				student.setTelefon(telefon);
 				student.setEmail(email);
 				student.setBrojIndeksa(brojIndeksa);
-				student.setGodinaStudija(godStud);
+				student.setGodinaStudija(trenutnaGodina);
 				student.setProsecnaOcena(prosOc);
+				student.setSamofinansiranje(samofinansiranje);
 				
 				Student.dodavanjeStudenta(student);
 				
@@ -207,8 +229,19 @@ public class DialogDodavanjeStudenta extends JDialog{
 		
 		sacuvaj.addActionListener(sacuvajKliknuto);
 		g.gridx=1;
-		g.gridy=11;
+		g.gridy=17;
 		add(sacuvaj,g);
+		g.gridx=0;
+		g.gridy=17;
+		otkazi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				dispose();
+			}
+		});
+		add(otkazi,g);
 		
 		setLocationRelativeTo(null);
 		setVisible(true);

@@ -39,6 +39,8 @@ public class StatusBar extends JMenuBar{
 		desniPanel.add(desnaLabela);
 		
 		add(desniPanel);
+		
+		
 	}
 
 }

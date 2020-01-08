@@ -18,11 +18,13 @@ import dialozi.DialogBrisanjeProfesora;
 import dialozi.DialogDodavanjePredmeta;
 import dialozi.DialogDodavanjeProfesora;
 import dialozi.DialogDodavanjeStudenta;
+import dialozi.DialogDodavanjeStudentaNaPredmet;
 import dialozi.DialogDodavanjeProfesoraNaPredmet;
 import dialozi.DialogIzmenaPredmeta;
 import dialozi.DialogIzmenaProfesora;
 import dialozi.DialogIzmenaStudenta;
 import dialozi.DialogUklanjanjeProfesoraSaPredmet;
+import dialozi.DialogUklanjanjeStudentaSaPredmeta;
 
 public class MyToolBar extends JToolBar{
 	/**
@@ -146,7 +148,35 @@ public class MyToolBar extends JToolBar{
 				}
 			});
 			add(btnBrisanjeProfesoraSaPredmeta);
+			
+			JButton btnDodavanjeStudentaNaPredmet = new JButton();
+			btnDodavanjeStudentaNaPredmet.setToolTipText("Dodavanje studenta na predmet");
+			ImageIcon slika = new ImageIcon("ikonice/icons8-student-registration-20");
+			btnDodavanjeStudentaNaPredmet.setIcon(new ImageIcon(slika.getImage().getScaledInstance(30,30, java.awt.Image.SCALE_SMOOTH)));
+			btnDodavanjeStudentaNaPredmet.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DialogDodavanjeStudentaNaPredmet dodavanjeStudenta = new DialogDodavanjeStudentaNaPredmet();
+				}
+			});
+			add(btnDodavanjeStudentaNaPredmet);
+			
+			JButton btnUklanjanjeStudentaSaPredmeta = new JButton();
+			btnUklanjanjeStudentaSaPredmeta.setToolTipText("Uklanjanje studenta sa predmeta");
+			ImageIcon slika1 = new ImageIcon("ikonice/icons8-remove-administrator-20");
+			btnUklanjanjeStudentaSaPredmeta.setIcon(new ImageIcon(slika.getImage().getScaledInstance(30,30, java.awt.Image.SCALE_SMOOTH)));
+			btnUklanjanjeStudentaSaPredmeta.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DialogUklanjanjeStudentaSaPredmeta uklanjanjeStudenta = new DialogUklanjanjeStudentaSaPredmeta();
+				}
+			});
+			add(btnUklanjanjeStudentaSaPredmeta);
 		}
+		
+		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension dimenzijaEkrana = toolkit.getScreenSize();
 		addSeparator(new Dimension((int) (dimenzijaEkrana.getWidth()/3), 20));			// 1/3 separator

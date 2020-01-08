@@ -11,9 +11,15 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import dialozi.DialogBrisanjePredmeta;
+import dialozi.DialogBrisanjeProfesora;
+import dialozi.DialogBrisanjeStudenta;
 import dialozi.DialogDodavanjePredmeta;
 import dialozi.DialogDodavanjeProfesora;
 import dialozi.DialogDodavanjeStudenta;
+import dialozi.DialogIzmenaPredmeta;
+import dialozi.DialogIzmenaProfesora;
+import dialozi.DialogIzmenaStudenta;
 
 
 
@@ -65,9 +71,55 @@ public class MenuBar extends JMenuBar {
 		
 		edit.setMnemonic(KeyEvent.VK_E);
 		JMenuItem edit1 = new JMenuItem("Edit");
+		edit1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String selektovano = MainFrame.getSelectedTab();
+				if (selektovano.equals("predmet")) {
+                    int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
+                    DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
+
+                }
+				else if(selektovano.equals("student")) {
+					int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					
+					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta(idx);
+				}else {
+					int idx = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora(idx);
+				}
+				
+			}
+		});
 		edit1.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 		JMenuItem delete = new JMenuItem("Delete");
+		delete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String selektovano = MainFrame.getSelectedTab();
+				if (selektovano.equals("predmet")) {
+					
+					int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
+					
+					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
+					
+				}else if(selektovano.equals("student")) {
+					int indexUModelu = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					DialogBrisanjeStudenta brisanje = new DialogBrisanjeStudenta(indexUModelu);
+				} else if(selektovano.equals("profesor")) {
+
+					int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+
+					DialogBrisanjeProfesora brisanje = new DialogBrisanjeProfesora(indexUModelu);
+				}
+				
+			}
+		});
 		delete.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		

@@ -135,13 +135,13 @@ public class DialogIzmenaStudenta extends JDialog{
 		g.gridy=8;
 		JLabel labelaTrenutnaGodina=new JLabel("Trenutna godina:  ");
 		add(labelaTrenutnaGodina,g);
-		JTextField poljeTrenutnaGodina=new JTextField(Integer.toString(student.getGodinaStudija()));
+		/*JTextField poljeTrenutnaGodina=new JTextField(Integer.toString(student.getGodinaStudija()));
 		g.gridx=1;
 		poljeTrenutnaGodina.setMaximumSize(new Dimension(250,25));
 		poljeTrenutnaGodina.setMinimumSize(new Dimension(250,25));
 		poljeTrenutnaGodina.setPreferredSize(new Dimension(250,25));
 
-		add(poljeTrenutnaGodina,g);
+		add(poljeTrenutnaGodina,g);*/
 		
 
 		g.gridx=0;
@@ -183,7 +183,7 @@ public class DialogIzmenaStudenta extends JDialog{
 				String telefon=poljeTelefon.getText();
 				String email=poljeEmail.getText();
 				String brojIndeksa=poljeBrojIndeksa.getText();
-				Integer godStud=Integer.parseInt(poljeTrenutnaGodina.getText());
+				//Integer godStud=Integer.parseInt(poljeTrenutnaGodina.getText());
 				Double prosOc=Double.parseDouble(poljeProsecnaOcena.getText());
 				
 				student.setIme(ime);
@@ -192,7 +192,7 @@ public class DialogIzmenaStudenta extends JDialog{
 				student.setTelefon(telefon);
 				student.setEmail(email);
 				student.setBrojIndeksa(brojIndeksa);
-				student.setGodinaStudija(godStud);
+				//student.setGodinaStudija(godStud);
 				student.setProsecnaOcena(prosOc);
 				
 				Student.izmenaStudenta(student);
