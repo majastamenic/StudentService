@@ -29,7 +29,7 @@ public class Profesor implements Serializable {
 	
 	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, Long brojLicneKarte, 
 			String titula, String zvanje, ArrayList<Predmet> spisakPredmetaNaKojimaPredaje) {
-		
+		this();
 		this.ime = ime;
 		this.prezime = prezime;
 		this.datumRodjenja = datumRodjenja;
@@ -41,6 +41,22 @@ public class Profesor implements Serializable {
 		this.titula = titula;
 		this.zvanje = zvanje;
 		this.spisakPredmetaNaKojimaPredaje = spisakPredmetaNaKojimaPredaje;
+		
+	}
+	
+	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, Long brojLicneKarte, 
+			String titula, String zvanje) {
+		this();
+		this.ime = ime;
+		this.prezime = prezime;
+		this.datumRodjenja = datumRodjenja;
+		this.adresaStanovanja = adresaStanovanja;
+		this.telefon = telefon;
+		this.email = email;
+		this.adresaKancelarije = adresaKancelarije;
+		this.brojLicneKarte = brojLicneKarte;
+		this.titula = titula;
+		this.zvanje = zvanje;
 	}
 	
 	public ArrayList<Predmet> getSpisakPredmeta() {
@@ -139,23 +155,28 @@ public class Profesor implements Serializable {
 	}
 
 	public static boolean brisanjeProfesora(Long brojLicneKarte) {
-		for(int i = 0; i <= MyApp.profesori.size(); i++) {
-			if(MyApp.profesori.get(i).getBrojLicneKarte().equals(brojLicneKarte)) {
+		for(Profesor profesor : MyApp.profesori) {
+			if(profesor.getBrojLicneKarte() == brojLicneKarte) {
+				for(Predmet predmetKodKogTrebaObrisatiProfesora : MyApp.predmeti) {
+					if(predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor().equals(profesor)) {
+						predmetKodKogTrebaObrisatiProfesora.setPredmetniProfesor(null);
+						continue;
+					}
+				}
+				int i = MyApp.profesori.indexOf(profesor);
 				MyApp.profesori.remove(i);
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public static boolean dodavanjeProfesora(Profesor profesor) {
 		if(MyApp.profesori.contains(profesor)) {
 			return false;
 		}
 		MyApp.profesori.add(profesor);
-		return true;
-
-	
+		return true;	
 	}
 
 	@Override

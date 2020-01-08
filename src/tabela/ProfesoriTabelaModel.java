@@ -3,6 +3,7 @@ package tabela;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 import projekat.Profesor;
@@ -14,7 +15,7 @@ public class ProfesoriTabelaModel extends AbstractTableModel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static String[] naziviKolona = {"Ime", "Prezime", "Datum rodjenja", "Adresa stanovanja", "Telefon", "E-mail", "Adresa kancelarije", "Broj licne karte", "Titula", "Zvanje", "Spisak predmeta na kojima predaje"};
-	private static Class[] tipoviKolona = {String.class, String.class, Date.class, String.class, String.class, String.class, String.class, Long.class, String.class, String.class, String.class};
+	private static Class[] tipoviKolona = {String.class, String.class, Date.class, String.class, String.class, String.class, String.class, Long.class, String.class, String.class, JButton.class};
 	private ArrayList<Profesor> profesori = new ArrayList<Profesor>();
 	
 	public ProfesoriTabelaModel(ArrayList<Profesor> profesori) {
@@ -57,7 +58,8 @@ public class ProfesoriTabelaModel extends AbstractTableModel{
 		case 9:
 			return profesor.getZvanje();
 		case 10:
-			return "Prikazi tekst";
+			JButton prikaziPredmete = new JButton(String.valueOf(profesor.getBrojLicneKarte()));
+			return prikaziPredmete;
 		}
 		return null;
 	}
