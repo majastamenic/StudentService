@@ -2,6 +2,7 @@ package tabela;
 
 import java.util.ArrayList;
 
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
@@ -21,6 +22,9 @@ public class PredmetiTabela extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(predmetiTabelaModel);
 		setAutoCreateRowSorter(true);
+		new PredmetiTableButton(this, 5);
+		
+		
 	}
 
 }

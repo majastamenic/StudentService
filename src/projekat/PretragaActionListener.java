@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 
 import tabela.PredmetiTabela;
 import tabela.ProfesoriTabela;
@@ -80,6 +81,7 @@ public class PretragaActionListener implements ActionListener{
 							}
 						}
 					} catch(Exception ex) {
+						UIManager.put("OptionPane.okButtonText", "OK");
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!", "Pogresan format", JOptionPane.OK_OPTION);
 					}
 				}
@@ -182,7 +184,9 @@ public class PretragaActionListener implements ActionListener{
 						}
 					} 
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!", "Pogresan format", JOptionPane.OK_OPTION);
+					UIManager.put("OptionPane.okButtonText", "OK");
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!",
+							"Pogresan format", JOptionPane.OK_OPTION);
 				}
 				
 			 }

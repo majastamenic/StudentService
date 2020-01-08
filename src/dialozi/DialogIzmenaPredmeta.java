@@ -3,10 +3,12 @@ package dialozi;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -30,6 +32,12 @@ public class DialogIzmenaPredmeta extends JDialog {
 		setTitle("Izmena predmeta");
 		setSize(new Dimension(400, 200));
 		setLocationRelativeTo(null);
+		
+		ImageIcon img = new ImageIcon("Images/Icon5.png");
+		Image image = img.getImage();
+		Image newimg = image.getScaledInstance(330, 410, java.awt.Image.SCALE_SMOOTH); // Podesavanje velicine ikonice.
+		img = new ImageIcon(newimg);
+		setIconImage(img.getImage());
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		setLayout(new GridBagLayout());

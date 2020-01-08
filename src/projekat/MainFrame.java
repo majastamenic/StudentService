@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -65,6 +66,8 @@ public class MainFrame extends JFrame {
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				UIManager.put("OptionPane.yesButtonText", "Da");
+				UIManager.put("OptionPane.noButtonText", "Ne");
 				if (JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da zelite da zatvorite aplikaciju?",
 						"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
@@ -123,7 +126,7 @@ public class MainFrame extends JFrame {
 		int selektovaniIndex = tabovi.getSelectedIndex();
 
 		tabovi.removeAll();
-		tabovi.addTab("Studenti", new JTable());
+		tabovi.addTab("Studenti", new StudentiTabela(MyApp.studenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);

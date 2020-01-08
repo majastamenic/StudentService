@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 
 import projekat.MainFrame;
 import projekat.MyApp;
@@ -24,6 +25,8 @@ public class DialogUklanjanjeProfesoraSaPredmet extends JDialog{
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				UIManager.put("OptionPane.yesButtonText", "Da");
+				UIManager.put("OptionPane.noButtonText", "Ne");
 				if(JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da zelite da uklonite profesora sa predmeta?",
 						"Potvrda o brisanju profesora sa predmeta", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {

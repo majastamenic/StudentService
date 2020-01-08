@@ -1,7 +1,10 @@
 package tabela;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 import projekat.Predmet;
@@ -13,7 +16,7 @@ public class PredmetiTabelaModel extends AbstractTableModel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static String[] naziviKolona = {"Sifra", "Naziv", "Semestar", "Godina Studija", "Predmetni profesor", "Studenti"};
-	private static Class[] tipoviKolona = {String.class, String.class, Integer.class, Integer.class, String.class, String.class};
+	private static Class[] tipoviKolona = {String.class, String.class, Integer.class, Integer.class, String.class, JButton.class};
 	private ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 	
 	
@@ -45,17 +48,19 @@ public class PredmetiTabelaModel extends AbstractTableModel{
 		case 3:
 			return predmet.getGodinaStudija();
 		case 4:
-			//Predmetni profesor moze da se dodaje i brise sa predmeta
+			//Predmetni profesor moze da se dodaje i brise sa predmeta, jer moze biti null
 			if(predmet.getPredmetniProfesor() != null) {
 				return predmet.getPredmetniProfesor().getIme() + " " + predmet.getPredmetniProfesor().getPrezime();
 			}
 			return "";
 		case 5:
-			return "Prikazi tekst";
+			JButton prikaziStudente = new JButton(predmet.getSifra());
+			return prikaziStudente;
 		}
 		return null;
 	}
 
+	// da bismo mogli prikazati dugme
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		return tipoviKolona[columnIndex];
