@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 import dialozi.DialogBrisanjePredmeta;
 import dialozi.DialogBrisanjeStudenta;
@@ -78,7 +79,9 @@ public class MyToolBar extends JToolBar{
 						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
 						DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
 					}catch(Exception ex){
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da  izmenite.", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+						UIManager.put("OptionPane.okButtonText", "OK");
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da  izmenite.", 
+								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
                 }
 				else if(selektovano.equals("student")) {
@@ -104,19 +107,47 @@ public class MyToolBar extends JToolBar{
 				if (selektovano.equals("predmet")) {
 					try {
 						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
-						DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
+						UIManager.put("OptionPane.yesButtonText", "Da");
+						UIManager.put("OptionPane.noButtonText", "Ne");
+						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(),"Da li ste sigurni da zelite da obrisete selektovani predmet?",
+								"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION){
+							Predmet.brisanjePredmeta(MyApp.getPredmeti().get(indexUModelu).getSifra());
+							MainFrame.refreshTabova();
+							dispose();
+						}
 					}catch(Exception ex){
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da izbrisete", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+						UIManager.put("OptionPane.okButtonText", "OK");
+						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet koji zelite da izbrisete.",
+								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
 				}else if(selektovano.equals("student")) {
 					DialogBrisanjeStudenta dialogBrisanjeStudenta = new DialogBrisanjeStudenta();
 				} else if(selektovano.equals("profesor")) {
-
-					int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
-
-					DialogBrisanjeProfesora brisanje = new DialogBrisanjeProfesora(indexUModelu);
+					try {
+						int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+						UIManager.put("OptionPane.yesButtonText", "Da");
+						UIManager.put("OptionPane.noButtonText", "Ne");
+						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(),"Da li ste sigurni da zelite da obrisete selektovanog profesora?",
+								"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION){
+							Profesor.brisanjeProfesora(MyApp.getProfesori().get(indexUModelu).getBrojLicneKarte());
+							MainFrame.refreshTabova();
+							dispose();
+						}
+					}catch(Exception ex) {
+						UIManager.put("OptionPane.okButtonText", "OK");
+						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili profesora kojeg zelite da izbrisete.",
+								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+					}
 				}
+				
 					
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 		add(btnBrisanje);
@@ -135,7 +166,10 @@ public class MyToolBar extends JToolBar{
 						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
 						DialogDodavanjeProfesoraNaPredmet dodavanjeProfesora = new DialogDodavanjeProfesoraNaPredmet(indexUModelu);
 					}catch(Exception ex){
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da dodate profesora", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+						UIManager.put("OptionPane.okButtonText", "OK");
+						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da dodate profesora",
+								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
 				}
 			});
@@ -152,6 +186,9 @@ public class MyToolBar extends JToolBar{
 					try {
 						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
 						//DialogUklanjanjeProfesoraSaPredmet uklanjaneProfesora = new DialogUklanjanjeProfesoraSaPredmet(indexUModelu);
+						UIManager.put("OptionPane.yesButtonText", "Da");
+						UIManager.put("OptionPane.noButtonText", "Ne");
+						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
 						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da zelite da uklonite profesora sa predmeta?",
 								"Potvrda o brisanju profesora sa predmeta", JOptionPane.YES_NO_OPTION,
 								JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
@@ -162,7 +199,9 @@ public class MyToolBar extends JToolBar{
 						
 						
 					}catch(Exception ex) {
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na kome zelite da uklonite profesora", "Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+						UIManager.put("OptionPane.okButtonText", "OK");
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na kome zelite da uklonite profesora", 
+								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
 					
 				}
