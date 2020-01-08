@@ -10,10 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.net.ssl.SSLEngineResult.Status;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import projekat.MainFrame;
@@ -135,17 +137,34 @@ public class DialogIzmenaStudenta extends JDialog{
 		g.gridy=8;
 		JLabel labelaTrenutnaGodina=new JLabel("Trenutna godina:  ");
 		add(labelaTrenutnaGodina,g);
-		/*JTextField poljeTrenutnaGodina=new JTextField(Integer.toString(student.getGodinaStudija()));
+		String godina[]= {"I (prva)","II (druga)","III (treca)","IV (cetvrta)"};
 		g.gridx=1;
-		poljeTrenutnaGodina.setMaximumSize(new Dimension(250,25));
-		poljeTrenutnaGodina.setMinimumSize(new Dimension(250,25));
-		poljeTrenutnaGodina.setPreferredSize(new Dimension(250,25));
-
-		add(poljeTrenutnaGodina,g);*/
+		JComboBox trGod=new JComboBox(godina);
+		trGod.setPreferredSize(new Dimension(250, 25));
+		
+		add(trGod,g);
 		
 
 		g.gridx=0;
+		g.gridy=9;
+		JLabel labelaStatusStudenta=new JLabel("Status studenta:  ");
+		add(labelaStatusStudenta,g);
+		
+		g.gridx=1;
+		JRadioButton poljeStatusStudenta=new JRadioButton("Budzetski");
+		add(poljeStatusStudenta,g);
 		g.gridy=10;
+		JRadioButton poljeStatusStudenta1=new JRadioButton("Samofinansirajuci");
+		
+		add(poljeStatusStudenta1,g);
+		ButtonGroup grupa=new ButtonGroup();
+		
+		grupa.add(poljeStatusStudenta);
+		grupa.add(poljeStatusStudenta1);
+		
+
+		g.gridx=0;
+		g.gridy=11;
 		JLabel labelaProsecnaOcena=new JLabel("Prosecna ocena:  ");
 		add(labelaProsecnaOcena,g);
 		JTextField poljeProsecnaOcena=new JTextField(Double.toString(student.getProsecnaOcena()));
@@ -183,7 +202,7 @@ public class DialogIzmenaStudenta extends JDialog{
 				String telefon=poljeTelefon.getText();
 				String email=poljeEmail.getText();
 				String brojIndeksa=poljeBrojIndeksa.getText();
-				//Integer godStud=Integer.parseInt(poljeTrenutnaGodina.getText());
+				String trenutnaGodina = (String)trGod.getSelectedItem();
 				Double prosOc=Double.parseDouble(poljeProsecnaOcena.getText());
 				
 				student.setIme(ime);
@@ -192,7 +211,7 @@ public class DialogIzmenaStudenta extends JDialog{
 				student.setTelefon(telefon);
 				student.setEmail(email);
 				student.setBrojIndeksa(brojIndeksa);
-				//student.setGodinaStudija(godStud);
+				student.setGodinaStudija(trenutnaGodina);
 				student.setProsecnaOcena(prosOc);
 				
 				Student.izmenaStudenta(student);
@@ -205,7 +224,7 @@ public class DialogIzmenaStudenta extends JDialog{
 		sacuvaj.addActionListener(sacuvajKliknuto);
 		
 		g.gridx=1;
-		g.gridy=11;
+		g.gridy=12;
 		add(sacuvaj,g);
 		odustani.addActionListener(new ActionListener() {
 			
@@ -217,7 +236,7 @@ public class DialogIzmenaStudenta extends JDialog{
 		});
 		
 		g.gridx=0;
-		g.gridy=11;
+		g.gridy=12;
 		add(odustani,g);
 		setLocationRelativeTo(null);
 		setVisible(true);
