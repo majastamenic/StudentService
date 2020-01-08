@@ -2,6 +2,7 @@ package tabela;
 
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
@@ -18,6 +19,9 @@ public class StudentiTabela extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(studentiTabelaModel);
 		
+		
+		
 		setAutoCreateRowSorter(true);
 	}
+
 }
