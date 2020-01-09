@@ -15,7 +15,7 @@ public class ProfesoriTabelaModel extends AbstractTableModel{
 	 */
 	private static final long serialVersionUID = 1L;
 	private static String[] naziviKolona = {"Ime", "Prezime", "Datum rodjenja", "Adresa stanovanja", "Telefon", "E-mail", "Adresa kancelarije", "Broj licne karte", "Titula", "Zvanje", "Spisak predmeta na kojima predaje"};
-	private static Class[] tipoviKolona = {String.class, String.class, Date.class, String.class, String.class, String.class, String.class, Long.class, String.class, String.class, JButton.class};
+	private static Class[] tipoviKolona = {String.class, String.class, Date.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, JButton.class};
 	private ArrayList<Profesor> profesori = new ArrayList<Profesor>();
 	
 	public ProfesoriTabelaModel(ArrayList<Profesor> profesori) {

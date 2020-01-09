@@ -29,10 +29,10 @@ public class ProfesorTabelaButton implements MouseListener, TableCellRenderer{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Profesor profesor = null;
-				Long brojLicneKarte = (Long) table.getValueAt(table.getSelectedRow(), 7);
+				String brojLicneKarte = (String) table.getValueAt(table.getSelectedRow(), 7);
 				
 				for(Profesor p:MyApp.getProfesori()) {
-					if(p.getBrojLicneKarte() == brojLicneKarte) {
+					if(p.getBrojLicneKarte().equals(brojLicneKarte)) {
 						profesor = p;
 						break;
 					}
@@ -54,9 +54,9 @@ public class ProfesorTabelaButton implements MouseListener, TableCellRenderer{
 					break;
 				}
 			}
-			Long brojLicneKarte = (Long) table.getValueAt(table.getSelectedRow(), kolona);
+			String brojLicneKarte = (String) table.getValueAt(table.getSelectedRow(), kolona);
 			for(Profesor p: MyApp.getProfesori()) {
-				if(p.getBrojLicneKarte()==brojLicneKarte) {
+				if(p.getBrojLicneKarte().equals(brojLicneKarte)) {
 					profesor = p;
 					break;
 				}

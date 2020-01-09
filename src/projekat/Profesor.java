@@ -18,7 +18,7 @@ public class Profesor implements Serializable {
 	private String telefon;
 	private String email;
 	private String adresaKancelarije;
-	private Long brojLicneKarte;
+	private String brojLicneKarte;
 	private String titula;
 	private String zvanje;
 	private ArrayList<Predmet> spisakPredmetaNaKojimaPredaje;
@@ -27,7 +27,7 @@ public class Profesor implements Serializable {
 		spisakPredmetaNaKojimaPredaje = new ArrayList<Predmet>();
 	}
 	
-	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, Long brojLicneKarte, 
+	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, String brojLicneKarte, 
 			String titula, String zvanje, ArrayList<Predmet> spisakPredmetaNaKojimaPredaje) {
 		this();
 		this.ime = ime;
@@ -44,7 +44,7 @@ public class Profesor implements Serializable {
 		
 	}
 	
-	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, Long brojLicneKarte, 
+	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, String brojLicneKarte, 
 			String titula, String zvanje) {
 		this();
 		this.ime = ime;
@@ -123,11 +123,11 @@ public class Profesor implements Serializable {
 		this.adresaKancelarije = adresaKancelarije;
 	}
 
-	public Long getBrojLicneKarte() {
+	public String getBrojLicneKarte() {
 		return brojLicneKarte;
 	}
 
-	public void setBrojLicneKarte(Long brojLicneKarte) {
+	public void setBrojLicneKarte(String brojLicneKarte) {
 		this.brojLicneKarte = brojLicneKarte;
 	}
 
@@ -154,11 +154,11 @@ public class Profesor implements Serializable {
 		return ((Profesor)obj).getBrojLicneKarte().equals(this.brojLicneKarte);
 	}
 
-	public static boolean brisanjeProfesora(Long brojLicneKarte) {
+	public static boolean brisanjeProfesora(String brojLicneKarte) {
 		for(Profesor profesor : MyApp.profesori) {
-			if(profesor.getBrojLicneKarte() == brojLicneKarte) {
+			if(profesor.getBrojLicneKarte().equals(brojLicneKarte)) {
 				for(Predmet predmetKodKogTrebaObrisatiProfesora : MyApp.predmeti) {
-					if(predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor().equals(profesor)) {
+					if((predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor()!=null) && predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor().equals(profesor)) {
 						predmetKodKogTrebaObrisatiProfesora.setPredmetniProfesor(null);
 						continue;
 					}
@@ -181,7 +181,7 @@ public class Profesor implements Serializable {
 
 	@Override
 	public String toString() {
-		return ime + " " + prezime + ", br.LK=" + brojLicneKarte;
+		return brojLicneKarte + " " + ime + " " + prezime;
 	}
 	
 	

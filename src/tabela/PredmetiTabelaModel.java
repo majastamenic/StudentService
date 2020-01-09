@@ -50,7 +50,7 @@ public class PredmetiTabelaModel extends AbstractTableModel{
 		case 4:
 			//Predmetni profesor moze da se dodaje i brise sa predmeta, jer moze biti null
 			if(predmet.getPredmetniProfesor() != null) {
-				return predmet.getPredmetniProfesor().getIme() + " " + predmet.getPredmetniProfesor().getPrezime();
+				return predmet.getPredmetniProfesor().getBrojLicneKarte()+", "+predmet.getPredmetniProfesor().getIme() + " " + predmet.getPredmetniProfesor().getPrezime();
 			}
 			return "";
 		case 5:

@@ -168,13 +168,13 @@ public class DialogDodavanjeProfesora extends JDialog{
 					e1.printStackTrace();
 				}
 			
-				String adresaStanovanja=poljeAdresaSt.getText();
-				String telefon=poljeTelefon.getText();
-				String email=poljeEmail.getText();
-				String adresaKanc=poljeAdresaKn.getText();
-				Long brLK=Long.parseLong(poljeBrojLicneKarte.getText());
-				String titula=poljeTitula.getText();
-				String zvanje= poljeZvanje.getText();
+				String adresaStanovanja = poljeAdresaSt.getText();
+				String telefon = poljeTelefon.getText();
+				String email = poljeEmail.getText();
+				String adresaKanc = poljeAdresaKn.getText();
+				String brLK = poljeBrojLicneKarte.getText();
+				String titula = poljeTitula.getText();
+				String zvanje = poljeZvanje.getText();
 				
 				
 				profesor.setIme(ime);

@@ -35,7 +35,7 @@ public class DialogBrisanjeProfesora extends JDialog{
 		img = new ImageIcon(newimg);
 		setIconImage(img.getImage());
 		
-		Long brojLicneKarte = MyApp.getProfesori().get(indexUModelu).getBrojLicneKarte();
+		String brojLicneKarte = MyApp.getProfesori().get(indexUModelu).getBrojLicneKarte();
 		String ime = MyApp.getProfesori().get(indexUModelu).getIme();
 		String prezime = MyApp.getProfesori().get(indexUModelu).getPrezime();
 		

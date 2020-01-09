@@ -75,7 +75,7 @@ public class PretragaActionListener implements ActionListener{
 							ArrayList<Predmet> privremena = listaRezultatPredmeti;		
 							listaRezultatPredmeti = new ArrayList<Predmet>();
 							for(int j = 0; j<privremena.size(); j++) {
-								if(privremena.get(j).getPredmetniProfesor().getBrojLicneKarte() == Long.parseLong(vrednost)) {
+								if(privremena.get(j).getPredmetniProfesor().getBrojLicneKarte().equals(vrednost)) {
 									listaRezultatPredmeti.add(privremena.get(j));
 								}
 							}
@@ -162,7 +162,7 @@ public class PretragaActionListener implements ActionListener{
 						ArrayList<Profesor> privremena = listaRezultatProfesori;
 						listaRezultatProfesori = new ArrayList<Profesor>();
 						for(int j = 0; j<privremena.size(); j++) {
-							if(privremena.get(j).getBrojLicneKarte() == Long.parseLong(vrednost)) {
+							if(privremena.get(j).getBrojLicneKarte().contains(vrednost)) {
 								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}

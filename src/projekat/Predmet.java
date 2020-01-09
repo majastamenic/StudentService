@@ -120,14 +120,14 @@ public class Predmet implements Serializable {
 			if(predmet.getSifra().equals(sifra)) {
 				//Brisanje predmeta iz studenta
 				for(Student studentKodKogTrebaObrisatiPredmet : MyApp.studenti) {
-					if(studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa().contains(predmet)) {
+					if((studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa()!=null) && studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa().contains(predmet)) {
 						studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa().remove(predmet);
 						continue;
 					}
 				}
 				//Brisanje predmeta iz profesora
 				for(Profesor profesorIzKogTrebaObrisatiPredmet : MyApp.profesori) {
-					if(profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().contains(predmet)) {
+					if((profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()!=null) && profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().contains(predmet)) {
 						profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().remove(predmet);
 						break;
 					}
@@ -190,8 +190,7 @@ public class Predmet implements Serializable {
 				for (Profesor profesorIzKogTrebaObrisatiPredmet : MyApp.profesori) {
 
 					if (profesorIzKogTrebaObrisatiPredmet.getBrojLicneKarte().equals(profesor.getBrojLicneKarte())) {
-						for (Predmet predmetKojiSeBriseIzProfesora : profesorIzKogTrebaObrisatiPredmet
-								.getSpisakPredmeta()) {
+						for (Predmet predmetKojiSeBriseIzProfesora : profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()) {
 
 							if (predmetKojiSeBriseIzProfesora.getSifra().equals(sifraPredmeta)) {
 								int indexPredmeta = profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()
