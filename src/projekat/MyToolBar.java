@@ -2,32 +2,28 @@ package projekat;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.List;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-import dialozi.DialogBrisanjePredmeta;
 import dialozi.DialogBrisanjeStudenta;
-import dialozi.DialogBrisanjeProfesora;
 import dialozi.DialogDodavanjePredmeta;
 import dialozi.DialogDodavanjeProfesora;
 import dialozi.DialogDodavanjeStudenta;
+import dialozi.DialogDodavanjeStudentaNaPredmet;
 import dialozi.DialogDodavanjeProfesoraNaPredmet;
 import dialozi.DialogIzmenaPredmeta;
 import dialozi.DialogIzmenaProfesora;
 import dialozi.DialogIzmenaStudenta;
-import dialozi.DialogUklanjanjeProfesoraSaPredmet;
+import dialozi.DialogUklanjanjeStudentaSaPredmeta;
 
 public class MyToolBar extends JToolBar{
 	/**
@@ -55,10 +51,10 @@ public class MyToolBar extends JToolBar{
 				}
 				else if(selektovano.equals("student")) {
 					DialogDodavanjeStudenta dialogDodavanjeStudenta = new DialogDodavanjeStudenta();
+
 				}else {
 					DialogDodavanjeProfesora dialogDodavanjeProfesora = new DialogDodavanjeProfesora();
 				}
-
 				
 			}
 		});
@@ -80,15 +76,19 @@ public class MyToolBar extends JToolBar{
 						DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
 					}catch(Exception ex){
 						UIManager.put("OptionPane.okButtonText", "OK");
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da  izmenite.", 
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da  izmenite.",
 								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
                 }
 				else if(selektovano.equals("student")) {
-					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta();
+					int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+
+					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta(idx);
 				}else {
-                    DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora();
-                }
+					int idx = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora(idx);
+				}
+
 			}
 		});
 		
@@ -122,7 +122,8 @@ public class MyToolBar extends JToolBar{
 								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
 				}else if(selektovano.equals("student")) {
-					DialogBrisanjeStudenta dialogBrisanjeStudenta = new DialogBrisanjeStudenta();
+					int indexUModelu = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					DialogBrisanjeStudenta brisanje = new DialogBrisanjeStudenta(indexUModelu);
 				} else if(selektovano.equals("profesor")) {
 					try {
 						int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
@@ -141,13 +142,13 @@ public class MyToolBar extends JToolBar{
 								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
 				}
-				
-					
+
+
 			}
 
 			private void dispose() {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		add(btnBrisanje);
@@ -196,18 +197,46 @@ public class MyToolBar extends JToolBar{
 							Predmet.uklanjanjeProfesora(MyApp.getPredmeti().get(indexUModelu).getPredmetniProfesor(), sifra);
 							MainFrame.refreshTabova();
 						}
-						
-						
+
+
 					}catch(Exception ex) {
 						UIManager.put("OptionPane.okButtonText", "OK");
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na kome zelite da uklonite profesora", 
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na kome zelite da uklonite profesora",
 								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
-					
+
 				}
 			});
 			add(btnBrisanjeProfesoraSaPredmeta);
+
+			JButton btnDodavanjeStudentaNaPredmet = new JButton();
+			btnDodavanjeStudentaNaPredmet.setToolTipText("Dodavanje studenta na predmet");
+			ImageIcon slika = new ImageIcon("ikonice/icons8-student-registration-20.png");
+			btnDodavanjeStudentaNaPredmet.setIcon(new ImageIcon(slika.getImage().getScaledInstance(20,20, java.awt.Image.SCALE_SMOOTH)));
+			btnDodavanjeStudentaNaPredmet.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DialogDodavanjeStudentaNaPredmet dodavanjeStudenta = new DialogDodavanjeStudentaNaPredmet();
+				}
+			});
+			add(btnDodavanjeStudentaNaPredmet);
+
+			JButton btnUklanjanjeStudentaSaPredmeta = new JButton();
+			btnUklanjanjeStudentaSaPredmeta.setToolTipText("Uklanjanje studenta sa predmeta");
+			ImageIcon slika1 = new ImageIcon("ikonice/icons8-remove-administrator-20.png");
+			btnUklanjanjeStudentaSaPredmeta.setIcon(new ImageIcon(slika1.getImage().getScaledInstance(20,20, java.awt.Image.SCALE_SMOOTH)));
+			btnUklanjanjeStudentaSaPredmeta.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DialogUklanjanjeStudentaSaPredmeta uklanjanjeStudenta = new DialogUklanjanjeStudentaSaPredmeta();
+				}
+			});
+			add(btnUklanjanjeStudentaSaPredmeta);
 		}
+
+
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension dimenzijaEkrana = toolkit.getScreenSize();
 		addSeparator(new Dimension((int) (dimenzijaEkrana.getWidth()/3), 20));			// 1/3 separator
@@ -221,14 +250,14 @@ public class MyToolBar extends JToolBar{
 		ImageIcon img3 = new ImageIcon("Images/pretrazivanje2.png");
 		btnPretraga.setIcon(new ImageIcon(img3.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
 		btnPretraga.setToolTipText("Pretraga");
-		
+
 		btnPretraga.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PretragaActionListener pretragaAction = new PretragaActionListener(tekst.getText());	//poziv konstruktora za action listener jer mu je potrebna vrenost polja tekst za pretragu
 				pretragaAction.actionPerformed(e);
-				
+
 			}
 		});
 		add(btnPretraga);

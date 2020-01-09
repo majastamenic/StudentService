@@ -6,11 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import dialozi.DialogStudentiUPredmetu;
@@ -19,9 +16,7 @@ import projekat.Predmet;
 
 public class PredmetiTableButton implements TableCellRenderer, MouseListener {
 
-	private static final long serialVersionUID = 1343768131059619058L;
-
-// dugme koje se iscrtava
+	// dugme koje se iscrtava
 	private JButton renderButton;
 // referenca na tabelu
 	private JTable table;
@@ -62,7 +57,8 @@ this.renderButton.addActionListener(new ActionListener() {
 // U ovom primeru, sva dugmad ce imati isti ispis,
 // za promenu ispisa mozemo koristi vrednost parametra value
 		//return new IgraciTablePanel(this.renderButton, 50, 50);
-		return new MyButtonPanel(this.renderButton, value);
+		MyButtonPanel mbp = new MyButtonPanel(this.renderButton, value);
+		return mbp;
 	}
 
 

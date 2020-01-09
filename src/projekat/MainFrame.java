@@ -10,9 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.UIManager;
-import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -87,8 +85,10 @@ public class MainFrame extends JFrame {
 		setSize(new Dimension(dimenzijaEkrana.width * 3 / 4, dimenzijaEkrana.height * 3 / 4)); // Podesavanje dimenzije
 																								// ekrana.
 
+
 		tabovi = new JTabbedPane();
-		tabovi.addTab("Studenti", new JScrollPane(new StudentiTabela(MyApp.studenti)));
+		tabelaStudenti = new StudentiTabela(MyApp.studenti);
+		tabovi.addTab("Studenti", new JScrollPane(tabelaStudenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
@@ -126,7 +126,8 @@ public class MainFrame extends JFrame {
 		int selektovaniIndex = tabovi.getSelectedIndex();
 
 		tabovi.removeAll();
-		tabovi.addTab("Studenti", new StudentiTabela(MyApp.studenti));
+		tabelaStudenti = new StudentiTabela(MyApp.studenti);
+		tabovi.addTab("Studenti", new JScrollPane(tabelaStudenti));
 		tabelaProfesori = new ProfesoriTabela(MyApp.profesori);
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
@@ -157,5 +158,12 @@ public class MainFrame extends JFrame {
 
 	public static void setTabelaPredmeti(PredmetiTabela tabelaPredmeti) {
 		MainFrame.tabelaPredmeti = tabelaPredmeti;
+	}
+
+	public static StudentiTabela getTabelaStudenti() {
+		return tabelaStudenti;
+	}
+	public static void setTabelaStudenti(StudentiTabela tabelaStudenti) {
+		MainFrame.tabelaStudenti = tabelaStudenti;
 	}
 }

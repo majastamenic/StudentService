@@ -22,6 +22,7 @@ public class DialogDodavanjeProfesora extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 
+
 	public DialogDodavanjeProfesora() {
 		setTitle("Dodavanje profesora");
 		setSize(new Dimension(600, 500));
@@ -150,16 +151,17 @@ public class DialogDodavanjeProfesora extends JDialog{
 		add(poljeZvanje,g);
 		
 		JButton sacuvaj=new JButton("Sacuvaj");
+		JButton otkazi=new JButton("Otkazi");
+
 		ActionListener sacuvajKliknuto=new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				Profesor profesor=new Profesor();
 				String ime=poljeIme.getText();
 				String prezime=poljePrezime.getText();
-				
 				Date datRodj;
-				Profesor profesor=new Profesor();
 				try {
 					datRodj = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatRodj.getText());
 					profesor.setDatumRodjenja(datRodj);
@@ -200,6 +202,19 @@ public class DialogDodavanjeProfesora extends JDialog{
 		g.gridy=10;
 		add(sacuvaj,g);
 		
+		g.gridx=0;
+		g.gridy=10;
+		otkazi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				dispose();
+			}
+		});
+		add(otkazi,g);
+
+
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

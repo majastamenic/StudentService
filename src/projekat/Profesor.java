@@ -27,7 +27,7 @@ public class Profesor implements Serializable {
 		spisakPredmetaNaKojimaPredaje = new ArrayList<Predmet>();
 	}
 	
-	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, String brojLicneKarte, 
+	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, String brojLicneKarte,
 			String titula, String zvanje, ArrayList<Predmet> spisakPredmetaNaKojimaPredaje) {
 		this();
 		this.ime = ime;
@@ -41,10 +41,10 @@ public class Profesor implements Serializable {
 		this.titula = titula;
 		this.zvanje = zvanje;
 		this.spisakPredmetaNaKojimaPredaje = spisakPredmetaNaKojimaPredaje;
-		
+
 	}
-	
-	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, String brojLicneKarte, 
+
+	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, String brojLicneKarte,
 			String titula, String zvanje) {
 		this();
 		this.ime = ime;
@@ -176,7 +176,18 @@ public class Profesor implements Serializable {
 			return false;
 		}
 		MyApp.profesori.add(profesor);
-		return true;	
+		return true;
+	}
+
+	public static boolean izmenaProfesora(Profesor p) {
+		for(int i = 0; i <= MyApp.profesori.size(); i++) {
+			if(MyApp.profesori.get(i).getBrojLicneKarte().equals(p.getBrojLicneKarte())) {
+				MyApp.profesori.remove(i);
+				MyApp.profesori.add(p);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

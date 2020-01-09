@@ -1,10 +1,7 @@
 package dialozi;
 
-import java.awt.Dimension;
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 
 import projekat.MainFrame;

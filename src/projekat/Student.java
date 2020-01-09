@@ -3,7 +3,7 @@ package projekat;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-enum Status {B,S};
+
 public class Student implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -16,18 +16,19 @@ public class Student implements Serializable{
 	private String email;
 	private String brojIndeksa;
 	private Date datumUpisa;
-	private Integer godinaStudija;
-	private Status status;
+	private String godinaStudija;
+	private StatusStudenta status;
 	private Double prosecnaOcena;
 	private ArrayList<Predmet> spisakPredmetaKojeSlusa;
-	
+	private Boolean samofinansiranje;
+
 	public Student() {
 		spisakPredmetaKojeSlusa=new ArrayList<Predmet>();
 	}
 
 	public Student(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon,
-			String email, String brojIndeksa, Date datumUpisa, Integer godinaStudija, Status status,
-			Double prosecnaOcena, ArrayList<Predmet> spisakPredmetaKojeSlusa) {
+			String email, String brojIndeksa, Date datumUpisa, String godinaStudija,
+			Double prosecnaOcena, ArrayList<Predmet> spisakPredmetaKojeSlusa,Boolean samofinansiranje) {
 		super();
 		this.ime = ime;
 		this.prezime = prezime;
@@ -38,9 +39,13 @@ public class Student implements Serializable{
 		this.brojIndeksa = brojIndeksa;
 		this.datumUpisa = datumUpisa;
 		this.godinaStudija = godinaStudija;
-		this.status = status;
 		this.prosecnaOcena = prosecnaOcena;
 		this.spisakPredmetaKojeSlusa = spisakPredmetaKojeSlusa;
+		this.samofinansiranje=samofinansiranje;
+		if(samofinansiranje)
+			this.status=StatusStudenta.S;
+		else
+			this.status=StatusStudenta.B;
 	}
 
 	public String getIme() {
@@ -107,19 +112,19 @@ public class Student implements Serializable{
 		this.datumUpisa = datumUpisa;
 	}
 
-	public Integer getGodinaStudija() {
+	public String getGodinaStudija() {
 		return godinaStudija;
 	}
 
-	public void setGodinaStudija(Integer godinaStudija) {
+	public void setGodinaStudija(String godinaStudija) {
 		this.godinaStudija = godinaStudija;
 	}
 
-	public Status getStatus() {
+	public StatusStudenta getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(StatusStudenta status) {
 		this.status = status;
 	}
 
@@ -139,6 +144,19 @@ public class Student implements Serializable{
 		this.spisakPredmetaKojeSlusa = spisakPredmetaKojeSlusa;
 	}
 	
+	public Boolean getSamofinansiranje() {
+		return samofinansiranje;
+	}
+
+	public void setSamofinansiranje(Boolean samofinansiranje) {
+		this.samofinansiranje = samofinansiranje;
+	}
+
+
+	public boolean equals(Object obj) {
+		return ((Student)obj).getBrojIndeksa().equals(this.brojIndeksa);
+	}
+
 	public static boolean dodavanjeStudenta(Student student) {
 		if(MyApp.studenti.contains(student)) {
 			return false;
@@ -169,7 +187,7 @@ public class Student implements Serializable{
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
 		return brojIndeksa+" "+ime+" "+prezime;

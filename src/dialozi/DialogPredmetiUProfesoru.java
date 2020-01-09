@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -17,6 +16,7 @@ import javax.swing.JOptionPane;
 
 
 import projekat.MainFrame;
+import projekat.MyApp;
 import projekat.Predmet;
 import projekat.Profesor;
 
@@ -58,6 +58,14 @@ public class DialogPredmetiUProfesoru extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int selektovanIndex = list.getSelectedIndex();
+					Predmet predmetZaBrisanje = list.getSelectedValue();
+					
+					for (Predmet pr : MyApp.getPredmeti()) {
+						if(predmetZaBrisanje.equals(pr)) {
+							pr.setPredmetniProfesor(null);
+						}
+					}
+					
 					if(selektovanIndex != -1) {
 						listModel.remove(selektovanIndex);
 					}

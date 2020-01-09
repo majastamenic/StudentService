@@ -3,7 +3,6 @@ package dialozi;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import projekat.MainFrame;
@@ -20,7 +20,6 @@ import projekat.MyApp;
 import projekat.Predmet;
 import projekat.Profesor;
 import projekat.Student;
-import projekat.Util;
 
 public class DialogDodavanjePredmeta extends JDialog{
 	
@@ -94,7 +93,7 @@ public class DialogDodavanjePredmeta extends JDialog{
 		add(new JLabel("Profesor: "), gbc);
 		gbc.gridx = 1;
 		JComboBox<Profesor> profesoriComboBox = new JComboBox<Profesor>();
-		ArrayList<Profesor> profesoriLista = Util.ucitajProfesore();
+		ArrayList<Profesor> profesoriLista = MyApp.getProfesori();
 		
 		for (Profesor profesor : profesoriLista) {
 			profesoriComboBox.addItem(profesor);
@@ -111,7 +110,7 @@ public class DialogDodavanjePredmeta extends JDialog{
 		gbc.gridx = 1;
 		
 		JComboBox<Student> sviStudenti = new JComboBox<Student>();
-		ArrayList<Student> studentiLista = Util.ucitajStudente();
+		ArrayList<Student> studentiLista = MyApp.getStudenti();
 		
 		for (Student student : studentiLista) {
 			sviStudenti.addItem(student);
@@ -159,27 +158,31 @@ public class DialogDodavanjePredmeta extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String sifra = sifraPolje.getText();
-				String naziv = nazivPolje.getText();
-				int semestar = Integer.parseInt(semestarPolje.getText());
-				int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
-				Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
-				
-//				Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
-
-				Predmet predmet = new Predmet();
-				predmet.setSifra(sifra);
-				predmet.setNaziv(naziv);
-				predmet.setSemestar(semestar);
-				predmet.setGodinaStudija(godinaStudija);
-				predmet.setPredmetniProfesor(profesor);
-				predmet.setSpisakStudenata(listaIzabraniStudenti);
-				
-				Predmet.dodavanjePredmeta(predmet);
-				
-				MainFrame.refreshTabova();
-				dispose();
-				
+				try {
+					String sifra = sifraPolje.getText();
+					String naziv = nazivPolje.getText();
+					int semestar = Integer.parseInt(semestarPolje.getText());
+					int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
+					Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
+					
+	//				Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
+	
+					Predmet predmet = new Predmet();
+					predmet.setSifra(sifra);
+					predmet.setNaziv(naziv);
+					predmet.setSemestar(semestar);
+					predmet.setGodinaStudija(godinaStudija);
+					predmet.setPredmetniProfesor(profesor);
+					predmet.setSpisakStudenata(listaIzabraniStudenti);
+					
+					Predmet.dodavanjePredmeta(predmet);
+					
+					MainFrame.refreshTabova();
+					dispose();
+				}catch(Exception ex) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili polja.",
+							"Greska prilikom dodavanja predmeta", JOptionPane.OK_OPTION);
+				}
 			}
 		};
 		dugmeSacuvaj.addActionListener(sacuvajAkcija);

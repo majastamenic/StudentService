@@ -2,12 +2,13 @@ package projekat;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.UIManager;
 
 import tabela.PredmetiTabela;
@@ -119,10 +120,13 @@ public class PretragaActionListener implements ActionListener{
 						}
 						
 					} else if(kljuc.equals("datumrodjenja") || kljuc.equals("datum_rodjenja") || kljuc.equals("datum")) {
+						final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+						sdf.setTimeZone(TimeZone.getTimeZone("UTC"));   
 						ArrayList<Profesor> privremena = listaRezultatProfesori;
 						listaRezultatProfesori = new ArrayList<Profesor>();
 						for(int j = 0; j<privremena.size(); j++) {
-							if(privremena.get(j).getDatumRodjenja().toString().equals(vrednost)) {
+							Date privremeniDatum = sdf.parse(vrednost);
+							if(privremena.get(j).getDatumRodjenja().equals(privremeniDatum)) {
 								listaRezultatProfesori.add(privremena.get(j));
 							}
 						}
