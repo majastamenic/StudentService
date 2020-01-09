@@ -65,7 +65,8 @@ public class DialogIzmenaStudenta extends JDialog{
 		g.gridy=2;
 		JLabel labelaDatRodj=new JLabel("Datum rodjenja:  ");
 		add(labelaDatRodj,g);
-		JTextField poljeDatRodj=new JTextField();
+		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		JTextField poljeDatRodj=new JTextField(sdf.format(student.getDatumRodjenja()));
 		g.gridx=1;
 		poljeDatRodj.setMaximumSize(new Dimension(250,25));
 		poljeDatRodj.setMinimumSize(new Dimension(250,25));
@@ -125,7 +126,8 @@ public class DialogIzmenaStudenta extends JDialog{
 		g.gridy=7;
 		JLabel labelaDatumUpisa=new JLabel("Datum upisa:  ");
 		add(labelaDatumUpisa,g);
-		JTextField poljeDatumUpisa=new JTextField();
+		SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
+		JTextField poljeDatumUpisa=new JTextField(sdf1.format(student.getDatumUpisa()));
 		g.gridx=1;
 		poljeDatumUpisa.setMaximumSize(new Dimension(250,25));
 		poljeDatumUpisa.setMinimumSize(new Dimension(250,25));
