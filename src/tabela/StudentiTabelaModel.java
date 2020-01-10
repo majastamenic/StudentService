@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.net.ssl.SSLEngineResult.Status;
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 import projekat.Student;
@@ -61,7 +62,8 @@ public class StudentiTabelaModel extends AbstractTableModel{
 		case 10:
 			return student.getProsecnaOcena();
 		case 11:
-			return "Prikazi predmete";
+			JButton studenti = new JButton(String.valueOf(student.getBrojIndeksa()));
+			return studenti;
 		}
 		return null;
 	}

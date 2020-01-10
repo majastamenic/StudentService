@@ -183,8 +183,8 @@ public class DialogDodavanjeStudenta extends JDialog{
 				Date datRodj;
 				Date datUpis;
 				try {
-					datUpis = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatumUpisa.getText());
-					datRodj = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatRodj.getText());
+					datUpis = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatumUpisa.getText());
+					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
 					student.setDatumUpisa(datUpis);
 					student.setDatumRodjenja(datRodj);
 				} catch (ParseException e1) {

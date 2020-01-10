@@ -163,7 +163,7 @@ public class DialogDodavanjeProfesora extends JDialog{
 				String prezime=poljePrezime.getText();
 				Date datRodj;
 				try {
-					datRodj = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatRodj.getText());
+					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
 					profesor.setDatumRodjenja(datRodj);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
