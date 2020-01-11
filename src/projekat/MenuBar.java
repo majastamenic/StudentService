@@ -56,7 +56,14 @@ public class MenuBar extends JMenuBar {
 		JMenuItem zatvori = new JMenuItem("Close");
 		zatvori.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-
+		zatvori.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
 
 		file.add(novi);
 		novi.setIcon(new ImageIcon("ikonice/icons8-plus-24.png"));

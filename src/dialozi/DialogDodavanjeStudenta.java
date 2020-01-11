@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -185,6 +186,10 @@ public class DialogDodavanjeStudenta extends JDialog{
 				try {
 					datUpis = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatumUpisa.getText());
 					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
+					if(datUpis.before(datRodj)) {
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Datum rodjenja ne moze biti posle datuma upisa",
+								"Pogresan format", JOptionPane.OK_OPTION);
+					}
 					student.setDatumUpisa(datUpis);
 					student.setDatumRodjenja(datRodj);
 				} catch (ParseException e1) {
