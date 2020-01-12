@@ -45,7 +45,7 @@ public class StatusBar extends JMenuBar{
 				desnaLabela.setText(datumFormat.format(datum));
 			}
 		});
-		timer.start();
+		timer.start();//omogucavanje vremena koje tece
 		
 		
 		
