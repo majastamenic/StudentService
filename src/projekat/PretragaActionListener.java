@@ -28,10 +28,10 @@ public class PretragaActionListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String selektovano = MainFrame.getSelectedTab();
-		if (tekst.equals("")) {		//Kada korisnik nista nije uneo 
+		if (tekst.equals("")) {		//Kada korisnik nista nije uneo
 			MainFrame.refreshTabova();
 		}else if(tekst != null) {
-			String[] string1 = tekst.split(";"); 		//String[0]=kljuc:vrenost; String[1] = kljuc1:vrednost1;.... 
+			String[] string1 = tekst.split(";"); 		//String[0]=kljuc:vrenost; String[1] = kljuc1:vrednost1;....
 			String[] string2 = null;
 			if (selektovano.equals("predmet")) {
 				ArrayList<Predmet> listaRezultatPredmeti = MyApp.predmeti;	//Rezultat pretrage
@@ -84,14 +84,14 @@ public class PretragaActionListener implements ActionListener{
 							}
 						}
 					} catch(Exception ex) {			//Ako podaci nisu uneti u dobrom formatu
-						
+
 						UIManager.put("OptionPane.okButtonText", "OK");
 						ImageIcon icon1 = new ImageIcon("Images/error.png");
 						Image img1 = icon1.getImage();
 						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH);
 						icon1 = new ImageIcon(newimg1);
-						
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!", "Pogresan format", 
+
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!", "Pogresan format",
 								JOptionPane.OK_OPTION, icon1);
 					}
 				}
@@ -211,7 +211,7 @@ public class PretragaActionListener implements ActionListener{
 					Image img1 = icon1.getImage();
 					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH);
 					icon1 = new ImageIcon(newimg1);
-					
+
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!",
 							"Greska - pogresan format", JOptionPane.OK_OPTION, icon1);
 				}
@@ -230,13 +230,13 @@ public class PretragaActionListener implements ActionListener{
 			 else {
 					ArrayList<Student> listaRezultatStudenti = MyApp.studenti;
 					for(int i=0; i<string1.length; i++) {
-						try{
-							string2 = string1[i].split(":");
+						try{ 
+							string2 = string1[i].split(":"); //splitujemo po : i dobijamo odvojene vrednosti kljuca i vrednosti
 							String kljuc = string2[0].toLowerCase();
 							String vrednost = string2[1].toLowerCase();
-
-
-						if(kljuc.equals("ime")) {
+						
+						
+						if(kljuc.equals("ime")) { //proveravamo da li neki student ima datu unetu vrednost, ako ima dodajemo ga u rezultat
 							ArrayList<Student> privremena = listaRezultatStudenti;
 							listaRezultatStudenti = new ArrayList<Student>();
 							for(int j = 0; j<privremena.size(); j++) {
@@ -244,7 +244,7 @@ public class PretragaActionListener implements ActionListener{
 									listaRezultatStudenti.add(privremena.get(j));
 								}
 							}
-
+							
 						} else if(kljuc.equals("prezime")) {
 							ArrayList<Student> privremena = listaRezultatStudenti;
 							listaRezultatStudenti = new ArrayList<Student>();
@@ -332,11 +332,11 @@ public class PretragaActionListener implements ActionListener{
 					}
 
 				 }
-					int selektovaniIndex = MainFrame.getTabovi().getSelectedIndex();
+					int selektovaniIndex = MainFrame.getTabovi().getSelectedIndex(); //uzimamo tab koji je selektovan
 
-					MainFrame.getTabovi().removeAll();
-					MainFrame.getTabovi().addTab("Studenti", new JScrollPane(new StudentiTabela(listaRezultatStudenti)));
-					MainFrame.getTabovi().addTab("Profesori", new JScrollPane(new ProfesoriTabela(MyApp.profesori)));
+					MainFrame.getTabovi().removeAll();//sklanjamo sve iz tabele
+					MainFrame.getTabovi().addTab("Studenti", new JScrollPane(new StudentiTabela(listaRezultatStudenti))); //u studente ubacujemo samo studenta kome odgovaraju vrednosti iz pretrage
+					MainFrame.getTabovi().addTab("Profesori", new JScrollPane(new ProfesoriTabela(MyApp.profesori)));//u ostale tabele vracamo sve
 					MainFrame.getTabovi().addTab("Predmeti", new JScrollPane(new PredmetiTabela(MyApp.predmeti)));
 					MainFrame.getTabovi().setSelectedIndex(selektovaniIndex);
 

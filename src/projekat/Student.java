@@ -124,8 +124,8 @@ public class Student implements Serializable{
 		return status;
 	}
 
-	public void setStatus(StatusStudenta status) {
-		this.status = status;
+	public void setStatus(StatusStudenta s) {
+		this.status = s;
 	}
 
 	public Double getProsecnaOcena() {
@@ -157,7 +157,7 @@ public class Student implements Serializable{
 		return ((Student)obj).getBrojIndeksa().equals(this.brojIndeksa);
 	}
 
-	public static boolean dodavanjeStudenta(Student student) {
+	public static boolean dodavanjeStudenta(Student student) {//proveravamo da li postoji student, ako ne postoji dodajemo ga
 		if(MyApp.studenti.contains(student)) {
 			return false;
 		}
@@ -167,7 +167,7 @@ public class Student implements Serializable{
 	
 	}
 	
-	public static boolean brisanjeStudenta(String brojIndeksa) {
+	public static boolean brisanjeStudenta(String brojIndeksa) {//uzimamo studenta sa prosledjenim brojem indeksa, trazimo ga i uklanjamo
 		for(int i=0; i<=MyApp.studenti.size(); i++) {
 			if(MyApp.studenti.get(i).getBrojIndeksa().equals(brojIndeksa)) {	
 				MyApp.studenti.remove(i);
@@ -177,7 +177,7 @@ public class Student implements Serializable{
 		return false;
 	}
 	
-	public static boolean izmenaStudenta(Student s) {
+	public static boolean izmenaStudenta(Student s) {	//trazimo studenta po ovom broju indeksa, uklanjamo starog, dodajemo novog
 		for(int i = 0; i <= MyApp.studenti.size(); i++) {
 			if(MyApp.studenti.get(i).getBrojIndeksa().equals(s.getBrojIndeksa())) {	
 				MyApp.studenti.remove(i);								

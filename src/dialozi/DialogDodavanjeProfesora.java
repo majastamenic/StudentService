@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,10 +30,10 @@ public class DialogDodavanjeProfesora extends JDialog{
 		setSize(new Dimension(600, 500));
 		
 		GridBagConstraints g=new GridBagConstraints();
-		setLayout(new GridBagLayout());
+		setLayout(new GridBagLayout()); //podesavanje grid layouta
 		
 		g.gridx=0;
-		g.gridy=0;
+		g.gridy=0;//izmene pozicija komponenti na dijalogu
 		JLabel labelaIme=new JLabel("Ime:");
 		add(labelaIme,g);
 		JTextField poljeIme=new JTextField();
@@ -159,12 +161,13 @@ public class DialogDodavanjeProfesora extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Profesor profesor=new Profesor();
-				String ime=poljeIme.getText();
+				String ime=poljeIme.getText(); //uzimanje vrednosti iz tekst polja
 				String prezime=poljePrezime.getText();
-				Date datRodj;
+				Date datRodj=new Date();
+				SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 				try {
-					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
-					profesor.setDatumRodjenja(datRodj);
+					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());//uzimanje datuma iz tekst polja
+					
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -181,7 +184,7 @@ public class DialogDodavanjeProfesora extends JDialog{
 				
 				profesor.setIme(ime);
 				profesor.setPrezime(prezime);
-				
+				profesor.setDatumRodjenja(datRodj);
 				profesor.setAdresaStanovanja(adresaStanovanja);
 				profesor.setTelefon(telefon);
 				profesor.setEmail(email);
@@ -190,12 +193,48 @@ public class DialogDodavanjeProfesora extends JDialog{
 				profesor.setTitula(titula);
 				profesor.setZvanje(zvanje);
 				
-				Profesor.dodavanjeProfesora(profesor);
+				Profesor.dodavanjeProfesora(profesor); //pozivanje metode za dodavanje profesora napravljene u klasi profesor
 				
-				MainFrame.refreshTabova();
+				MainFrame.refreshTabova();  //osvezava vrednosti nakon dodavanja(dodaje ovog kog smo dodali)
 				dispose();
 			}
 		};
+		
+		KeyListener popunjavanje=new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(poljeIme.getText().trim().isEmpty()|| poljePrezime.getText().trim().isEmpty()|| poljeAdresaSt.getText().trim().isEmpty()||
+						poljeTelefon.getText().trim().isEmpty()||poljeEmail.getText().trim().isEmpty()||poljeAdresaKn.getText().trim().isEmpty()||
+						poljeBrojLicneKarte.getText().trim().isEmpty()||poljeTitula.getText().trim().isEmpty()||poljeZvanje.getText().trim().isEmpty()) {
+					sacuvaj.setEnabled(false);
+				}else
+					sacuvaj.setEnabled(true);
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		poljeIme.addKeyListener(popunjavanje);
+		poljePrezime.addKeyListener(popunjavanje);
+		poljeAdresaSt.addKeyListener(popunjavanje);
+		poljeTelefon.addKeyListener(popunjavanje);
+		poljeEmail.addKeyListener(popunjavanje);
+		poljeAdresaKn.addKeyListener(popunjavanje);
+		poljeBrojLicneKarte.addKeyListener(popunjavanje);
+		poljeTitula.addKeyListener(popunjavanje);
+		poljeZvanje.addKeyListener(popunjavanje);
 		
 		sacuvaj.addActionListener(sacuvajKliknuto);
 		g.gridx=1;

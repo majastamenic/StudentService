@@ -5,6 +5,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +21,7 @@ import javax.swing.JTextField;
 
 import projekat.MainFrame;
 import projekat.MyApp;
+import projekat.StatusStudenta;
 import projekat.Student;
 
 public class DialogIzmenaStudenta extends JDialog{
@@ -38,7 +41,7 @@ public class DialogIzmenaStudenta extends JDialog{
 		g.gridy=0;
 		JLabel labelaIme=new JLabel("Ime:");
 		add(labelaIme,g);
-		JTextField poljeIme=new JTextField(student.getIme());
+		JTextField poljeIme=new JTextField(student.getIme()); //postavljanje vrednosti koja je bila u selektovanom studentu u tekst polje
 		g.gridx=1;
 		poljeIme.setMaximumSize(new Dimension(250,25));
 		poljeIme.setMinimumSize(new Dimension(250,25));
@@ -185,17 +188,22 @@ public class DialogIzmenaStudenta extends JDialog{
 				
 				String ime=poljeIme.getText();
 				String prezime=poljePrezime.getText();
-				Date datRodj;
-				Date datUpis;
+				Date datRodj=new Date();
+				Date datUpis=new Date();
+				SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 				try {
-					datUpis = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatumUpisa.getText());
-					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
-					student.setDatumUpisa(datUpis);
-					student.setDatumRodjenja(datRodj);
+					datUpis = sdf.parse(poljeDatumUpisa.getText());
+					datRodj = sdf.parse(poljeDatRodj.getText());
+					
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				StatusStudenta s;
+				if(poljeStatusStudenta.isSelected())
+					s=StatusStudenta.B;
+				else
+					s=StatusStudenta.S;
 				
 				String adresaSt=poljeAdresaSt.getText();
 				String telefon=poljeTelefon.getText();
@@ -212,6 +220,9 @@ public class DialogIzmenaStudenta extends JDialog{
 				student.setBrojIndeksa(brojIndeksa);
 				student.setGodinaStudija(trenutnaGodina);
 				student.setProsecnaOcena(prosOc);
+				student.setStatus(s);
+				student.setDatumUpisa(datUpis);
+				student.setDatumRodjenja(datRodj);
 				
 				Student.izmenaStudenta(student);
 				
@@ -219,6 +230,38 @@ public class DialogIzmenaStudenta extends JDialog{
 				dispose();
 			}
 		};
+		
+		KeyListener popunjavanje=new KeyListener() { //zabrana dugmeta sacuvaj ako nisu uneti podaci
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(poljeIme.getText().trim().isEmpty()|| poljePrezime.getText().trim().isEmpty()|| poljeAdresaSt.getText().trim().isEmpty()||
+						poljeTelefon.getText().trim().isEmpty()||poljeBrojIndeksa.getText().trim().isEmpty()||poljeProsecnaOcena.getText().trim().isEmpty()) {
+					sacuvaj.setEnabled(false);
+				}else
+					sacuvaj.setEnabled(true);
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		poljeIme.addKeyListener(popunjavanje);
+		poljePrezime.addKeyListener(popunjavanje);
+		poljeAdresaSt.addKeyListener(popunjavanje);
+		poljeTelefon.addKeyListener(popunjavanje);
+		poljeBrojIndeksa.addKeyListener(popunjavanje);
+		poljeProsecnaOcena.addKeyListener(popunjavanje);
 		
 		sacuvaj.addActionListener(sacuvajKliknuto);
 		

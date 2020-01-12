@@ -14,13 +14,12 @@ public class StudentiTabela extends JTable{
 	public StudentiTabela(ArrayList<Student> studenti) {
 		StudentiTabelaModel studentiTabelaModel = new StudentiTabelaModel(studenti);
 		this.setRowSelectionAllowed(true);
-		//this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(studentiTabelaModel);
-		new StudentiTabelaButton(this, 11);
+		new StudentiTabelaButton(this, 11); // postavljanje dugmeta u 11 kolonu tabele
 		
 		
-		setAutoCreateRowSorter(true);
+		setAutoCreateRowSorter(true); //postavljanje sortera
 	}
 
 }
