@@ -139,15 +139,14 @@ public class DialogIzmenaPredmeta extends JDialog {
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
 								"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
 					}else {
-						int semestar = 1;
-						int godinaStudija = 1;
-						try {
+						int semestar, godinaStudija;
+						
 							semestar = Integer.parseInt(semestarPolje.getText());
 							godinaStudija = Integer.parseInt(godStudijaPolje.getText());
-						} catch(NumberFormatException exc) {
+						
 							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
 									"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
-						}
+						
 						if(semestar > 8) {		//Postoji 8 semestara
 							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno uneli broj semestra.", 
 									"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
