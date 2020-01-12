@@ -25,7 +25,7 @@ public class DialogBrisanjeStudenta extends JDialog{
 		GridBagConstraints g=new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		
-		String brojIndeksa=MyApp.getStudenti().get(indexUModelu).getBrojIndeksa();
+		String brojIndeksa=MyApp.getStudenti().get(indexUModelu).getBrojIndeksa(); //uzima broj indeksa selektovanog studenta
 		
 		
 		g.gridx=0;
@@ -46,7 +46,7 @@ public class DialogBrisanjeStudenta extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Student.brisanjeStudenta(MyApp.getStudenti().get(indexUModelu).getBrojIndeksa());
+				Student.brisanjeStudenta(MyApp.getStudenti().get(indexUModelu).getBrojIndeksa()); //poziva se metoda brisanje za selektovanog studenta sa tim brojem indeksa
 				MainFrame.refreshTabova();
 				dispose();
 				
@@ -58,7 +58,7 @@ public class DialogBrisanjeStudenta extends JDialog{
 		g.gridy=2;
 		add(da,g);
 		
-		ne.addActionListener(new ActionListener() {
+		ne.addActionListener(new ActionListener() { //ako kliknemo ne dijalog se zatvori
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
