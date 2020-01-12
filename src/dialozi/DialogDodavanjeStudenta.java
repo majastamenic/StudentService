@@ -34,9 +34,9 @@ public class DialogDodavanjeStudenta extends JDialog{
 		setSize(new Dimension(600, 500));
 		
 		GridBagConstraints g=new GridBagConstraints();
-		setLayout(new GridBagLayout());
+		setLayout(new GridBagLayout()); //podesavanje grid layouta
 		
-		g.gridx=0;
+		g.gridx=0;	//izmene pozicija komponenti na dijalogu
 		g.gridy=0;
 		JLabel labelaIme=new JLabel("Ime:");
 		add(labelaIme,g);
@@ -49,7 +49,7 @@ public class DialogDodavanjeStudenta extends JDialog{
 		add(poljeIme,g);
 		
 		g.gridx=0;
-		g.gridy=1;
+		g.gridy=1; //izmene pozicija komponenti na dijalogu
 		JLabel labelaPrezime=new JLabel("Prezime:");
 		add(labelaPrezime,g);
 		JTextField poljePrezime=new JTextField();
@@ -61,7 +61,7 @@ public class DialogDodavanjeStudenta extends JDialog{
 		add(poljePrezime,g);
 		
 		g.gridx=0;
-		g.gridy=2;
+		g.gridy=2; //izmene pozicija komponenti na dijalogu
 		JLabel labelaDatRodj=new JLabel("Datum rodjenja:  ");
 		add(labelaDatRodj,g);
 		JTextField poljeDatRodj=new JTextField();
@@ -73,7 +73,7 @@ public class DialogDodavanjeStudenta extends JDialog{
 		add(poljeDatRodj,g);
 		
 		g.gridx=0;
-		g.gridy=3;
+		g.gridy=3; //izmene pozicija komponenti na dijalogu
 		JLabel labelaAdresa=new JLabel("Adresa stanovanja:  ");
 		add(labelaAdresa,g);
 		JTextField poljeAdresaSt=new JTextField();
@@ -85,7 +85,7 @@ public class DialogDodavanjeStudenta extends JDialog{
 		add(poljeAdresaSt,g);
 		
 		g.gridx=0;
-		g.gridy=4;
+		g.gridy=4; //izmene pozicija komponenti na dijalogu
 		JLabel labelaTelefon=new JLabel("Telefon:");
 		add(labelaTelefon,g);
 		JTextField poljeTelefon=new JTextField();
@@ -183,14 +183,14 @@ public class DialogDodavanjeStudenta extends JDialog{
 				// TODO Auto-generated method stub
 				
 				
-				String ime=poljeIme.getText();
+				String ime=poljeIme.getText(); //uzimanje vrednosti iz tekst polja
 				String prezime=poljePrezime.getText();
 				Date datRodj=new Date();
 				Date datUpis=new Date();
 				SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 				try {
 					datUpis = sdf.parse(poljeDatumUpisa.getText());
-					datRodj = sdf.parse(poljeDatRodj.getText());
+					datRodj = sdf.parse(poljeDatRodj.getText());	//uzimanje datuma iz tekst polja
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -207,14 +207,14 @@ public class DialogDodavanjeStudenta extends JDialog{
 				if(poljeStatusStudenta.isSelected())
 					s=StatusStudenta.B;
 				else
-					s=StatusStudenta.S;
+					s=StatusStudenta.S; //uzimanje vrednosti statusa
 				
-				if(datUpis.before(datRodj)) {
+				if(datUpis.before(datRodj)) { //ogranicenja
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Datum rodjenja ne moze biti posle datuma upisa");
 				}else if((prosOc<6 && prosOc!=0) || prosOc>10)
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ocena mora biti u opsegu (6-10), ili 0 ukoliko je student prva godina");
 				else {
-					Student student=new Student();
+					Student student=new Student(); //pravljenje studenta sa podacima iz tekst polja
 					
 				student.setIme(ime);
 				student.setPrezime(prezime);
@@ -238,7 +238,7 @@ public class DialogDodavanjeStudenta extends JDialog{
 			}
 		};
 		
-		KeyListener popunjavanje=new KeyListener() {
+		KeyListener popunjavanje=new KeyListener() { //zabrana dugmeta sacuvaj ako nisu uneti podaci
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
