@@ -48,8 +48,7 @@ public class DialogDodavanjeStudentaNaPredmet extends JDialog{
 				
 				ArrayList<Student> studenti=Util.ucitajStudente();
 				for(Student student: studenti) {
-				if(poljeBrojIndeksa.getText().equalsIgnoreCase(student.getBrojIndeksa())) {
-					//studenta dodaj u listu studenata koji slusaju predmet
+				if(poljeBrojIndeksa.getText().equalsIgnoreCase(student.getBrojIndeksa())) { //prolazimo kroz studente i trazimo uneti broj indeksa
 					
 					
 				}
