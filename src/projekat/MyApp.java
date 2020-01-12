@@ -40,45 +40,45 @@ public class MyApp {
 		Student student1;
 		try {
 			
-			student1 = new Student("Luka", "Jovanovic",sdf.parse("01-01-2000"), "Karadjordjeva 83, Novi Sad", "021/333-555", "luka.jovanovic@mailinator.com", "RA 1/2019", sdf.parse("01-07-2019"), "I (prva)" , 9.09 , new ArrayList<Predmet>(), false);
-			Student student2=new Student("Sofija", "Petrovic",sdf.parse("16-05-2000"), "Milosa Pocerca 55, Sabac", "015/343-356", "sofija.petrovic@mailinator.com", "RA 5/2019", sdf.parse("11-07-2019"), "I (prva)", 9.09, new ArrayList<Predmet>(), false);
-			Student student3=new Student("Stefan", "Nikolic",sdf.parse("18-03-2000"), "Knez Mihajlova 16, Beograd", "011/9234-857", "stefan.nikolic@mailinator.com", "RA 3/2019", sdf.parse("03-07-2019"), "I (prva)", 9.09 , new ArrayList<Predmet>(), false);
-			Student student4=new Student("Dunja", "Ilic",sdf.parse("11-11-2000"), "Petefi �andora 15, Novi Sad", "021/433-958", "dunja.ilic@mailinator.com", "RA 2/2019", sdf.parse("01-07-2019"), "I (prva)", 9.09 , new ArrayList<Predmet>(), true);
-			Student student5=new Student("Lazar", "Djordjevic",sdf.parse("03-12-2000"), "Josip Broz Tito 13, Subotica", "024/333-559", "lazar.djordjevic@mailinator.com", "RA 4/2019", sdf.parse("06-07-2019"), "I (prva)", 9.09 , new ArrayList<Predmet>(), true);
+			student1 = new Student("Luka", "Jovanović",sdf.parse("01-01-2000"), "Karađorđeva 83, Novi Sad", "021/333-555", "luka.jovanovic@mailinator.com", "RA 1/2019", sdf.parse("01-07-2019"), "I (prva)" , 9.09 , new ArrayList<Predmet>(), false);
+			Student student2=new Student("Sofija", "Petrović",sdf.parse("16-05-2000"), "Miloša Pocerca 55, Šabac", "015/343-356", "sofija.petrovic@mailinator.com", "RA 5/2019", sdf.parse("11-07-2019"), "I (prva)", 9.09, new ArrayList<Predmet>(), false);
+			Student student3=new Student("Stefan", "Nikolić",sdf.parse("18-03-2000"), "Knez Mihajlova 16, Beograd", "011/9234-857", "stefan.nikolic@mailinator.com", "RA 3/2019", sdf.parse("03-07-2019"), "I (prva)", 9.09 , new ArrayList<Predmet>(), false);
+			Student student4=new Student("Dunja", "Ilić",sdf.parse("11-11-2000"), "Petefi Šandora 15, Novi Sad", "021/433-958", "dunja.ilic@mailinator.com", "RA 2/2019", sdf.parse("01-07-2019"), "I (prva)", 9.09 , new ArrayList<Predmet>(), true);
+			Student student5=new Student("Lazar", "Đorđević",sdf.parse("03-12-2000"), "Josip Broz Tito 13, Subotica", "024/333-559", "lazar.djordjevic@mailinator.com", "RA 4/2019", sdf.parse("06-07-2019"), "I (prva)", 9.09 , new ArrayList<Predmet>(), true);
 
-			Student student6=new Student("Sara", "Pavlovic",sdf.parse("03-12-1999"), "Vojvode Misica 23, �abac", "015/313-061", "sara.pavlovic@mailinator.com", "RA 3/2018", sdf.parse("01-07-2018"), "II (druga)",  9.09 , new ArrayList<Predmet>(), false);
-			Student student7=new Student("Vuk", "Markovic",sdf.parse("03-12-1999"), "Temerinska 133, Novi Sad", "021/351-091", "vuk.markovic@mailinator.com", "RA 15/2018", sdf.parse("11-07-2018"), "II (druga)",  9.09 , new ArrayList<Predmet>(), false);
-			Student student8=new Student("Teodora", "Popovic",sdf.parse("03-12-1998"), "Suerpova 15, Sabac", "015/324-500", "teodora.popovic@mailinator.com", "RA 133/2017", sdf.parse("03-07-2017"), "II (druga)", 9.09 , new ArrayList<Predmet>(), true);
-			Student student9=new Student("Filip", "Stojanovic",sdf.parse("03-12-1998"), "Francuska 113, Beograd", "011/2333-900", "filip.stojanovic@mailinator.com", "RA 122/2017", sdf.parse("02-07-2017"), "II (druga)",  9.09 , new ArrayList<Predmet>(), true);
-			Student student10=new Student("Ana", "Zivkovic",sdf.parse("03-12-1998"), "Kralja Petra 20, Novi Sad", "021/231-114", "ana.zivkovic@mailinator.com", "RA 201/2017", sdf.parse("04-07-2017"), "II (druga)",  9.09 , new ArrayList<Predmet>(), true);
+			Student student6=new Student("Sara", "Pavlović",sdf.parse("03-12-1999"), "Vojvode Mišića 23, Šabac", "015/313-061", "sara.pavlovic@mailinator.com", "RA 3/2018", sdf.parse("01-07-2018"), "II (druga)",  9.09 , new ArrayList<Predmet>(), false);
+			Student student7=new Student("Vuk", "Marković",sdf.parse("03-12-1999"), "Temerinska 133, Novi Sad", "021/351-091", "vuk.markovic@mailinator.com", "RA 15/2018", sdf.parse("11-07-2018"), "II (druga)",  9.09 , new ArrayList<Predmet>(), false);
+			Student student8=new Student("Teodora", "Popović",sdf.parse("03-12-1998"), "Surepova 15, Šabac", "015/324-500", "teodora.popovic@mailinator.com", "RA 133/2017", sdf.parse("03-07-2017"), "II (druga)", 9.09 , new ArrayList<Predmet>(), true);
+			Student student9=new Student("Filip", "Stojanović",sdf.parse("03-12-1998"), "Francuska 113, Beograd", "011/2333-900", "filip.stojanovic@mailinator.com", "RA 122/2017", sdf.parse("02-07-2017"), "II (druga)",  9.09 , new ArrayList<Predmet>(), true);
+			Student student10=new Student("Ana", "Živković",sdf.parse("03-12-1998"), "Kralja Petra 20, Novi Sad", "021/231-114", "ana.zivkovic@mailinator.com", "RA 201/2017", sdf.parse("04-07-2017"), "II (druga)",  9.09 , new ArrayList<Predmet>(), true);
 
-			Student student11=new Student("Viktor", "Jankovic",sdf.parse("03-12-1998"), "Gogoljeva 3, Novi Sad", "021/135-463", "viktor.jankovic@mailinator.com", "RA 1/2017", sdf.parse("01-07-2017"),"III (treca)",  9.09 , new ArrayList<Predmet>(), false);
-			Student student12=new Student("Petra", "Todorovic",sdf.parse("03-12-1998"), "Njegoseva 2, Novi Sad", "021/903-463", "petra.todorovic@mailinator.com", "RA 5/2017", sdf.parse("12-07-2017"), "III (treca)",  9.09 , new ArrayList<Predmet>(), false);
-			Student student13=new Student("Andrej", "Stankovic",sdf.parse("03-12-1998"), "Radoja Domanovica 5, Novi Sad", "021/731-067", "andrej.stankovic@mailinator.com", "RA 33/2017", sdf.parse("19-07-2017"), "III (treca)",  9.09 , new ArrayList<Predmet>(), false);
-			Student student14=new Student("Mila", "Ristic",sdf.parse("03-12-1997"), "Vojvode Stepe 183, Beograd", "011/4333-800", "mila.ristic@mailinator.com", "RA 152/2016", sdf.parse("15-07-2016"), "III (treca)",  9.09 , new ArrayList<Predmet>(), true);
-			Student student15=new Student("Pavle", "Kostic",sdf.parse("03-12-1997"), "Crnotravska 13, Beograd", "011/3130-007", "pavle.kostic@mailinator.com", "RA 104/2016", sdf.parse("06-07-2016"), "III (treca)",  9.09 , new ArrayList<Predmet>(), true);
+			Student student11=new Student("Viktor", "Janković",sdf.parse("03-12-1998"), "Gogoljeva 3, Novi Sad", "021/135-463", "viktor.jankovic@mailinator.com", "RA 1/2017", sdf.parse("01-07-2017"),"III (treca)",  9.09 , new ArrayList<Predmet>(), false);
+			Student student12=new Student("Petra", "Todorović",sdf.parse("03-12-1998"), "Njegoševa 2, Novi Sad", "021/903-463", "petra.todorovic@mailinator.com", "RA 5/2017", sdf.parse("12-07-2017"), "III (treca)",  9.09 , new ArrayList<Predmet>(), false);
+			Student student13=new Student("Andrej", "Stanković",sdf.parse("03-12-1998"), "Radoja Domanovića 5, Novi Sad", "021/731-067", "andrej.stankovic@mailinator.com", "RA 33/2017", sdf.parse("19-07-2017"), "III (treca)",  9.09 , new ArrayList<Predmet>(), false);
+			Student student14=new Student("Mila", "Ristić",sdf.parse("03-12-1997"), "Vojvode Stepe 183, Beograd", "011/4333-800", "mila.ristic@mailinator.com", "RA 152/2016", sdf.parse("15-07-2016"), "III (treca)",  9.09 , new ArrayList<Predmet>(), true);
+			Student student15=new Student("Pavle", "Kostić",sdf.parse("03-12-1997"), "Crnotravska 13, Beograd", "011/3130-007", "pavle.kostic@mailinator.com", "RA 104/2016", sdf.parse("06-07-2016"), "III (treca)",  9.09 , new ArrayList<Predmet>(), true);
 
-			Student student16=new Student("Lena", "Kovacevic",sdf.parse("03-12-1997"), "Bulevar Oslobodjenja 143, Novi Sad", "021/5333-801", "lena.kovacevic@mailinator.com", "RA 1/2016", sdf.parse("01-07-2016"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), false);
-			Student student17=new Student("Filip", "Zivkovic",sdf.parse("03-12-1997"), "1300 Kaplara, Sabac", "015/333-500", "filip.zivkovic@mailinator.com", "RA 5/2016", sdf.parse("21-07-2016"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), false);
-			Student student18=new Student("Tara", "Dimitrijevic",sdf.parse("03-12-1996"), "Milovana Glisica, Valjevo", "014/303-007", "tara.dimitrijevic@mailinator.com", "RA 33/2015", sdf.parse("23-07-2015"),"IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), true);
-			Student student19=new Student("Vasilije", "Micic",sdf.parse("03-12-1996"), "Vuka Karadzica, Loznica", "015/101-909", "vasilije.micic@mailinator.com", "RA 102/2015", sdf.parse("04-07-2015"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), true);
-			Student student20=new Student("Lenka", "Jovic", sdf.parse("03-12-1997"), "Bulevar Mihajla Pupina, Novi Sad", "021/431-500", "lenka.jovic@mailinator.com", "RA 244/2016", sdf.parse("07-07-2016"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), true);
+			Student student16=new Student("Lena", "Kovačević",sdf.parse("03-12-1997"), "Bulevar Oslobođenja 143, Novi Sad", "021/5333-801", "lena.kovacevic@mailinator.com", "RA 1/2016", sdf.parse("01-07-2016"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), false);
+			Student student17=new Student("Filip", "Živković",sdf.parse("03-12-1997"), "1300 Kaplara, Šabac", "015/333-500", "filip.zivkovic@mailinator.com", "RA 5/2016", sdf.parse("21-07-2016"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), false);
+			Student student18=new Student("Tara", "Dimitrijević",sdf.parse("03-12-1996"), "Milovana Glišića, Valjevo", "014/303-007", "tara.dimitrijevic@mailinator.com", "RA 33/2015", sdf.parse("23-07-2015"),"IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), true);
+			Student student19=new Student("Vasilije", "Micić",sdf.parse("03-12-1996"), "Vuka Karadžića, Loznica", "015/101-909", "vasilije.micic@mailinator.com", "RA 102/2015", sdf.parse("04-07-2015"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), true);
+			Student student20=new Student("Lenka", "Jović", sdf.parse("03-12-1997"), "Bulevar Mihajla Pupina, Novi Sad", "021/431-500", "lenka.jovic@mailinator.com", "RA 244/2016", sdf.parse("07-07-2016"), "IV (cetvrta)",  9.09 , new ArrayList<Predmet>(), true);
 	//		new Date(12-4-1998).UTC(1998, 04, 12, 0, 0, 0)
 
 
 
-			Profesor profesor1 = new Profesor("Aleksa", "Petkovic", sdf.parse("15-1-1965"), "Temerinska 15, Novi Sad", "021/334-990", "aleksa.petkovic@mailinator.com", "Dositeja Obradovica 6, Novi Sad, MI 105", "007198721", "Prof. dr", "Redovni profesor", new ArrayList<Predmet>());
-			Profesor profesor2 = new Profesor("Jana", "Lazarevic",sdf.parse("25-2-1963"), "Jovana Cvijica 26, Novi Sad", "021/435-891", "jana.lazarevic@mailinator.com", "Dositeja Obradovica 6, Novi Sad, Nastavni blok 206", "008431903", "Prof dr.", "Redovni profesor", new ArrayList<Predmet>());
-			Profesor profesor3 = new Profesor("Nadja", "Aleksic", sdf.parse("23-3-1973"), "Gunduliceva 75, Novi Sad", "021/730-172", "nadja.aleksic@mailinator.com", "Dositeja Obradovica 6, Novi Sad, NTP 307", "005671007", "Dr", "Vanredni profesor", new ArrayList<Predmet>());
-			Profesor profesor4 = new Profesor("Djordje", "Spasojevic", sdf.parse("24- 8-1978"), "Sekspirova 44, Novi Sad", "021/514-893", "djordje.spasojevic@mailinator.com", "Dositeja Obradovica 6, Novi Sad, MI 118", "009999331", "Dr", "Vanredni profesor",new ArrayList<Predmet>());
-			Profesor profesor5 = new Profesor("Elena", "Milenkovic", sdf.parse("8-11-1985"), "Tolstojeva 52, Novi Sad", "021/834-901", "elena.milenkovic@mailinator.com", "Dositeja Obradovica 6, Novi Sad, Nastavni blok 217", "003330976", "Dr", "Docent", new ArrayList<Predmet>());
-			Profesor profesor6 = new Profesor("Teodor", "Mladenovic", sdf.parse("14-12-1983"), "Jovana Subotica 33, Novi Sad", "021/441-001", "teodor.mladenovic@mailinator.com", "Dositeja Obradovica 6, Novi Sad, NTP M35", "007441998", "Dr", "Docent", new ArrayList<Predmet>());
+			Profesor profesor1 = new Profesor("Aleksa", "Petković", sdf.parse("15-1-1965"), "Temerinska 15, Novi Sad", "021/334-990", "aleksa.petkovic@mailinator.com", "Dositeja Obradovića 6, Novi Sad, MI 105", "007198721", "Prof. dr", "Redovni profesor", new ArrayList<Predmet>());
+			Profesor profesor2 = new Profesor("Jana", "Lazarević",sdf.parse("25-2-1963"), "Jovana Cvijića 26, Novi Sad", "021/435-891", "jana.lazarevic@mailinator.com", "Dositeja Obradovića 6, Novi Sad, Nastavni blok 206", "008431903", "Prof dr.", "Redovni profesor", new ArrayList<Predmet>());
+			Profesor profesor3 = new Profesor("Nađa", "Aleksić", sdf.parse("23-3-1973"), "Gundulićeva 75, Novi Sad", "021/730-172", "nadja.aleksic@mailinator.com", "Dositeja Obradovića 6, Novi Sad, NTP 307", "005671007", "Dr", "Vanredni profesor", new ArrayList<Predmet>());
+			Profesor profesor4 = new Profesor("Đorđe", "Spasojević", sdf.parse("24- 8-1978"), "Šekspirova 44, Novi Sad", "021/514-893", "djordje.spasojevic@mailinator.com", "Dositeja Obradovića 6, Novi Sad, MI 118", "009999331", "Dr", "Vanredni profesor",new ArrayList<Predmet>());
+			Profesor profesor5 = new Profesor("Elena", "Milenković", sdf.parse("8-11-1985"), "Tolstojeva 52, Novi Sad", "021/834-901", "elena.milenkovic@mailinator.com", "Dositeja Obradovića 6, Novi Sad, Nastavni blok 217", "003330976", "Dr", "Docent", new ArrayList<Predmet>());
+			Profesor profesor6 = new Profesor("Teodor", "Mladenović", sdf.parse("14-12-1983"), "Jovana Subotića 33, Novi Sad", "021/441-001", "teodor.mladenovic@mailinator.com", "Dositeja Obradovića 6, Novi Sad, NTP M35", "007441998", "Dr", "Docent", new ArrayList<Predmet>());
 
 			Predmet predmet1 = new Predmet("OP301","Osnove programiranja", 1, 1, profesor1, new ArrayList<Student>());
 			Predmet predmet2 = new Predmet("DM881","Diskretna matematika", 3, 2, profesor2, new ArrayList<Student>());
 			Predmet predmet3 = new Predmet("PP007","Paralelno programiranje", 5, 3, profesor3, new ArrayList<Student>());
-			Predmet predmet4 = new Predmet("RVP33","Racunarstvo visokih performansi", 7, 4, profesor4, new ArrayList<Student>());
-			Predmet predmet5 = new Predmet("JSD91","Jezici specificni za domen", 8, 4, null, new ArrayList<Student>());
+			Predmet predmet4 = new Predmet("RVP33","Računarstvo visokih performansi", 7, 4, profesor4, new ArrayList<Student>());
+			Predmet predmet5 = new Predmet("JSD91","Jezici specifični za domen", 8, 4, null, new ArrayList<Student>());
 
 			student1.getSpisakPredmetaKojeSlusa().add(predmet1);
 			student2.getSpisakPredmetaKojeSlusa().add(predmet1);

@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 
 import projekat.MainFrame;
 import projekat.MyApp;
+import projekat.StatusStudenta;
 import projekat.Student;
 
 public class DialogIzmenaStudenta extends JDialog{
@@ -185,17 +186,22 @@ public class DialogIzmenaStudenta extends JDialog{
 				
 				String ime=poljeIme.getText();
 				String prezime=poljePrezime.getText();
-				Date datRodj;
-				Date datUpis;
+				Date datRodj=new Date();
+				Date datUpis=new Date();
+				SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 				try {
-					datUpis = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatumUpisa.getText());
-					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
-					student.setDatumUpisa(datUpis);
-					student.setDatumRodjenja(datRodj);
+					datUpis = sdf.parse(poljeDatumUpisa.getText());
+					datRodj = sdf.parse(poljeDatRodj.getText());
+					
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				StatusStudenta s;
+				if(poljeStatusStudenta.isSelected())
+					s=StatusStudenta.B;
+				else
+					s=StatusStudenta.S;
 				
 				String adresaSt=poljeAdresaSt.getText();
 				String telefon=poljeTelefon.getText();
@@ -212,6 +218,9 @@ public class DialogIzmenaStudenta extends JDialog{
 				student.setBrojIndeksa(brojIndeksa);
 				student.setGodinaStudija(trenutnaGodina);
 				student.setProsecnaOcena(prosOc);
+				student.setStatus(s);
+				student.setDatumUpisa(datUpis);
+				student.setDatumRodjenja(datRodj);
 				
 				Student.izmenaStudenta(student);
 				

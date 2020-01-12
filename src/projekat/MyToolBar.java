@@ -23,7 +23,7 @@ import dialozi.DialogDodavanjeProfesoraNaPredmet;
 import dialozi.DialogIzmenaPredmeta;
 import dialozi.DialogIzmenaProfesora;
 import dialozi.DialogIzmenaStudenta;
-import dialozi.DialogUklanjanjeStudentaSaPredmeta;
+
 
 public class MyToolBar extends JToolBar{
 	/**
@@ -81,11 +81,19 @@ public class MyToolBar extends JToolBar{
 					}
                 }
 				else if(selektovano.equals("student")) {
-					int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					int idx =MainFrame.getTabelaStudenti().getSelectedRow();
+					if(idx==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izmenite");
+                    	return;
+					}
 
 					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta(idx);
 				}else {
-					int idx = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+					int idx =MainFrame.getTabelaProfesori().getSelectedRow();
+					if(idx==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izmenite");
+                    	return;
+					}
 					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora(idx);
 				}
 
@@ -122,7 +130,11 @@ public class MyToolBar extends JToolBar{
 								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					}
 				}else if(selektovano.equals("student")) {
-					int indexUModelu = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					int indexUModelu =MainFrame.getTabelaStudenti().getSelectedRow();
+					if(indexUModelu==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izbrisete");
+                    	return;
+					}
 					DialogBrisanjeStudenta brisanje = new DialogBrisanjeStudenta(indexUModelu);
 				} else if(selektovano.equals("profesor")) {
 					try {
@@ -217,23 +229,13 @@ public class MyToolBar extends JToolBar{
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					DialogDodavanjeStudentaNaPredmet dodavanjeStudenta = new DialogDodavanjeStudentaNaPredmet();
+					int idx = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));;
+					DialogDodavanjeStudentaNaPredmet dodavanjeStudenta = new DialogDodavanjeStudentaNaPredmet(idx);
 				}
 			});
 			add(btnDodavanjeStudentaNaPredmet);
 
-			JButton btnUklanjanjeStudentaSaPredmeta = new JButton();
-			btnUklanjanjeStudentaSaPredmeta.setToolTipText("Uklanjanje studenta sa predmeta");
-			ImageIcon slika1 = new ImageIcon("ikonice/icons8-remove-administrator-20.png");
-			btnUklanjanjeStudentaSaPredmeta.setIcon(new ImageIcon(slika1.getImage().getScaledInstance(20,20, java.awt.Image.SCALE_SMOOTH)));
-			btnUklanjanjeStudentaSaPredmeta.addActionListener(new ActionListener() {
-
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					DialogUklanjanjeStudentaSaPredmeta uklanjanjeStudenta = new DialogUklanjanjeStudentaSaPredmeta();
-				}
-			});
-			add(btnUklanjanjeStudentaSaPredmeta);
+			
 		}
 
 

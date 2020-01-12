@@ -6,17 +6,21 @@ import java.awt.event.KeyEvent;
 
 
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import dialozi.DialogAbout;
 import dialozi.DialogBrisanjePredmeta;
 import dialozi.DialogBrisanjeProfesora;
 import dialozi.DialogBrisanjeStudenta;
 import dialozi.DialogDodavanjePredmeta;
 import dialozi.DialogDodavanjeProfesora;
 import dialozi.DialogDodavanjeStudenta;
+import dialozi.DialogHelp;
 import dialozi.DialogIzmenaPredmeta;
 import dialozi.DialogIzmenaProfesora;
 import dialozi.DialogIzmenaStudenta;
@@ -46,9 +50,10 @@ public class MenuBar extends JMenuBar {
 				else if(selektovano.equals("student")) {
 					DialogDodavanjeStudenta dialogDodavanjeStudenta = new DialogDodavanjeStudenta();
 					
-				}else {
+				}else{
 					DialogDodavanjeProfesora dialogDodavanjeProfesora = new DialogDodavanjeProfesora();
 				}	
+				
 			}
 		});
 		novi.setAccelerator(KeyStroke.getKeyStroke(
@@ -85,16 +90,26 @@ public class MenuBar extends JMenuBar {
 				// TODO Auto-generated method stub
 				String selektovano = MainFrame.getSelectedTab();
 				if (selektovano.equals("predmet")) {
-                    int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
-                    DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
-
+                    int indexUModelu = MainFrame.getTabelaPredmeti().getSelectedRow();
+                    if(indexUModelu==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izmenite");
+                    	return;
+                    }
+                    	DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
                 }
 				else if(selektovano.equals("student")) {
-					int idx = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
-					
+					int idx = MainFrame.getTabelaStudenti().getSelectedRow();
+					 if(idx==-1) {
+	                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izmenite");
+	                    	return;
+	                    }
 					DialogIzmenaStudenta dialogIzmenaStudenta = new DialogIzmenaStudenta(idx);
-				}else {
-					int idx = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+				}else if(selektovano.equals("profesor")){
+					int idx =MainFrame.getTabelaProfesori().getSelectedRow();
+					if(idx==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izmenite");
+                    	return;
+                    }
 					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora(idx);
 				}
 				
@@ -140,14 +155,36 @@ public class MenuBar extends JMenuBar {
 		
 		JMenu help = new JMenu("Help");
 		
+		
 		help.setMnemonic(KeyEvent.VK_H);
 		JMenuItem help1 = new JMenuItem("Help");
+		
+		ActionListener helpL=new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DialogHelp dialogHelp=new DialogHelp();
+				
+			}
+		};
+		help1.addActionListener(helpL);
 		help1.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_L, ActionEvent.CTRL_MASK));
 			
 		help.add(help1);
 		help.addSeparator();
 		JMenuItem about = new JMenuItem("About");
+		ActionListener about1=new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DialogAbout dialogAbout=new DialogAbout();
+				
+			}
+		};
+		about.addActionListener(about1);
 		about.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		help.add(about);

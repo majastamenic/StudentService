@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -196,6 +198,42 @@ public class DialogDodavanjeProfesora extends JDialog{
 				dispose();
 			}
 		};
+		
+		KeyListener popunjavanje=new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(poljeIme.getText().trim().isEmpty()|| poljePrezime.getText().trim().isEmpty()|| poljeAdresaSt.getText().trim().isEmpty()||
+						poljeTelefon.getText().trim().isEmpty()||poljeEmail.getText().trim().isEmpty()||poljeAdresaKn.getText().trim().isEmpty()||
+						poljeBrojLicneKarte.getText().trim().isEmpty()||poljeTitula.getText().trim().isEmpty()||poljeZvanje.getText().trim().isEmpty()) {
+					sacuvaj.setEnabled(false);
+				}else
+					sacuvaj.setEnabled(true);
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		poljeIme.addKeyListener(popunjavanje);
+		poljePrezime.addKeyListener(popunjavanje);
+		poljeAdresaSt.addKeyListener(popunjavanje);
+		poljeTelefon.addKeyListener(popunjavanje);
+		poljeEmail.addKeyListener(popunjavanje);
+		poljeAdresaKn.addKeyListener(popunjavanje);
+		poljeBrojLicneKarte.addKeyListener(popunjavanje);
+		poljeTitula.addKeyListener(popunjavanje);
+		poljeZvanje.addKeyListener(popunjavanje);
 		
 		sacuvaj.addActionListener(sacuvajKliknuto);
 		g.gridx=1;

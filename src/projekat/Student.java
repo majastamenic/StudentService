@@ -124,8 +124,8 @@ public class Student implements Serializable{
 		return status;
 	}
 
-	public void setStatus(StatusStudenta status) {
-		this.status = status;
+	public void setStatus(StatusStudenta s) {
+		this.status = s;
 	}
 
 	public Double getProsecnaOcena() {
