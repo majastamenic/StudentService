@@ -208,12 +208,12 @@ public class PretragaActionListener implements ActionListener{
 					ArrayList<Student> listaRezultatStudenti = MyApp.studenti;
 					for(int i=0; i<string1.length; i++) {
 						try{ 
-							string2 = string1[i].split(":");
+							string2 = string1[i].split(":"); //splitujemo po : i dobijamo odvojene vrednosti kljuca i vrednosti
 							String kljuc = string2[0].toLowerCase();
 							String vrednost = string2[1].toLowerCase();
 						
 						
-						if(kljuc.equals("ime")) {
+						if(kljuc.equals("ime")) { //proveravamo da li neki student ima datu unetu vrednost, ako ima dodajemo ga u rezultat
 							ArrayList<Student> privremena = listaRezultatStudenti;
 							listaRezultatStudenti = new ArrayList<Student>();
 							for(int j = 0; j<privremena.size(); j++) {
@@ -222,7 +222,7 @@ public class PretragaActionListener implements ActionListener{
 								}
 							}
 							
-						} else if(kljuc.equals("prezime")) {
+						} else if(kljuc.equals("prezime")) { 
 							ArrayList<Student> privremena = listaRezultatStudenti;
 							listaRezultatStudenti = new ArrayList<Student>();
 							for(int j = 0; j<privremena.size(); j++) {
@@ -242,7 +242,7 @@ public class PretragaActionListener implements ActionListener{
 									listaRezultatStudenti.add(privremena.get(j));
 								}
 							}
-						} else if(kljuc.equals("adresastanovanja") || kljuc.equals("adresa_stanovanja") || kljuc.equals("adresas")) {
+						} else if(kljuc.equals("adresastanovanja") || kljuc.equals("adresa_stanovanja") || kljuc.equals("adresas")) { 
 							ArrayList<Student> privremena = listaRezultatStudenti;
 							listaRezultatStudenti = new ArrayList<Student>();
 							for(int j = 0; j<privremena.size(); j++) {
@@ -309,11 +309,11 @@ public class PretragaActionListener implements ActionListener{
 					}
 					
 				 }
-					int selektovaniIndex = MainFrame.getTabovi().getSelectedIndex();
+					int selektovaniIndex = MainFrame.getTabovi().getSelectedIndex(); //uzimamo tab koji je selektovan
 					
-					MainFrame.getTabovi().removeAll();
-					MainFrame.getTabovi().addTab("Studenti", new JScrollPane(new StudentiTabela(listaRezultatStudenti)));
-					MainFrame.getTabovi().addTab("Profesori", new JScrollPane(new ProfesoriTabela(MyApp.profesori)));
+					MainFrame.getTabovi().removeAll();//sklanjamo sve iz tabele
+					MainFrame.getTabovi().addTab("Studenti", new JScrollPane(new StudentiTabela(listaRezultatStudenti))); //u studente ubacujemo samo studenta kome odgovaraju vrednosti iz pretrage
+					MainFrame.getTabovi().addTab("Profesori", new JScrollPane(new ProfesoriTabela(MyApp.profesori)));//u ostale tabele vracamo sve
 					MainFrame.getTabovi().addTab("Predmeti", new JScrollPane(new PredmetiTabela(MyApp.predmeti)));
 					MainFrame.getTabovi().setSelectedIndex(selektovaniIndex);
 				
