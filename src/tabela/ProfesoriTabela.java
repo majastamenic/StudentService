@@ -22,7 +22,7 @@ public class ProfesoriTabela extends JTable {
 		this.setModel(profesoriTabelaModel);
 		new ProfesorTabelaButton(this, 10);
 
-		setAutoCreateRowSorter(true);
+		setAutoCreateRowSorter(true); //dodavanje sortera na kolone
 
 	}
 }
