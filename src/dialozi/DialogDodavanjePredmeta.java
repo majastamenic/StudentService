@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -53,9 +54,11 @@ public class DialogDodavanjePredmeta extends JDialog{
 		
 		gbc.gridx = 1; // tacka(1, 0)
 		JTextField sifraPolje = new JTextField();
+		
 		sifraPolje.setMinimumSize(new Dimension(200, 20));
 		sifraPolje.setMaximumSize(new Dimension(200, 20));
 		sifraPolje.setPreferredSize(new Dimension(200, 20));
+		
 		add(sifraPolje, gbc);
 		
 		gbc.gridx = 0;
@@ -92,7 +95,9 @@ public class DialogDodavanjePredmeta extends JDialog{
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		add(new JLabel("Profesor: "), gbc);
+		
 		gbc.gridx = 1;
+		
 		JComboBox<Profesor> profesoriComboBox = new JComboBox<Profesor>();
 		ArrayList<Profesor> profesoriLista = MyApp.getProfesori();
 		
@@ -133,8 +138,13 @@ public class DialogDodavanjePredmeta extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				studentiKojiSlusaju.addItem((Student) sviStudenti.getSelectedItem());	
-				listaIzabraniStudenti.add((Student) sviStudenti.getSelectedItem());
+				Student selektovaniStudent = (Student) sviStudenti.getSelectedItem();
+				
+				if(!listaIzabraniStudenti.contains(selektovaniStudent)) {
+					studentiKojiSlusaju.addItem(selektovaniStudent);
+					listaIzabraniStudenti.add(selektovaniStudent);
+
+				}
 			}
 		};
 		dodajStudenta.addActionListener(dodajStudentaAkcija);
@@ -162,37 +172,55 @@ public class DialogDodavanjePredmeta extends JDialog{
 				try {
 					String sifra = sifraPolje.getText();
 					String naziv = nazivPolje.getText();
-					if(sifra.equals("") || naziv.equals("")) {
-						
-						ImageIcon icon1 = new ImageIcon("Images/error.png");
-						Image img1 = icon1.getImage();
-						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
-						icon1 = new ImageIcon(newimg1);
-						
+					
+					ImageIcon icon1 = new ImageIcon("Images/error.png");
+					Image img1 = icon1.getImage();
+					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+					icon1 = new ImageIcon(newimg1);
+					
+					if(sifra.equals("") || naziv.equals("")) {			//Ako korisnik nije uneo sifru ili predmet
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
 								"Greska prilikom dodavanja predmeta", JOptionPane.OK_OPTION, icon1);
 						//dispose();
 					} else {
 						int semestar = Integer.parseInt(semestarPolje.getText());
 						int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
-						Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
-					
-	//					Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
-	
-						Predmet predmet = new Predmet();
-						predmet.setSifra(sifra);
-						predmet.setNaziv(naziv);
-						predmet.setSemestar(semestar);
-						predmet.setGodinaStudija(godinaStudija);
-						predmet.setPredmetniProfesor(profesor);
-						predmet.setSpisakStudenata(listaIzabraniStudenti);
-					
-						Predmet.dodavanjePredmeta(predmet);
-					
-						MainFrame.refreshTabova();
-						dispose();
+						if(semestar > 8 ) {				//Postoji samo 8 semestara
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno uneli broj semestra", 
+									"Greska prilikom dodavanja predmeta", JOptionPane.OK_OPTION, icon1);
+						}else if(godinaStudija > 4) {	//Postoji samo 4 godine studija
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno uneli godinu studija", 
+									"Greska prilikom dodavanja predmeta", JOptionPane.OK_OPTION, icon1);
+						}else {
+							Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
+							
+						
+		//					Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
+		
+							Predmet predmet = new Predmet();
+							predmet.setSifra(sifra);
+							predmet.setNaziv(naziv);
+							predmet.setSemestar(semestar);
+							predmet.setGodinaStudija(godinaStudija);
+							predmet.setPredmetniProfesor(profesor);
+							//predmet.setSpisakStudenata(new ArrayList<Student>(new HashSet<Student>(listaIzabraniStudenti)));
+							predmet.setSpisakStudenata(listaIzabraniStudenti);
+							Predmet.dodavanjePredmeta(predmet);
+							
+							
+							for(int i = 0; i<MyApp.getStudenti().size(); i++) {		//Prolazimo kroz sve studente
+								for (Student s : listaIzabraniStudenti) {			//Prolazimo kroz listu izabranih studenata
+									if(MyApp.getStudenti().get(i).equals(s)) {		//Ako nadjemo tog studenta iz spiska
+										MyApp.getStudenti().get(i).getSpisakPredmetaKojeSlusa().add(predmet);	//Dodamo predmet u spisak predmeta kod studenta.
+									}
+								}
+							}
+						
+							MainFrame.refreshTabova();
+							dispose();
+						}
 					}
-				}catch(Exception ex) {
+				}catch(Exception ex) {	//Ukoliko korisnik nije popunio sve podatke ili ih nije uneo u dobrom tipu
 					ImageIcon icon1 = new ImageIcon("Images/error.png");
 					Image img1 = icon1.getImage();
 					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 

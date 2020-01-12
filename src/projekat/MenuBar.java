@@ -1,5 +1,6 @@
 package projekat;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,7 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 
 import dialozi.DialogBrisanjePredmeta;
 import dialozi.DialogBrisanjeProfesora;
@@ -56,7 +59,14 @@ public class MenuBar extends JMenuBar {
 		JMenuItem zatvori = new JMenuItem("Close");
 		zatvori.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-
+		zatvori.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
 
 		file.add(novi);
 		novi.setIcon(new ImageIcon("ikonice/icons8-plus-24.png"));
@@ -75,11 +85,21 @@ public class MenuBar extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				String selektovano = MainFrame.getSelectedTab();
 				if (selektovano.equals("predmet")) {
-                    int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
-                    DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
+					try {
+						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel(MainFrame.getTabelaPredmeti().getSelectedRow());
+						DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
+					}catch(Exception ex){
+						UIManager.put("OptionPane.okButtonText", "OK");
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da  izmenite.",
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
+					}
 
                 }
 				else if(selektovano.equals("student")) {
@@ -100,23 +120,72 @@ public class MenuBar extends JMenuBar {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				String selektovano = MainFrame.getSelectedTab();
 				if (selektovano.equals("predmet")) {
 					
-					int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
-					
-					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
+					try {
+						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
+						UIManager.put("OptionPane.yesButtonText", "Da");
+						UIManager.put("OptionPane.noButtonText", "Ne");
+						ImageIcon icon = new ImageIcon("Images/deleteDialog.png");
+						Image img = icon.getImage();
+						Image newimg = img.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 		
+						icon = new ImageIcon(newimg);
+						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(),"Da li ste sigurni da zelite da obrisete selektovani predmet?",
+								"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon)==JOptionPane.YES_OPTION){
+							Predmet.brisanjePredmeta(MyApp.getPredmeti().get(indexUModelu).getSifra());
+							MainFrame.refreshTabova();
+							dispose();
+						}
+					}catch(Exception ex){
+						UIManager.put("OptionPane.okButtonText", "OK");
+						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet koji zelite da izbrisete.",
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
+					}
 					
 				}else if(selektovano.equals("student")) {
 					int indexUModelu = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
 					DialogBrisanjeStudenta brisanje = new DialogBrisanjeStudenta(indexUModelu);
+					
 				} else if(selektovano.equals("profesor")) {
 
-					int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
-
-					DialogBrisanjeProfesora brisanje = new DialogBrisanjeProfesora(indexUModelu);
+					try {
+						int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+						
+						UIManager.put("OptionPane.yesButtonText", "Da");
+						UIManager.put("OptionPane.noButtonText", "Ne");
+						ImageIcon icon = new ImageIcon("Images/deleteDialog.png");
+						Image img = icon.getImage();
+						Image newimg = img.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 		// Podesavanje velicine ikonice.
+						icon = new ImageIcon(newimg);
+						
+						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(),"Da li ste sigurni da zelite da obrisete selektovanog profesora?",
+								"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon)==JOptionPane.YES_OPTION){
+							Profesor.brisanjeProfesora(MyApp.getProfesori().get(indexUModelu).getBrojLicneKarte());
+							MainFrame.refreshTabova();
+							dispose();
+						}
+					}catch(Exception ex) {
+						UIManager.put("OptionPane.okButtonText", "OK");
+						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili profesora kojeg zelite da izbrisete.",
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
+					}
 				}
+				
+			}
+
+			private void dispose() {
+				// TODO Auto-generated method stub
 				
 			}
 		});

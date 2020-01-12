@@ -43,7 +43,7 @@ public class Profesor implements Serializable {
 		this.spisakPredmetaNaKojimaPredaje = spisakPredmetaNaKojimaPredaje;
 
 	}
-
+//Konstruktor bez liste predmeta
 	public Profesor(String ime, String prezime, Date datumRodjenja, String adresaStanovanja, String telefon, String email,String adresaKancelarije, String brojLicneKarte,
 			String titula, String zvanje) {
 		this();
@@ -150,21 +150,22 @@ public class Profesor implements Serializable {
 	
 	
 	@Override
+	//Broj licne karte je jedinstven
 	public boolean equals(Object obj) {
 		return ((Profesor)obj).getBrojLicneKarte().equals(this.brojLicneKarte);
 	}
 
 	public static boolean brisanjeProfesora(String brojLicneKarte) {
-		for(Profesor profesor : MyApp.profesori) {
-			if(profesor.getBrojLicneKarte().equals(brojLicneKarte)) {
-				for(Predmet predmetKodKogTrebaObrisatiProfesora : MyApp.predmeti) {
-					if((predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor()!=null) && predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor().equals(profesor)) {
-						predmetKodKogTrebaObrisatiProfesora.setPredmetniProfesor(null);
-						continue;
+		for(Profesor profesor : MyApp.profesori) {						//Prolazimo kroz sve profesore
+			if(profesor.getBrojLicneKarte().equals(brojLicneKarte)) {	//Nalazimo profesora kojeg trebamo izbrisati
+				for(Predmet predmetKodKogTrebaObrisatiProfesora : MyApp.predmeti) {	//Prolazimo kroz listu predmeta
+					if((predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor()!=null) 	//Ako predmetni profesor nije null
+							&& predmetKodKogTrebaObrisatiProfesora.getPredmetniProfesor().equals(profesor)) { //I ako mu je predmetni profesor, profesor koji se brise
+						predmetKodKogTrebaObrisatiProfesora.setPredmetniProfesor(null);			//postavljamo predmetnog profesora na null
 					}
 				}
 				int i = MyApp.profesori.indexOf(profesor);
-				MyApp.profesori.remove(i);
+				MyApp.profesori.remove(i);					//Brisemo profesora
 				return true;
 			}
 		}

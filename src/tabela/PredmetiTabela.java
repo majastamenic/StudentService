@@ -16,15 +16,18 @@ public class PredmetiTabela extends JTable {
 	private static final long serialVersionUID = 1L;
 
 	public PredmetiTabela(ArrayList<Predmet> predmeti) {
+		
 		PredmetiTabelaModel predmetiTabelaModel = new PredmetiTabelaModel(predmeti);
 		this.setRowSelectionAllowed(true);
 		//this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setRowHeight(20);
 		this.setModel(predmetiTabelaModel);
-		setAutoCreateRowSorter(true);
+		
 		new PredmetiTableButton(this, 5);
 		
+		//Sortiranje
+		setAutoCreateRowSorter(true);	
 		
 	}
 

@@ -58,7 +58,7 @@ public class PredmetiTabelaModel extends AbstractTableModel{
 		return null;
 	}
 
-	// da bismo mogli prikazati dugme
+	// Da bismo mogli prikazati dugme
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		return tipoviKolona[columnIndex];

@@ -16,7 +16,7 @@ import projekat.Predmet;
 
 public class PredmetiTableButton implements TableCellRenderer, MouseListener {
 
-	// dugme koje se iscrtava
+// dugme koje se iscrtava
 	private JButton renderButton;
 // referenca na tabelu
 	private JTable table;
@@ -83,7 +83,6 @@ this.renderButton.addActionListener(new ActionListener() {
 			}
 //			System.out.println(predmet.getSifra());
 			
-//			JOptionPane.showMessageDialog(table, "Selektovan je igrac u redu: " + predmet.getNaziv());
 			DialogStudentiUPredmetu studentiUPredmeti = new DialogStudentiUPredmetu(predmet);
 		}
 	}
@@ -95,8 +94,6 @@ this.renderButton.addActionListener(new ActionListener() {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-// ekplicitno navodimo da je editovanje celije je zavrseno
-		
 	}
 
 	@Override

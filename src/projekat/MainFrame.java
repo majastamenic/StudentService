@@ -36,8 +36,8 @@ public class MainFrame extends JFrame {
 
 	public static MainFrame getInstance() {
 
-		if (instance == null) { // ako je klasa tek kreirana
-			instance = new MainFrame(); // popuni je sa podacima
+		if (instance == null) { 				// ako je klasa tek kreirana
+			instance = new MainFrame(); 		// popuni je sa podacima
 		}
 		return instance;
 	}
@@ -48,11 +48,11 @@ public class MainFrame extends JFrame {
 
 		ImageIcon img = new ImageIcon("Images/Icon5.png");
 		Image image = img.getImage();
-		Image newimg = image.getScaledInstance(330, 410, java.awt.Image.SCALE_SMOOTH); // Podesavanje velicine ikonice.
+		Image newimg = image.getScaledInstance(330, 410, java.awt.Image.SCALE_SMOOTH); 	// Podesavanje velicine ikonice.
 		img = new ImageIcon(newimg);
 		setIconImage(img.getImage());
 
-//		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);     			//Gasi aplikaciju prilikom zatvaranje mainFrame-a.
+//		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);     					//Gasi aplikaciju prilikom zatvaranje mainFrame-a.
 
 		menu = new MenuBar();
 		setJMenuBar(menu);
@@ -64,19 +64,22 @@ public class MainFrame extends JFrame {
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				//JOptionPane uredjivanje izgleda
 				UIManager.put("OptionPane.yesButtonText", "Da");
 				UIManager.put("OptionPane.noButtonText", "Ne");
 				ImageIcon icon = new ImageIcon("Images/exit.png");
 				Image img = icon.getImage();
 				Image newimg = img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH); 
 				icon = new ImageIcon(newimg);
+				
 				if (JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da zelite da zatvorite aplikaciju?",
 						"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE, icon) == JOptionPane.YES_OPTION) {
+					//Na zatvaranje aplikacije upisuje sve podatke u txt fajlove
 					Util.upisiPredmete(MyApp.predmeti);
 					Util.upisiStudente(MyApp.studenti);
 					Util.upisiProfesore(MyApp.profesori);
-					System.exit(0);
+					System.exit(0);				//Gasi citavu aplikaciju
 				}else {
 					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 				}
@@ -86,8 +89,8 @@ public class MainFrame extends JFrame {
 
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension dimenzijaEkrana = toolkit.getScreenSize();
-		setSize(new Dimension(dimenzijaEkrana.width * 3 / 4, dimenzijaEkrana.height * 3 / 4)); // Podesavanje dimenzije
-																								// ekrana.
+		setSize(new Dimension(dimenzijaEkrana.width * 3 / 4, dimenzijaEkrana.height * 3 / 4)); // Podesavanje dimenzije ekrana.
+																								
 
 
 		tabovi = new JTabbedPane();
@@ -97,12 +100,12 @@ public class MainFrame extends JFrame {
 		tabovi.addTab("Profesori", new JScrollPane(tabelaProfesori));
 		tabelaPredmeti = new PredmetiTabela(MyApp.predmeti);
 		tabovi.addTab("Predmeti", new JScrollPane(tabelaPredmeti));
-		tabovi.addChangeListener(new ChangeListener() { // Ako se desila promena(selektovan drugi tab)
+		tabovi.addChangeListener(new ChangeListener() { 	// Ako se desila promena(selektovan drugi tab)
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				remove(toolbar);
-				toolbar = new MyToolBar(); // Ponovo kreiranje toolbara
+				toolbar = new MyToolBar(); 				// Ponovo kreiranje toolbara
 				add(toolbar, BorderLayout.NORTH);
 			}
 		});
@@ -113,7 +116,7 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 
 	}
-
+	
 	public static String getSelectedTab() {
 		int i = tabovi.getSelectedIndex();
 		if (i == 0) {
@@ -139,7 +142,7 @@ public class MainFrame extends JFrame {
 		tabovi.setSelectedIndex(selektovaniIndex);
 
 	}
-
+	//Get i set metode
 	public static JTabbedPane getTabovi() {
 		return tabovi;
 	}

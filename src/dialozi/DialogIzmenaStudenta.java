@@ -62,7 +62,7 @@ public class DialogIzmenaStudenta extends JDialog{
 		g.gridy=2;
 		JLabel labelaDatRodj=new JLabel("Datum rodjenja:  ");
 		add(labelaDatRodj,g);
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 		JTextField poljeDatRodj=new JTextField(sdf.format(student.getDatumRodjenja()));
 		g.gridx=1;
 		poljeDatRodj.setMaximumSize(new Dimension(250,25));
@@ -123,7 +123,7 @@ public class DialogIzmenaStudenta extends JDialog{
 		g.gridy=7;
 		JLabel labelaDatumUpisa=new JLabel("Datum upisa:  ");
 		add(labelaDatumUpisa,g);
-		SimpleDateFormat sdf1=new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf1=new SimpleDateFormat("dd-MM-yyyy");
 		JTextField poljeDatumUpisa=new JTextField(sdf1.format(student.getDatumUpisa()));
 		g.gridx=1;
 		poljeDatumUpisa.setMaximumSize(new Dimension(250,25));
@@ -188,8 +188,8 @@ public class DialogIzmenaStudenta extends JDialog{
 				Date datRodj;
 				Date datUpis;
 				try {
-					datUpis = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatumUpisa.getText());
-					datRodj = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatRodj.getText());
+					datUpis = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatumUpisa.getText());
+					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
 					student.setDatumUpisa(datUpis);
 					student.setDatumRodjenja(datRodj);
 				} catch (ParseException e1) {

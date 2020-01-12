@@ -20,11 +20,12 @@ import projekat.Predmet;
 public class DialogBrisanjePredmeta extends JDialog{
 	
 	/**
-	 * 
+	 * NE KORISTI SE - RUCNO RADJEN DIALOG ZA POTVRDU BRISANJA PREDMETA
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public DialogBrisanjePredmeta(int indexUModelu) {
+		
 		setTitle("Brisanje predmeta");
 		setSize(new Dimension(400, 200));
 		setLocationRelativeTo(null);

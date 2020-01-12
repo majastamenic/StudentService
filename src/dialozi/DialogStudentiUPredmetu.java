@@ -65,7 +65,7 @@ public class DialogStudentiUPredmetu extends JDialog {
 				try {
 					int selektovanIndex = list.getSelectedIndex();
 					if(selektovanIndex != -1) {
-						listModel.remove(selektovanIndex);
+						listModel.remove(selektovanIndex);	
 					}
 					ArrayList<Student> studenti = new ArrayList<Student>();
 					for (int i=0; i<listModel.size(); i++) {
@@ -74,6 +74,7 @@ public class DialogStudentiUPredmetu extends JDialog {
 					predmet.setSpisakStudenata(studenti);
 					
 				}catch(Exception ex) {
+					
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili studenta kojeg zelite da obrisete sa datog predmeta", 
 							"Oznacite studenta", JOptionPane.OK_CANCEL_OPTION);
 					

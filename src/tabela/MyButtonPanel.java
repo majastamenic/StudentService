@@ -20,7 +20,7 @@ public class MyButtonPanel extends JPanel{
 		gc.fill=GridBagConstraints.HORIZONTAL;
 		gc.gridx=0;
 		gc.gridy=0;
-		add(c, gc);		//dodaj dugme na panel
+		add(c, gc);					//dodaj dugme na panel
 	}
 
 }

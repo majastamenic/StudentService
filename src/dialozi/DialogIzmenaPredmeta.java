@@ -1,11 +1,13 @@
 package dialozi;
 
+import java.awt.Desktop.Action;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -30,6 +32,7 @@ public class DialogIzmenaPredmeta extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	public DialogIzmenaPredmeta(int indexUModelu) {
+		
 		setTitle("Izmena predmeta");
 		setSize(new Dimension(400, 200));
 		setLocationRelativeTo(null);
@@ -100,18 +103,21 @@ public class DialogIzmenaPredmeta extends JDialog {
 		ArrayList<Profesor> profesoriLista = Util.ucitajProfesore();
 		
 		for (Profesor profesor : profesoriLista) {
-			profesoriComboBox.addItem(profesor);
+			profesoriComboBox.addItem(profesor);	//Dodajemo sve profesore
 		}
 		
 		for (int i = 0; i < profesoriComboBox.getItemCount(); i++) {
-			if(predmet.getPredmetniProfesor().getBrojLicneKarte().equals(profesoriComboBox.getItemAt(i).getBrojLicneKarte())) {
-				profesoriComboBox.setSelectedIndex(i);
-				break;
+			if(predmet.getPredmetniProfesor()!=null) {
+				if(predmet.getPredmetniProfesor().getBrojLicneKarte().equals(profesoriComboBox.getItemAt(i).getBrojLicneKarte())) {
+					profesoriComboBox.setSelectedIndex(i);
+					break;
+				}
 			}
 		}
 		profesoriComboBox.setMinimumSize(new Dimension(200, 20));
 		profesoriComboBox.setMaximumSize(new Dimension(200, 20));
 		profesoriComboBox.setPreferredSize(new Dimension(200, 20));
+		
 		//profesoriComboBox.addItem(new Profesor("Pera", "Peric", null, "Adresa 10", "7655778", "email", "adresaKancelarije", 76566L, null, null, null));
 		add(profesoriComboBox, gbc);
 		setLocationRelativeTo(null);
@@ -124,34 +130,71 @@ public class DialogIzmenaPredmeta extends JDialog {
 				try {
 					String sifra = sifraPolje.getText();
 					String naziv = nazivPolje.getText();
-					if(naziv.equals("")) {
-						ImageIcon icon1 = new ImageIcon("Images/error.png");
-						Image img1 = icon1.getImage();
-						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
-						icon1 = new ImageIcon(newimg1);
-						
+					ImageIcon icon1 = new ImageIcon("Images/error.png");
+					Image img1 = icon1.getImage();
+					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+					icon1 = new ImageIcon(newimg1);
+					
+					if(naziv.equals("")) {	//Ako korisnik nije uneo naziv
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
 								"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
 					}else {
 						int semestar = Integer.parseInt(semestarPolje.getText());
 						int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
-						Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
-						
-		//				Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
-		
-						Predmet predmet = new Predmet();
-						predmet.setSifra(sifra);
-						predmet.setNaziv(naziv);
-						predmet.setSemestar(semestar);
-						predmet.setGodinaStudija(godinaStudija);
-						predmet.setPredmetniProfesor(profesor);
-						
-						Predmet.izmenaPredmeta(predmet);
-						
-						MainFrame.refreshTabova();
-						dispose();
+						if(semestar > 8) {		//Postoji 8 semestara
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno uneli broj semestra.", 
+									"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
+						}else if(godinaStudija > 4) {	//Postoje 4 godine studija
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno uneli godinu studija.", 
+									"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
+						}else {
+							Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();	//Profesor je selektovani profesor iz comboBox-a
+							
+			//				Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
+			
+							Predmet predmet = new Predmet();
+							predmet.setSifra(sifra);
+							predmet.setNaziv(naziv);
+							predmet.setSemestar(semestar);
+							predmet.setGodinaStudija(godinaStudija);
+							predmet.setPredmetniProfesor(profesor);
+							Predmet.izmenaPredmeta(predmet);
+							
+							// brisanje predmeta iz starog prof
+							for (Predmet staraVrednostPredmeta : MyApp.getPredmeti()) {
+								if (staraVrednostPredmeta.getSifra().equals(sifra)) {
+									Profesor prethodniProfesor = staraVrednostPredmeta.getPredmetniProfesor();
+									if (prethodniProfesor != null) {
+										for(int i = 0; i < MyApp.getProfesori().size(); i++) {
+											if (MyApp.getProfesori().get(i).getBrojLicneKarte().equals(prethodniProfesor.getBrojLicneKarte()) ) {
+												// Prolazimo kroz sve predmete koje on predaje i brisemo trenutni
+												for (int j = 0; j < MyApp.getProfesori().get(i).getSpisakPredmeta().size(); j++) {
+													if (MyApp.getProfesori().get(i).getSpisakPredmeta().get(j).getSifra().equals(sifra)) {
+														MyApp.getProfesori().get(i).getSpisakPredmeta().remove(j);
+														break;
+													}
+												}
+												break;		//Nadjen profesor
+											}
+										}
+									}
+								}
+							}
+							
+							// Dodavanje predmeta u novog profesora
+							if (profesor != null) {
+								for(int i = 0; i < MyApp.getProfesori().size(); i++) {
+									if (profesor.getBrojLicneKarte().equals(MyApp.getProfesori().get(i).getBrojLicneKarte())) {
+										MyApp.getProfesori().get(i).getSpisakPredmeta().add(predmet);
+									}
+								}
+							}
+							
+							MainFrame.refreshTabova();
+							dispose();
+						}
 					}
-				}catch(Exception ex) {
+				}catch(Exception ex) {	//Ukoliko nisu uneta sva polja ili ukoliko negde nije unet dobar tip podatka
 					ImageIcon icon1 = new ImageIcon("Images/error.png");
 					Image img1 = icon1.getImage();
 					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
@@ -163,6 +206,7 @@ public class DialogIzmenaPredmeta extends JDialog {
 				
 			}
 		};
+		
 		dugmeIzmena.addActionListener(izmenaAkcija);
 		gbc.gridx = 2;
 		gbc.gridy = 5;

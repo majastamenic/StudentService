@@ -37,7 +37,7 @@ public class Predmet implements Serializable {
 		}
 
 	}
-
+//	Konstruktor bez liste studenata koji slusaju predmet.
 	public Predmet(String sifra, String naziv, int semestar, int godinaStudija, Profesor predmetniProfesor) {
 		this();
 		this.sifra = sifra;
@@ -97,39 +97,41 @@ public class Predmet implements Serializable {
 	}
 
 	@Override
+	//Ne mogu postojati dva predmeta sa istim siframa.
 	public boolean equals(Object obj) {
 		return ((Predmet) obj).getSifra().equals(this.sifra);
 	}
 
 	public static boolean dodavanjePredmeta(Predmet predmet) {
-		if (MyApp.predmeti.contains(predmet)) {
+		if (MyApp.predmeti.contains(predmet)) {							//ako u predmetima vec postoji uneti predmet
 			return false;
 		}
-		//TODO Dodati studente kad Tasa zavrsi 
-		for(Profesor profesor : MyApp.profesori) {
-			if(predmet.getPredmetniProfesor().equals(profesor)) {
-				profesor.getSpisakPredmeta().add(predmet);
+		for(Profesor profesor : MyApp.profesori) {						//Prolazimo kroz sve profesore u nasoj bazi profesora.
+			if(predmet.getPredmetniProfesor().equals(profesor)) {		//Nadjemo profesora koji je predmetni profesor na unetom predmetu.
+				profesor.getSpisakPredmeta().add(predmet);				//Kod profesora u spisak predmeta koje predaje dodamo uneti predmet.
 			}
 		}
-		MyApp.predmeti.add(predmet);
+		
+		MyApp.predmeti.add(predmet);									//Dodamo predmet
 		return true;
 	}
 
 	public static boolean brisanjePredmeta(String sifra) {
-		for(Predmet predmet : MyApp.predmeti) {
-			if(predmet.getSifra().equals(sifra)) {
-				//Brisanje predmeta iz studenta
-				for(Student studentKodKogTrebaObrisatiPredmet : MyApp.studenti) {
-					if((studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa()!=null) && studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa().contains(predmet)) {
-						studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa().remove(predmet);
-						continue;
+		for(Predmet predmet : MyApp.predmeti) {							//Prolazimo kroz sve predmete
+			if(predmet.getSifra().equals(sifra)) {						//Nalazimo predmet koji treba da obrisemo
+// 				Brisanje predmeta iz studenta
+				for(Student studentKodKogTrebaObrisatiPredmet : MyApp.studenti) {					//Prolazimo kroz sve studente.
+					if((studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa()!=null) 		//Ako kod studenta postoji spisak predmeta koje slusa i nije null
+							&& studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa().contains(predmet)) {   //i ako taj spisak sadrzi predmet koji treba da se obrise					
+						studentKodKogTrebaObrisatiPredmet.getSpisakPredmetaKojeSlusa().remove(predmet);		//Obrisati predmet iz spiska predmeta kod studenta
 					}
 				}
 				//Brisanje predmeta iz profesora
-				for(Profesor profesorIzKogTrebaObrisatiPredmet : MyApp.profesori) {
-					if((profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()!=null) && profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().contains(predmet)) {
-						profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().remove(predmet);
-						break;
+				for(Profesor profesorIzKogTrebaObrisatiPredmet : MyApp.profesori) {					//Prolazimo kroz listu profesora.
+					if((profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()!=null) 				//Ako profesor ima spisak predmeta na kojima predaje koji nije null
+							&& profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().contains(predmet)) {	//i ako taj spisak sadrzi predmet koji treba da se obrise
+						profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().remove(predmet);		//Obrisati predmet iz spisak predmeta koje predaje profesor
+						break;								//Postoji samo jedan predmetni profesor
 					}
 				}
 				int i = MyApp.predmeti.indexOf(predmet);
@@ -143,8 +145,8 @@ public class Predmet implements Serializable {
 	public static boolean izmenaPredmeta(Predmet p) {
 		for (int i = 0; i <= MyApp.predmeti.size(); i++) {
 			if (MyApp.predmeti.get(i).getSifra().equals(p.getSifra())) { // Pretraga po sifri.
-				MyApp.predmeti.remove(i); // Brisemo prethodnu verziju prosledjenog objekta p.
-				MyApp.predmeti.add(p); // Postavljamo novu verziju objekta.
+				MyApp.predmeti.remove(i); 								// Brisemo prethodnu verziju prosledjenog objekta p.
+				MyApp.predmeti.add(p); 									// Postavljamo novu verziju objekta.
 				return true;
 			}
 		}
@@ -154,9 +156,9 @@ public class Predmet implements Serializable {
 	public static boolean dodavanjeProfesora(Profesor profesor, String sifraPredmeta) {
 		for (Predmet predmet : MyApp.predmeti) {
 			if (predmet.getSifra().equals(sifraPredmeta)) {
-				// podesavanje u klasi profesor
-				// brisanje starog profesora ako je postojao
-				if (predmet.getPredmetniProfesor() != null) { // ako je vec bio postavljen profesor
+				// Podesavanje u klasi profesor
+				// Brisanje starog profesora ako je postojao
+				if (predmet.getPredmetniProfesor() != null) { // Ako je vec bio postavljen profesor
 
 					for (Profesor prof : MyApp.profesori) {
 						if (predmet.getPredmetniProfesor().getBrojLicneKarte().equals(prof.getBrojLicneKarte())) {
@@ -165,7 +167,7 @@ public class Predmet implements Serializable {
 						}
 					}
 				}
-				// dodavanje predmeta novom profesoru
+				// Dodavanje predmeta novom profesoru
 				for (Profesor profesorKomeDodajemoPredmet : MyApp.profesori) {
 
 					if (profesorKomeDodajemoPredmet.getBrojLicneKarte().equals(profesor.getBrojLicneKarte())) {
@@ -174,7 +176,7 @@ public class Predmet implements Serializable {
 					}
 				}
 
-				// podesavanje u klasi predmet
+				// Podesavanje u klasi predmet
 				int index = MyApp.predmeti.indexOf(predmet);
 				MyApp.predmeti.get(index).setPredmetniProfesor(profesor);
 
@@ -185,20 +187,17 @@ public class Predmet implements Serializable {
 	}
 
 	public static boolean uklanjanjeProfesora(Profesor profesor, String sifraPredmeta) {
-		for (Predmet predmet : MyApp.predmeti) { // trazimo predmet koji se menja
-			if (predmet.getSifra().equals(sifraPredmeta)) {
-				for (Profesor profesorIzKogTrebaObrisatiPredmet : MyApp.profesori) {
+		for (Predmet predmet : MyApp.predmeti) { 						//Prolazimo kroz predmete
+			if (predmet.getSifra().equals(sifraPredmeta)) {				//Nadjemo predmet
+				for (Profesor profesorIzKogTrebaObrisatiPredmet : MyApp.profesori) {	
 
-					if (profesorIzKogTrebaObrisatiPredmet.getBrojLicneKarte().equals(profesor.getBrojLicneKarte())) {
-						for (Predmet predmetKojiSeBriseIzProfesora : profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()) {
+					if (profesorIzKogTrebaObrisatiPredmet.getBrojLicneKarte().equals(profesor.getBrojLicneKarte())) {	//Nadjemo profesora kod koga brisemo predmet
+						for (Predmet predmetKojiSeBriseIzProfesora : profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()) {	//Prodjemo kroz njegovu listu predmeta
 
-							if (predmetKojiSeBriseIzProfesora.getSifra().equals(sifraPredmeta)) {
+							if (predmetKojiSeBriseIzProfesora.getSifra().equals(sifraPredmeta)) {			//Kada nadjemo predmet u spisku predmeta koje profesor predaje
 								int indexPredmeta = profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta()
 										.indexOf(predmetKojiSeBriseIzProfesora);
-								profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().remove(indexPredmeta); // Obrisan
-																												// predmet
-																												// iz
-																												// profesora
+								profesorIzKogTrebaObrisatiPredmet.getSpisakPredmeta().remove(indexPredmeta); // Obrisan predmet iz profesora																								
 								break;
 							}
 						}
@@ -206,7 +205,7 @@ public class Predmet implements Serializable {
 					}
 				}
 				int index = MyApp.predmeti.indexOf(predmet);
-				MyApp.predmeti.get(index).setPredmetniProfesor(null);
+				MyApp.predmeti.get(index).setPredmetniProfesor(null);			//Postavljanje predmetnog profesora na null
 				;
 
 				return true;

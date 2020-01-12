@@ -59,7 +59,8 @@ public class DialogIzmenaProfesora extends JDialog{
 		g.gridy=2;
 		JLabel labelaDatRodj=new JLabel("Datum rodjenja:");
 		add(labelaDatRodj,g);
-		JTextField poljeDatRodj=new JTextField();
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+		JTextField poljeDatRodj=new JTextField(sdf.format(profesor.getDatumRodjenja()));
 		g.gridx=1;
 		poljeDatRodj.setMaximumSize(new Dimension(250,25));
 		poljeDatRodj.setMinimumSize(new Dimension(250,25));
@@ -164,7 +165,7 @@ public class DialogIzmenaProfesora extends JDialog{
 				String prezime=poljePrezime.getText();
 				Date datRodj;
 				try {
-					datRodj = new SimpleDateFormat("dd/MM/yyyy").parse(poljeDatRodj.getText());
+					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
 					profesor.setDatumRodjenja(datRodj);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block

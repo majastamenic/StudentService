@@ -14,17 +14,19 @@ import projekat.Predmet;
 public class DialogUklanjanjeProfesoraSaPredmet extends JDialog{
 
 	/**
-	 * 
+	 *  NE KORISTI SE - RUCNO RADJEN DIALOG ZA POTVRDU BRISANJA PREDMETNOG PROFESORA
 	 */
 	private static final long serialVersionUID = 1L;
 
 	public DialogUklanjanjeProfesoraSaPredmet(int indexUModelu){
+		
 		setLocationRelativeTo(null);
 		String sifra = MyApp.getPredmeti().get(indexUModelu).getSifra();
 		
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				
 				UIManager.put("OptionPane.yesButtonText", "Da");
 				UIManager.put("OptionPane.noButtonText", "Ne");
 				
@@ -32,9 +34,11 @@ public class DialogUklanjanjeProfesoraSaPredmet extends JDialog{
 				Image img = icon.getImage();
 				Image newimg = img.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); // Podesavanje velicine ikonice.
 				icon = new ImageIcon(newimg);
+				
 				if(JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da zelite da uklonite profesora sa predmeta?",
 					"Potvrda o brisanju profesora sa predmeta", JOptionPane.YES_NO_OPTION,
 					JOptionPane.QUESTION_MESSAGE, icon) == JOptionPane.YES_OPTION) {
+					
 					Predmet.uklanjanjeProfesora(MyApp.getPredmeti().get(indexUModelu).getPredmetniProfesor(), sifra);
 					MainFrame.refreshTabova();
 				}

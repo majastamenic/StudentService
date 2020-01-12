@@ -51,7 +51,7 @@ public class DialogPredmetiUProfesoru extends JDialog{
 		ArrayList<Predmet> listaPredmeta = profesor.getSpisakPredmeta();
 		
 		for (Predmet predmet : listaPredmeta) {
-			listModel.addElement(predmet);
+			listModel.addElement(predmet);		//Popunjavamo listu sa predmetima
 		}
 		
 		JList<Predmet> list = new JList<Predmet>(listModel);
@@ -70,19 +70,20 @@ public class DialogPredmetiUProfesoru extends JDialog{
 					
 					for (Predmet pr : MyApp.getPredmeti()) {
 						if(predmetZaBrisanje.equals(pr)) {
-							pr.setPredmetniProfesor(null);
+							pr.setPredmetniProfesor(null);		//U predmetu predmetni profesor je null
 						}
 					}
 					
-					if(selektovanIndex != -1) {
+					if(selektovanIndex != -1) {	
 						listModel.remove(selektovanIndex);
 					}
 					ArrayList<Predmet> predmeti = new ArrayList<Predmet>();
 					for(int i=0; i<listModel.size(); i++) {
 						predmeti.add(listModel.get(i));
 					}
-					profesor.setSpisakPredmeta(predmeti);
+					profesor.setSpisakPredmeta(predmeti);	 	//Novi spisak predmeta, ako je neko predmet obrisan
 				}catch(Exception ex) {
+					
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet koji zelite da obrisete.",
 							"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
 					

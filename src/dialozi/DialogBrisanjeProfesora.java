@@ -20,7 +20,7 @@ import projekat.Profesor;
 public class DialogBrisanjeProfesora extends JDialog{
 	
 	/**
-	 * 
+	 *  NE KORISTI SE - RUCNO RADJEN DIALOG ZA POTVRDU BRISANJA PROFESORA
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -44,6 +44,7 @@ public class DialogBrisanjeProfesora extends JDialog{
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		
 		JTextArea tekst = new JTextArea("Da li ste sigurni da zelite da izbrisete profesora: "+brojLicneKarte+" "+ime+" "+prezime+"?");
 		tekst.setSize(400, 40);
 		tekst.setLineWrap(true);

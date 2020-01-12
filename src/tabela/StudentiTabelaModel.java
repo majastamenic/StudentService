@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.net.ssl.SSLEngineResult.Status;
+import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
 
 import projekat.Student;
@@ -13,7 +14,7 @@ public class StudentiTabelaModel extends AbstractTableModel{
 	private static final long serialVersionUID = 1L;
 
 	private static String[] naziviKolona = {"Ime", "Prezime",  "Datum rodjenja", "Adresa stanovanja", "Telefon", "E-mail","Broj indeksa", "Datum upisa", "Trenutna godina studija","Status studenta","Prosecna ocena", "Spisak predmeta koje slusa"};
-	private static Class[] tipoviKolona = {String.class,String.class,Date.class,String.class,String.class,String.class,String.class,Date.class,String.class,Status.class,Double.class, String.class};
+	private static Class[] tipoviKolona = {String.class,String.class,Date.class,String.class,String.class,String.class,String.class,Date.class,String.class,Status.class,Double.class, JButton.class};
 	private ArrayList<Student> studenti = new ArrayList<Student>();
 	
 	public StudentiTabelaModel(ArrayList<Student> studenti) {
@@ -61,7 +62,8 @@ public class StudentiTabelaModel extends AbstractTableModel{
 		case 10:
 			return student.getProsecnaOcena();
 		case 11:
-			return "Prikazi predmete";
+			JButton studenti = new JButton(String.valueOf(student.getBrojIndeksa()));
+			return studenti;
 		}
 		return null;
 	}
