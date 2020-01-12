@@ -35,7 +35,7 @@ public class MenuBar extends JMenuBar {
 
 		JMenu file = new JMenu("File");
 		
-		file.setMnemonic(KeyEvent.VK_F);
+		file.setMnemonic(KeyEvent.VK_F); //mnemonik na jmenu
 		JMenuItem novi = new JMenuItem("New");
 		novi.addActionListener(new ActionListener() {
 			
@@ -54,13 +54,13 @@ public class MenuBar extends JMenuBar {
 					DialogDodavanjeProfesora dialogDodavanjeProfesora = new DialogDodavanjeProfesora();
 				}	
 				
-			}
+			} //dugme new poziva dijaloge za dodavanje u zavisnosti od selektovanog taba
 		});
 		novi.setAccelerator(KeyStroke.getKeyStroke(
-		        KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		        KeyEvent.VK_N, ActionEvent.CTRL_MASK));//precica za poziv dodavanja
 		JMenuItem zatvori = new JMenuItem("Close");
 		zatvori.setAccelerator(KeyStroke.getKeyStroke(
-		        KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		        KeyEvent.VK_C, ActionEvent.CTRL_MASK));//precica za zatvaranje aplikacije
 		zatvori.addActionListener(new ActionListener() {
 			
 			@Override
@@ -113,7 +113,7 @@ public class MenuBar extends JMenuBar {
 					DialogIzmenaProfesora dialogIzmenaProfesora = new DialogIzmenaProfesora(idx);
 				}
 				
-			}
+			}//jmenuitem edit poziva izmenu nekog entiteta iz taba koji je selektovan, ali moramo selektovati jednog
 		});
 		edit1.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_T, ActionEvent.CTRL_MASK));
@@ -126,21 +126,32 @@ public class MenuBar extends JMenuBar {
 				String selektovano = MainFrame.getSelectedTab();
 				if (selektovano.equals("predmet")) {
 					
-					int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
-					
+					int indexUModelu =MainFrame.getTabelaPredmeti().getSelectedRow();
+					if(indexUModelu==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izbrisete");
+                    	return;
+                    }
 					DialogBrisanjePredmeta brisanje = new DialogBrisanjePredmeta(indexUModelu);
 					
 				}else if(selektovano.equals("student")) {
-					int indexUModelu = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
+					int indexUModelu =MainFrame.getTabelaStudenti().getSelectedRow();
+					if(indexUModelu==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izbrisete");
+                    	return;
+                    }
 					DialogBrisanjeStudenta brisanje = new DialogBrisanjeStudenta(indexUModelu);
 				} else if(selektovano.equals("profesor")) {
 
-					int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+					int indexUModelu =MainFrame.getTabelaProfesori().getSelectedRow();
+					if(indexUModelu==-1) {
+                    	JOptionPane.showMessageDialog(null, "morate selektovati red koji zelite da izbrisete");
+                    	return;
+                    }
 
 					DialogBrisanjeProfesora brisanje = new DialogBrisanjeProfesora(indexUModelu);
 				}
 				
-			}
+			}//jmenuitem delete poziva brisanje nekog entiteta iz taba koji je selektovan, ali moramo selektovati jednog
 		});
 		delete.setAccelerator(KeyStroke.getKeyStroke(
 		        KeyEvent.VK_D, ActionEvent.CTRL_MASK));
@@ -166,7 +177,7 @@ public class MenuBar extends JMenuBar {
 				// TODO Auto-generated method stub
 				DialogHelp dialogHelp=new DialogHelp();
 				
-			}
+			}//pozivamo dijalog help u kom su navedene instrukcije za koriscenje aplikacije
 		};
 		help1.addActionListener(helpL);
 		help1.setAccelerator(KeyStroke.getKeyStroke(
@@ -182,11 +193,11 @@ public class MenuBar extends JMenuBar {
 				// TODO Auto-generated method stub
 				DialogAbout dialogAbout=new DialogAbout();
 				
-			}
+			}//pozivamo dijalog about u kom su navedene informacije o aplikaciji
 		};
 		about.addActionListener(about1);
 		about.setAccelerator(KeyStroke.getKeyStroke(
-		        KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		        KeyEvent.VK_A, ActionEvent.CTRL_MASK));//precica
 		help.add(about);
 
 		help1.setIcon(new ImageIcon("ikonice/icons8-help-20.png"));
