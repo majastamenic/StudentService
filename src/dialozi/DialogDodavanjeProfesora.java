@@ -30,10 +30,10 @@ public class DialogDodavanjeProfesora extends JDialog{
 		setSize(new Dimension(600, 500));
 		
 		GridBagConstraints g=new GridBagConstraints();
-		setLayout(new GridBagLayout());
+		setLayout(new GridBagLayout()); //podesavanje grid layouta
 		
 		g.gridx=0;
-		g.gridy=0;
+		g.gridy=0;//izmene pozicija komponenti na dijalogu
 		JLabel labelaIme=new JLabel("Ime:");
 		add(labelaIme,g);
 		JTextField poljeIme=new JTextField();
@@ -161,12 +161,13 @@ public class DialogDodavanjeProfesora extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Profesor profesor=new Profesor();
-				String ime=poljeIme.getText();
+				String ime=poljeIme.getText(); //uzimanje vrednosti iz tekst polja
 				String prezime=poljePrezime.getText();
-				Date datRodj;
+				Date datRodj=new Date();
+				SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
 				try {
-					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());
-					profesor.setDatumRodjenja(datRodj);
+					datRodj = new SimpleDateFormat("dd-MM-yyyy").parse(poljeDatRodj.getText());//uzimanje datuma iz tekst polja
+					
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -183,7 +184,7 @@ public class DialogDodavanjeProfesora extends JDialog{
 				
 				profesor.setIme(ime);
 				profesor.setPrezime(prezime);
-				
+				profesor.setDatumRodjenja(datRodj);
 				profesor.setAdresaStanovanja(adresaStanovanja);
 				profesor.setTelefon(telefon);
 				profesor.setEmail(email);
@@ -192,9 +193,9 @@ public class DialogDodavanjeProfesora extends JDialog{
 				profesor.setTitula(titula);
 				profesor.setZvanje(zvanje);
 				
-				Profesor.dodavanjeProfesora(profesor);
+				Profesor.dodavanjeProfesora(profesor); //pozivanje metode za dodavanje profesora napravljene u klasi profesor
 				
-				MainFrame.refreshTabova();
+				MainFrame.refreshTabova();  //osvezava vrednosti nakon dodavanja(dodaje ovog kog smo dodali)
 				dispose();
 			}
 		};
