@@ -3,6 +3,7 @@ package dialozi;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -161,27 +162,44 @@ public class DialogDodavanjePredmeta extends JDialog{
 				try {
 					String sifra = sifraPolje.getText();
 					String naziv = nazivPolje.getText();
-					int semestar = Integer.parseInt(semestarPolje.getText());
-					int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
-					Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
+					if(sifra.equals("") || naziv.equals("")) {
+						
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
+						
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
+								"Greska prilikom dodavanja predmeta", JOptionPane.OK_OPTION, icon1);
+						//dispose();
+					} else {
+						int semestar = Integer.parseInt(semestarPolje.getText());
+						int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
+						Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
 					
-	//				Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
+	//					Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
 	
-					Predmet predmet = new Predmet();
-					predmet.setSifra(sifra);
-					predmet.setNaziv(naziv);
-					predmet.setSemestar(semestar);
-					predmet.setGodinaStudija(godinaStudija);
-					predmet.setPredmetniProfesor(profesor);
-					predmet.setSpisakStudenata(listaIzabraniStudenti);
+						Predmet predmet = new Predmet();
+						predmet.setSifra(sifra);
+						predmet.setNaziv(naziv);
+						predmet.setSemestar(semestar);
+						predmet.setGodinaStudija(godinaStudija);
+						predmet.setPredmetniProfesor(profesor);
+						predmet.setSpisakStudenata(listaIzabraniStudenti);
 					
-					Predmet.dodavanjePredmeta(predmet);
+						Predmet.dodavanjePredmeta(predmet);
 					
-					MainFrame.refreshTabova();
-					dispose();
+						MainFrame.refreshTabova();
+						dispose();
+					}
 				}catch(Exception ex) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili polja.",
-							"Greska prilikom dodavanja predmeta", JOptionPane.OK_OPTION);
+					ImageIcon icon1 = new ImageIcon("Images/error.png");
+					Image img1 = icon1.getImage();
+					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+					icon1 = new ImageIcon(newimg1);
+					
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
+							"Greska prilikom dodavanja predmeta", JOptionPane.OK_OPTION, icon1);
 				}
 			}
 		};

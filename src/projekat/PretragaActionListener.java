@@ -1,5 +1,6 @@
 package projekat;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -83,7 +85,11 @@ public class PretragaActionListener implements ActionListener{
 						}
 					} catch(Exception ex) {
 						UIManager.put("OptionPane.okButtonText", "OK");
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!", "Pogresan format", JOptionPane.OK_OPTION);
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!", "Pogresan format", JOptionPane.OK_OPTION, icon1);
 					}
 				}
 				
@@ -189,8 +195,12 @@ public class PretragaActionListener implements ActionListener{
 					} 
 				} catch (Exception ex) {
 					UIManager.put("OptionPane.okButtonText", "OK");
+					ImageIcon icon1 = new ImageIcon("Images/error.png");
+					Image img1 = icon1.getImage();
+					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+					icon1 = new ImageIcon(newimg1);
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Podaci za pretragu nisu uneti u trazenom formatu!",
-							"Pogresan format", JOptionPane.OK_OPTION);
+							"Greska - pogresan format", JOptionPane.OK_OPTION, icon1);
 				}
 				
 			 }

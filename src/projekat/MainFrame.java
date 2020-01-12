@@ -66,9 +66,13 @@ public class MainFrame extends JFrame {
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 				UIManager.put("OptionPane.yesButtonText", "Da");
 				UIManager.put("OptionPane.noButtonText", "Ne");
+				ImageIcon icon = new ImageIcon("Images/exit.png");
+				Image img = icon.getImage();
+				Image newimg = img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH); 
+				icon = new ImageIcon(newimg);
 				if (JOptionPane.showConfirmDialog(rootPane, "Da li ste sigurni da zelite da zatvorite aplikaciju?",
 						"Zatvaranje aplikacije", JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+						JOptionPane.QUESTION_MESSAGE, icon) == JOptionPane.YES_OPTION) {
 					Util.upisiPredmete(MyApp.predmeti);
 					Util.upisiStudente(MyApp.studenti);
 					Util.upisiProfesore(MyApp.profesori);

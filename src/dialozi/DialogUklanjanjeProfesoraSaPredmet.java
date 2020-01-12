@@ -1,5 +1,8 @@
 package dialozi;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -24,13 +27,18 @@ public class DialogUklanjanjeProfesoraSaPredmet extends JDialog{
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 				UIManager.put("OptionPane.yesButtonText", "Da");
 				UIManager.put("OptionPane.noButtonText", "Ne");
+				
+				ImageIcon icon = new ImageIcon("Images/deleteDialog.png");
+				Image img = icon.getImage();
+				Image newimg = img.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); // Podesavanje velicine ikonice.
+				icon = new ImageIcon(newimg);
 				if(JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da zelite da uklonite profesora sa predmeta?",
-						"Potvrda o brisanju profesora sa predmeta", JOptionPane.YES_NO_OPTION,
-						JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+					"Potvrda o brisanju profesora sa predmeta", JOptionPane.YES_NO_OPTION,
+					JOptionPane.QUESTION_MESSAGE, icon) == JOptionPane.YES_OPTION) {
 					Predmet.uklanjanjeProfesora(MyApp.getPredmeti().get(indexUModelu).getPredmetniProfesor(), sifra);
 					MainFrame.refreshTabova();
 				}
-				dispose();
+				dispose();		
 			}
 		});
 		setVisible(true);

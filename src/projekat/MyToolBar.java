@@ -2,9 +2,11 @@ package projekat;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -58,6 +60,7 @@ public class MyToolBar extends JToolBar{
 				
 			}
 		});
+		btnDodavanje.setMnemonic(KeyEvent.VK_F);
 		add(btnDodavanje);
 		
 		JButton btnIzmena = new JButton();
@@ -76,8 +79,12 @@ public class MyToolBar extends JToolBar{
 						DialogIzmenaPredmeta dialogIzmenaPredmeta = new DialogIzmenaPredmeta(indexUModelu);
 					}catch(Exception ex){
 						UIManager.put("OptionPane.okButtonText", "OK");
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da  izmenite.",
-								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
 					}
                 }
 				else if(selektovano.equals("student")) {
@@ -104,13 +111,19 @@ public class MyToolBar extends JToolBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selektovano = MainFrame.getSelectedTab();
+				
 				if (selektovano.equals("predmet")) {
+					
 					try {
 						int indexUModelu = MainFrame.getTabelaPredmeti().convertRowIndexToModel((MainFrame.getTabelaPredmeti().getSelectedRow()));
 						UIManager.put("OptionPane.yesButtonText", "Da");
 						UIManager.put("OptionPane.noButtonText", "Ne");
+						ImageIcon icon = new ImageIcon("Images/deleteDialog.png");
+						Image img = icon.getImage();
+						Image newimg = img.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 		// Podesavanje velicine ikonice.
+						icon = new ImageIcon(newimg);
 						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(),"Da li ste sigurni da zelite da obrisete selektovani predmet?",
-								"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION){
+								"Brisanje predmeta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon)==JOptionPane.YES_OPTION){
 							Predmet.brisanjePredmeta(MyApp.getPredmeti().get(indexUModelu).getSifra());
 							MainFrame.refreshTabova();
 							dispose();
@@ -118,19 +131,33 @@ public class MyToolBar extends JToolBar{
 					}catch(Exception ex){
 						UIManager.put("OptionPane.okButtonText", "OK");
 						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet koji zelite da izbrisete.",
-								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
 					}
+					
 				}else if(selektovano.equals("student")) {
+					
 					int indexUModelu = MainFrame.getTabelaStudenti().convertRowIndexToModel((MainFrame.getTabelaStudenti().getSelectedRow()));
 					DialogBrisanjeStudenta brisanje = new DialogBrisanjeStudenta(indexUModelu);
+					
 				} else if(selektovano.equals("profesor")) {
+					
 					try {
 						int indexUModelu = MainFrame.getTabelaProfesori().convertRowIndexToModel(MainFrame.getTabelaProfesori().getSelectedRow());
+						
 						UIManager.put("OptionPane.yesButtonText", "Da");
 						UIManager.put("OptionPane.noButtonText", "Ne");
+						ImageIcon icon = new ImageIcon("Images/deleteDialog.png");
+						Image img = icon.getImage();
+						Image newimg = img.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 		// Podesavanje velicine ikonice.
+						icon = new ImageIcon(newimg);
+						
 						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(),"Da li ste sigurni da zelite da obrisete selektovanog profesora?",
-								"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION){
+								"Brisanje profesora", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon)==JOptionPane.YES_OPTION){
 							Profesor.brisanjeProfesora(MyApp.getProfesori().get(indexUModelu).getBrojLicneKarte());
 							MainFrame.refreshTabova();
 							dispose();
@@ -138,8 +165,12 @@ public class MyToolBar extends JToolBar{
 					}catch(Exception ex) {
 						UIManager.put("OptionPane.okButtonText", "OK");
 						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili profesora kojeg zelite da izbrisete.",
-								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
 					}
 				}
 
@@ -157,7 +188,7 @@ public class MyToolBar extends JToolBar{
 		if(selektovano.equals("predmet")) {
 			JButton btnDodavanjeProfesoraNaPredmet = new JButton();
 			btnDodavanjeProfesoraNaPredmet.setToolTipText("Dodavanje profesora na predmet");
-			ImageIcon img3 = new ImageIcon("Images/addMan.png");
+			ImageIcon img3 = new ImageIcon("Images/dodavanje_profesora.png");
 			btnDodavanjeProfesoraNaPredmet.setIcon(new ImageIcon(img3.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH)));
 			btnDodavanjeProfesoraNaPredmet.addActionListener(new ActionListener() {
 
@@ -169,8 +200,13 @@ public class MyToolBar extends JToolBar{
 					}catch(Exception ex){
 						UIManager.put("OptionPane.okButtonText", "OK");
 						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+
+						icon1 = new ImageIcon(newimg1);
 						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na koji zelite da dodate profesora",
-								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
 					}
 				}
 			});
@@ -190,9 +226,21 @@ public class MyToolBar extends JToolBar{
 						UIManager.put("OptionPane.yesButtonText", "Da");
 						UIManager.put("OptionPane.noButtonText", "Ne");
 						UIManager.put("OptionPane.cancelButtonText", "Otkazi");
-						if(JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da zelite da uklonite profesora sa predmeta?",
+						ImageIcon icon = new ImageIcon("Images/deleteDialog.png");
+						Image img = icon.getImage();
+						Image newimg = img.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon = new ImageIcon(newimg);
+						if(MyApp.getPredmeti().get(indexUModelu).getPredmetniProfesor()==null) {
+							ImageIcon icon1 = new ImageIcon("Images/error.png");
+							Image img1 = icon1.getImage();
+							Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+							icon1 = new ImageIcon(newimg1);
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Selektovani predmet nema premetnog profesora.",
+									"Greska", JOptionPane.OK_OPTION, icon1);
+						}
+						else if(JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da zelite da uklonite profesora sa predmeta?",
 								"Potvrda o brisanju profesora sa predmeta", JOptionPane.YES_NO_OPTION,
-								JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+								JOptionPane.QUESTION_MESSAGE, icon) == JOptionPane.YES_OPTION) {
 							String sifra = MyApp.getPredmeti().get(indexUModelu).getSifra();
 							Predmet.uklanjanjeProfesora(MyApp.getPredmeti().get(indexUModelu).getPredmetniProfesor(), sifra);
 							MainFrame.refreshTabova();
@@ -201,8 +249,12 @@ public class MyToolBar extends JToolBar{
 
 					}catch(Exception ex) {
 						UIManager.put("OptionPane.okButtonText", "OK");
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na kome zelite da uklonite profesora",
-								"Oznacite predmet", JOptionPane.OK_CANCEL_OPTION);
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste oznacili predmet na kome zelite da uklonite profesora.",
+								"Greska", JOptionPane.OK_CANCEL_OPTION, icon1);
 					}
 
 				}

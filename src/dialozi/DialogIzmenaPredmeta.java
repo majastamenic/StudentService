@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import projekat.MainFrame;
@@ -120,25 +121,45 @@ public class DialogIzmenaPredmeta extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String sifra = sifraPolje.getText();
-				String naziv = nazivPolje.getText();
-				int semestar = Integer.parseInt(semestarPolje.getText());
-				int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
-				Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
-				
-//				Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
-
-				Predmet predmet = new Predmet();
-				predmet.setSifra(sifra);
-				predmet.setNaziv(naziv);
-				predmet.setSemestar(semestar);
-				predmet.setGodinaStudija(godinaStudija);
-				predmet.setPredmetniProfesor(profesor);
-				
-				Predmet.izmenaPredmeta(predmet);
-				
-				MainFrame.refreshTabova();
-				dispose();
+				try {
+					String sifra = sifraPolje.getText();
+					String naziv = nazivPolje.getText();
+					if(naziv.equals("")) {
+						ImageIcon icon1 = new ImageIcon("Images/error.png");
+						Image img1 = icon1.getImage();
+						Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+						icon1 = new ImageIcon(newimg1);
+						
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
+								"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
+					}else {
+						int semestar = Integer.parseInt(semestarPolje.getText());
+						int godinaStudija = Integer.parseInt(godStudijaPolje.getText());
+						Profesor profesor = (Profesor) profesoriComboBox.getSelectedItem();
+						
+		//				Predmet predmet = new Predmet(sifra, naziv, semestar, godinaStudija, profesor);
+		
+						Predmet predmet = new Predmet();
+						predmet.setSifra(sifra);
+						predmet.setNaziv(naziv);
+						predmet.setSemestar(semestar);
+						predmet.setGodinaStudija(godinaStudija);
+						predmet.setPredmetniProfesor(profesor);
+						
+						Predmet.izmenaPredmeta(predmet);
+						
+						MainFrame.refreshTabova();
+						dispose();
+					}
+				}catch(Exception ex) {
+					ImageIcon icon1 = new ImageIcon("Images/error.png");
+					Image img1 = icon1.getImage();
+					Image newimg1 = img1.getScaledInstance(40, 45, java.awt.Image.SCALE_SMOOTH); 
+					icon1 = new ImageIcon(newimg1);
+					
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Niste validno popunili sva polja.",
+							"Greska prilikom izmene predmeta", JOptionPane.OK_OPTION, icon1);
+				}
 				
 			}
 		};
